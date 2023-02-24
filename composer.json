@@ -1,0 +1,46 @@
+{
+  "name": "baks-dev/field-tire",
+  "description": "Пакет полей HTML для автомобильных шин",
+  "homepage": "https://github.com/baks-dev/field-tire",
+  "keywords": [
+    "bundle",
+    "symfony",
+    "library",
+    "reference",
+    "field",
+    "tire",
+    "baks"
+  ],
+  "license": "MIT",
+  "type": "symfony-bundle",
+  "authors": [
+    {
+      "name": "Baks Development",
+      "email": "admin@baks.dev"
+    }
+  ],
+  "require": {
+    "php": ">=8.1",
+    "symfony/form": "^6.2",
+    "symfony/orm-pack": "^2.3"
+  },
+  "require-dev": {
+    "roave/security-advisories": "dev-latest"
+  },
+  "autoload": {
+    "psr-4": {
+      "BaksDev\\Field\\Tire\\": ""
+    }
+  },
+  "autoload-dev": {
+    "psr-4": {
+      "BaksDev\\Field\\Tire\\Tests\\": "Tests/"
+    }
+  },
+  "config": {
+    "sort-packages": true,
+    "allow-plugins": {
+      "symfony/flex": true
+    }
+  }
+}
