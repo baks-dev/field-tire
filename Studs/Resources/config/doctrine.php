@@ -2,8 +2,8 @@
 
 namespace Symfony\Component\DependencyInjection\Loader\Configurator;
 
-use BaksDev\Field\Tire\Type\TireStudsField;
-use BaksDev\Field\Tire\Type\TireStudsFieldType;
+use BaksDev\Field\Tire\Studs\Type\TireStudsField;
+use BaksDev\Field\Tire\Studs\Type\TireStudsFieldType;
 use Symfony\Config\DoctrineConfig;
 
 return static function(DoctrineConfig $doctrine) {
