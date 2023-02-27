@@ -26,6 +26,7 @@ declare(strict_types=1);
 namespace BaksDev\Field\Tire\Profile\Choice;
 
 use BaksDev\Core\Services\Fields\FieldsChoiceInterface;
+use BaksDev\Field\Tire\Profile\Form\TireProfileFieldForm;
 use BaksDev\Field\Tire\Profile\Type\TireProfileField;
 
 final class TireProfileFieldChoice implements FieldsChoiceInterface
@@ -40,14 +41,22 @@ final class TireProfileFieldChoice implements FieldsChoiceInterface
 		return TireProfileField::TYPE;
 	}
 	
-	public function choice() : array
-	{
-		return TireProfileField::cases();
-	}
+//	public function choice() : array
+//	{
+//		return TireProfileField::cases();
+//	}
 	
 	
 	public function domain() : string
 	{
 		return 'field.tire.profile';
 	}
+	
+	
+	/** Возвращает класс формы для рендера */
+	public function form() : string
+	{
+		return TireProfileFieldForm::class;
+	}
+	
 }

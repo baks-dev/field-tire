@@ -26,6 +26,7 @@ declare(strict_types=1);
 namespace BaksDev\Field\Tire\Season\Choice;
 
 use BaksDev\Core\Services\Fields\FieldsChoiceInterface;
+use BaksDev\Field\Tire\Season\Form\TireSeasonFieldForm;
 use BaksDev\Field\Tire\Season\Type\TireSeasonField;
 
 final class TireSeasonFieldChoice implements FieldsChoiceInterface
@@ -40,14 +41,22 @@ final class TireSeasonFieldChoice implements FieldsChoiceInterface
 		return TireSeasonField::TYPE;
 	}
 	
-	public function choice() : array
-	{
-		return TireSeasonField::cases();
-	}
+//	public function choice() : array
+//	{
+//		return TireSeasonField::cases();
+//	}
 	
 	
 	public function domain() : string
 	{
 		return 'field.tire.season';
 	}
+	
+	
+	/** Возвращает класс формы для рендера */
+	public function form() : string
+	{
+		return TireSeasonFieldForm::class;
+	}
+	
 }

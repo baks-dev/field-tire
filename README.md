@@ -60,9 +60,48 @@ return static function (ContainerConfigurator $configurator) {
 		->tag('baks.fields.choice')
 	;
 	
+	/** Тип автомобиля */
+	$services->set(TireCarTypeFieldChoice::class)
+		->tag('baks.fields.choice')
+	;
+	
+	/** Шаблоны полей в форме */
+	$twig->formThemes([
+		'@TireSeasonField/form.row.html.twig',
+		'@TireStudsField/form.row.html.twig',
+		'@TireCarTypeField/form.row.html.twig',
+	]);
+
 };
 
 ```
+
+## Переопределение шаблонов
+Шаблоны пееропределяются в директории templates в виде текстового представления (content.html.twig), и шаблона (template.html.twig)
+
+#### Радиус шины
+- /templates/TireRadiusField/content.html.twig
+- /templates/TireRadiusField/template.html.twig
+
+#### Профиль нины
+- /templates/TireProfileField/content.html.twig
+- /templates/TireProfileField/template.html.twig
+
+#### Ширина нины
+- /templates/TireWidthField/content.html.twig
+- /templates/TireWidthField/template.html.twig
+
+#### Сезонность
+- /templates/TireSeasonField/content.html.twig
+- /templates/TireSeasonField/template.html.twig
+
+#### Шипы
+- /templates/TireStudsField/content.html.twig
+- /templates/TireStudsField/template.html.twig
+
+#### Тип автомобиля
+- /templates/TireCarTypeField/content.html.twig
+- /templates/TireCarTypeField/template.html.twig
 
 
 ## Журнал изменений ![Changelog](https://img.shields.io/badge/changelog-yellow)

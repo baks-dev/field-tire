@@ -24,7 +24,7 @@ final class TireSeasonField
 	
 	private TireSeasonEnum $value;
 	
-	public function __construct(int|TireSeasonEnum $value)
+	public function __construct(string|TireSeasonEnum $value)
 	{
 		if($value instanceof TireSeasonEnum)
 		{

@@ -20,7 +20,7 @@ namespace BaksDev\Field\Tire\Width\Type;
 
 final class TireWidthField
 {
-	public const TYPE = 'tire_profile_field';
+	public const TYPE = 'tire_width_field';
 	
 	private TireWidthEnum $value;
 	

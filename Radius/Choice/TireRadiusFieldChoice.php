@@ -26,6 +26,7 @@ declare(strict_types=1);
 namespace BaksDev\Field\Tire\Radius\Choice;
 
 use BaksDev\Core\Services\Fields\FieldsChoiceInterface;
+use BaksDev\Field\Tire\Radius\Form\TireRadiusFieldForm;
 use BaksDev\Field\Tire\Radius\Type\TireRadiusField;
 
 final class TireRadiusFieldChoice implements FieldsChoiceInterface
@@ -40,14 +41,22 @@ final class TireRadiusFieldChoice implements FieldsChoiceInterface
 		return TireRadiusField::TYPE;
 	}
 	
-	public function choice() : array
-	{
-		return TireRadiusField::cases();
-	}
+//	public function choice() : array
+//	{
+//		return TireRadiusField::cases();
+//	}
 	
 	
 	public function domain() : string
 	{
 		return 'field.tire.radius';
 	}
+	
+	
+	/** Возвращает класс формы для рендера */
+	public function form() : string
+	{
+		return TireRadiusFieldForm::class;
+	}
+	
 }

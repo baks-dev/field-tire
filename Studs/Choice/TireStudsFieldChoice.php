@@ -27,6 +27,7 @@ namespace BaksDev\Field\Tire\Studs\Choice;
 
 use BaksDev\Core\Services\Fields\FieldsChoiceInterface;
 use BaksDev\Field\Pack\Checkbox\Type\CheckboxField;
+use BaksDev\Field\Tire\Studs\Form\TireStudsFieldForm;
 use BaksDev\Field\Tire\Studs\Type\TireStudsField;
 
 final class TireStudsFieldChoice implements FieldsChoiceInterface
@@ -41,15 +42,23 @@ final class TireStudsFieldChoice implements FieldsChoiceInterface
 		return TireStudsField::TYPE;
 	}
 	
-	public function choice() : bool
-	{
-		/** Поле не является выбором */
-		return false;
-	}
+//	public function choice() : bool
+//	{
+//		/** Поле не является выбором */
+//		return false;
+//	}
 	
 	
 	public function domain() : string
 	{
 		return 'field.tire.studs';
 	}
+	
+	
+	/** Возвращает класс формы для рендера */
+	public function form() : string
+	{
+		return TireStudsFieldForm::class;
+	}
+	
 }

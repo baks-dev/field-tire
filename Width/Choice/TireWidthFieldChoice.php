@@ -26,6 +26,7 @@ declare(strict_types=1);
 namespace BaksDev\Field\Tire\Width\Choice;
 
 use BaksDev\Core\Services\Fields\FieldsChoiceInterface;
+use BaksDev\Field\Tire\Width\Form\TireWidthFieldForm;
 use BaksDev\Field\Tire\Width\Type\TireWidthField;
 
 final class TireWidthFieldChoice implements FieldsChoiceInterface
@@ -40,14 +41,22 @@ final class TireWidthFieldChoice implements FieldsChoiceInterface
 		return TireWidthField::TYPE;
 	}
 	
-	public function choice() : array
-	{
-		return TireWidthField::cases();
-	}
+//	public function choice() : array
+//	{
+//		return TireWidthField::cases();
+//	}
 	
 	
 	public function domain() : string
 	{
 		return 'field.tire.width';
 	}
+	
+	
+	/** Возвращает класс формы для рендера */
+	public function form() : string
+	{
+		return TireWidthFieldForm::class;
+	}
+	
 }
