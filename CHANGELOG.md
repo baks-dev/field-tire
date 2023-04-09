@@ -3,6 +3,6 @@
 Все заметные изменения в модуле будут задокументированы в этом файле.
 
 
-## 27.02.2023 ![Version](https://img.shields.io/badge/version-v1.0.0-blue)
+## 09.04.2023 ![Version](https://img.shields.io/badge/version-v1.0.0-blue)
 
 Новая версия 6.2, соотвтетсвующей версии фрейворка Symfony
