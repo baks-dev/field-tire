@@ -39,19 +39,9 @@ final class TireSeasonRenderExtension extends AbstractExtension
 	public function getFunctions() : array
 	{
 		return [
-			new TwigFunction(TireSeasonField::TYPE.'_render', [$this, 'render'], ['needs_environment' => true, 'is_safe' => ['html']]),
+		
 		];
 	}
 	
-	public function render(Environment $twig, $value) : string
-	{
-		try
-		{
-			return $twig->render('@Template/TireSeasonField/template.html.twig', ['value' => $value]);
-		}
-		catch(LoaderError $loaderError)
-		{
-			return $twig->render('@TireSeasonField/template.html.twig', ['value' => $value]);
-		}
-	}
+	
 }

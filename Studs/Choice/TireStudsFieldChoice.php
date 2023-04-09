@@ -26,11 +26,12 @@ declare(strict_types=1);
 namespace BaksDev\Field\Tire\Studs\Choice;
 
 use BaksDev\Core\Services\Fields\FieldsChoiceInterface;
+use BaksDev\Core\Services\Reference\ReferenceChoiceInterface;
 use BaksDev\Field\Pack\Checkbox\Type\CheckboxField;
 use BaksDev\Field\Tire\Studs\Form\TireStudsFieldForm;
 use BaksDev\Field\Tire\Studs\Type\TireStudsField;
 
-final class TireStudsFieldChoice implements FieldsChoiceInterface
+final class TireStudsFieldChoice implements FieldsChoiceInterface, ReferenceChoiceInterface
 {
 	public function equals($key) : bool
 	{

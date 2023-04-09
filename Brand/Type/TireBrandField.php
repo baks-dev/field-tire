@@ -23,48 +23,60 @@
 
 declare(strict_types=1);
 
-namespace BaksDev\Field\Tire\CarType\Form;
+namespace BaksDev\Field\Tire\Brand\Type;
 
-use BaksDev\Field\Tire\CarType\Type\TireCarTypeField;
-use Symfony\Component\Form\AbstractType;
-use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
-use Symfony\Component\Form\Extension\Core\Type\SubmitType;
-use Symfony\Component\Form\Extension\Core\Type\RadioType;
-use Symfony\Component\Form\FormBuilderInterface;
-use Symfony\Component\OptionsResolver\OptionsResolver;
-
-final class TireCarTypeFieldForm extends AbstractType
+final class TireBrandField
 {
+	public const TYPE = 'tire_brand_field';
 	
-	public function buildForm(FormBuilderInterface $builder, array $options) : void
+	private TireBrandEnum $value;
+	
+	
+	public function __construct(string|TireBrandEnum $value)
 	{
-		$builder->addModelTransformer(new TireCarTypeFieldTransformer($options['required']));
+		if($value instanceof TireBrandEnum)
+		{
+			$this->value = $value;
+		}
+		else
+		{
+			$this->value = TireBrandEnum::from($value);
+		}
 	}
 	
-	public function configureOptions(OptionsResolver $resolver) : void
+	public function __toString() : string
 	{
-		$resolver->setDefaults([
-			'choices' => TireCarTypeField::cases(),
-			'choice_value' => function($status) {
-				return $status?->getValue();
-			},
-			'choice_label' => function($status) {
-				return $status->getValue();
-			},
-			'translation_domain' => 'field.tire.cartype',
-			'expanded' => true,
-		]);
+		return $this->value->value;
 	}
 	
-	public function getParent()
+	/** Возвращает числовое значение   */
+	public function getTireBrandEnumValue() : string
 	{
-		//return RadioType::class;
-		return ChoiceType::class;
+		return $this->value->value;
 	}
 	
-	public function getBlockPrefix()
+	/** Возвращает ключ значения */
+	public function getTireBrandEnumName() : string
 	{
-		return 'tire_cartype_field';
+		return $this->value->name;
 	}
 	
+	/** Возвращает значение Enum   */
+	public function getTireBrandEnum() : TireBrandEnum
+	{
+		return $this->value;
+	}
+	
+	/** Возвращает массив из значнией TireProfileEnum */
+	public static function cases() : array
+	{
+		$case = null;
+		
+		foreach(TireBrandEnum::cases() as $color)
+		{
+			$case[] = new self($color);
+		}
+		
+		return $case;
+	}
 }

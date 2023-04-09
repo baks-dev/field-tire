@@ -1,6 +1,6 @@
 <?php
 
 return [
-	'placeholder' => 'Шипы',
+	'placeholder' => 'Средство против скольжения',
 	'label' => 'Шипы',
 ];

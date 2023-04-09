@@ -14,42 +14,46 @@
  *
  *  THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
  *  IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
- *  FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+ *  FITNESS FOR A PARTICULAR PURPOSE AND NON INFRINGEMENT. IN NO EVENT SHALL THE
  *  AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
  *  LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
  *  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  *  THE SOFTWARE.
- *
- *
  */
 
-namespace BaksDev\Field\Tire\Radius\Twig;
+declare(strict_types=1);
 
-use BaksDev\Field\Tire\Radius\Type\TireRadiusEnum;
-use BaksDev\Field\Tire\Radius\Type\TireRadiusField;
-use Twig\Environment;
-use Twig\Error\LoaderError;
-use Twig\Extension\AbstractExtension;
-use Twig\TwigFunction;
+namespace BaksDev\Field\Tire\CarType\Choice;
 
-final class TireRadiusRenderExtension extends AbstractExtension
+use BaksDev\Core\Services\Reference\ReferenceChoiceInterface;
+use BaksDev\Field\Tire\CarType\Form\TireCarTypeFieldForm;
+use BaksDev\Field\Tire\CarType\Type\TireCarTypeField;
+
+final class TireCarTypeReferenceChoice implements ReferenceChoiceInterface
 {
-	public function getFunctions() : array
+	public function equals($key) : bool
 	{
-		return [
-			new TwigFunction(TireRadiusField::TYPE.'_render', [$this, 'render'], ['needs_environment' => true, 'is_safe' => ['html']]),
-		];
+		return $key === TireCarTypeField::TYPE;
 	}
 	
-	public function render(Environment $twig, $value) : string
+	public function type() : string
 	{
-		try
-		{
-			return $twig->render('@Template/TireRadiusField/template.html.twig', ['value' => $value]);
-		}
-		catch(LoaderError $loaderError)
-		{
-			return $twig->render('@TireRadiusField/template.html.twig', ['value' => $value]);
-		}
+		return TireCarTypeField::TYPE;
+	}
+	
+	public function choice() : array
+	{
+		return 'field.tire.cartype';
+	}
+	
+	public function domain() : string
+	{
+		return 'reference.color';
+	}
+	
+	/** Возвращает класс формы для рендера */
+	public function form() : string
+	{
+		return TireCarTypeFieldForm::class;
 	}
 }

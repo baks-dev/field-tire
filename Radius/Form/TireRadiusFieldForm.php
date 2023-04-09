@@ -61,7 +61,8 @@ final class TireRadiusFieldForm extends AbstractType
 				return $status->getName();
 			},
 			'translation_domain' => 'field.tire.radius',
-			'placeholder' => 'placeholder'
+			'placeholder' => 'placeholder',
+			'attr' => [ 'data-select' => 'select2' ],
 		]);
 	}
 	

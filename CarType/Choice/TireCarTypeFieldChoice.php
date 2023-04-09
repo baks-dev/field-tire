@@ -26,10 +26,11 @@ declare(strict_types=1);
 namespace BaksDev\Field\Tire\CarType\Choice;
 
 use BaksDev\Core\Services\Fields\FieldsChoiceInterface;
+use BaksDev\Core\Services\Reference\ReferenceChoiceInterface;
 use BaksDev\Field\Tire\CarType\Form\TireCarTypeFieldForm;
 use BaksDev\Field\Tire\CarType\Type\TireCarTypeField;
 
-final class TireCarTypeFieldChoice implements FieldsChoiceInterface
+final class TireCarTypeFieldChoice implements FieldsChoiceInterface, ReferenceChoiceInterface
 {
 	public function equals($key) : bool
 	{
@@ -41,17 +42,10 @@ final class TireCarTypeFieldChoice implements FieldsChoiceInterface
 		return TireCarTypeField::TYPE;
 	}
 	
-//	public function choice() : array
-//	{
-//		return TireCarTypeField::cases();
-//	}
-	
-	
 	public function domain() : string
 	{
 		return 'field.tire.cartype';
 	}
-	
 	
 	/** Возвращает класс формы для рендера */
 	public function form() : string

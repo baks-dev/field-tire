@@ -22,29 +22,32 @@ final class TireSeasonField
 {
 	public const TYPE = 'tire_season_field';
 	
-	private TireSeasonEnum $value;
+	private ?TireSeasonEnum $value = null;
 	
-	public function __construct(string|TireSeasonEnum $value)
+	public function __construct(null|string|TireSeasonEnum $value)
 	{
 		if($value instanceof TireSeasonEnum)
 		{
 			$this->value = $value;
+			return;
 		}
-		else
+		
+		if(is_string($value))
 		{
 			$this->value = TireSeasonEnum::from($value);
 		}
+		
 	}
 	
 	public function __toString() : string
 	{
-		return $this->value->value;
+		return $this->value?->value ?: '';
 	}
 	
 	/** Возвращает числовое значение   */
-	public function getValue() : string
+	public function getValue() : ?string
 	{
-		return $this->value->value;
+		return $this->value?->value;
 	}
 	
 	/** Возвращает ключ значения */

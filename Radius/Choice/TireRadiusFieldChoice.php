@@ -26,10 +26,11 @@ declare(strict_types=1);
 namespace BaksDev\Field\Tire\Radius\Choice;
 
 use BaksDev\Core\Services\Fields\FieldsChoiceInterface;
+use BaksDev\Core\Services\Reference\ReferenceChoiceInterface;
 use BaksDev\Field\Tire\Radius\Form\TireRadiusFieldForm;
 use BaksDev\Field\Tire\Radius\Type\TireRadiusField;
 
-final class TireRadiusFieldChoice implements FieldsChoiceInterface
+final class TireRadiusFieldChoice implements FieldsChoiceInterface, ReferenceChoiceInterface
 {
 	public function equals($key) : bool
 	{

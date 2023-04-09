@@ -38,6 +38,9 @@ final class TireStudsExtension extends AbstractExtension
 	{
 		return [
 			new TwigFunction(TireStudsField::TYPE, [$this, 'call'], ['needs_environment' => true, 'is_safe' => ['html']]),
+			new TwigFunction(TireStudsField::TYPE.'_render', [$this, 'render'], ['needs_environment' => true, 'is_safe' => ['html']]),
+			new TwigFunction(TireStudsField::TYPE.'_template', [$this, 'template'], ['needs_environment' => true, 'is_safe' => ['html']]),
+			
 		];
 	}
 	
@@ -54,5 +57,29 @@ final class TireStudsExtension extends AbstractExtension
 			return $twig->render('@TireStudsField/content.html.twig', ['value' => $value]);
 		}
 		
+	}
+	
+	public function template(Environment $twig, mixed $value) : ?string
+	{
+		try
+		{
+			return $twig->render('@Template/TireStudsField/template.html.twig', ['value' => $value == 'true' ]);
+		}
+		catch(LoaderError $loaderError)
+		{
+			return $twig->render('@TireStudsField/template.html.twig', ['value' => $value == 'true']);
+		}
+	}
+	
+	public function render(Environment $twig, mixed $value) : ?string
+	{
+		try
+		{
+			return $twig->render('@Template/TireStudsField/render.html.twig', ['value' => $value == 'true' ]);
+		}
+		catch(LoaderError $loaderError)
+		{
+			return $twig->render('@TireStudsField/render.html.twig', ['value' => $value == 'true']);
+		}
 	}
 }

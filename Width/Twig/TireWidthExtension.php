@@ -37,11 +37,15 @@ final class TireWidthExtension extends AbstractExtension
 	public function getFunctions() : array
 	{
 		return [
-			new TwigFunction(TireWidthField::TYPE, [$this, 'call'], ['needs_environment' => true, 'is_safe' => ['html']]),
+
+			new TwigFunction(TireWidthField::TYPE, [$this, 'content'], ['needs_environment' => true, 'is_safe' => ['html']]),
+			new TwigFunction(TireWidthField::TYPE.'_render', [$this, 'render'], ['needs_environment' => true, 'is_safe' => ['html']]),
+			new TwigFunction(TireWidthField::TYPE.'_template', [$this, 'template'], ['needs_environment' => true, 'is_safe' => ['html']]),
 		];
 	}
 	
-	public function call(Environment $twig, string $value) : string
+	
+	public function content(Environment $twig, string $value) : string
 	{
 		try
 		{
@@ -50,6 +54,31 @@ final class TireWidthExtension extends AbstractExtension
 		catch(LoaderError $loaderError)
 		{
 			return $twig->render('@TireWidthField/content.html.twig', ['value' => $value]);
+		}
+	}
+	
+	public function render(Environment $twig, $value) : string
+	{
+		try
+		{
+			return $twig->render('@Template/TireWidthField/render.html.twig', ['value' => $value]);
+		}
+		catch(LoaderError $loaderError)
+		{
+			return $twig->render('@TireWidthField/render.html.twig', ['value' => $value]);
+		}
+	}
+	
+	
+	public function template(Environment $twig, $value) : string
+	{
+		try
+		{
+			return $twig->render('@Template/TireWidthField/template.html.twig', ['value' => $value]);
+		}
+		catch(LoaderError $loaderError)
+		{
+			return $twig->render('@TireWidthField/template.html.twig', ['value' => $value]);
 		}
 	}
 	

@@ -32,9 +32,21 @@ use Symfony\Component\Form\DataTransformerInterface;
 final class TireSeasonFieldTransformer implements DataTransformerInterface
 {
 	
+	private bool $required;
+	
+	
+	public function __construct(bool $required)
+	{
+		$this->required = $required;
+	}
+	
+	
 	public function transform(mixed $value)
 	{
-		if(empty($value)) { $value = TireSeasonEnum::SUMMER; }
+		if($this->required && empty($value))
+		{
+			$value = TireSeasonEnum::SUMMER;
+		}
 		
 		return new TireSeasonField($value);
 	}

@@ -14,42 +14,44 @@
  *
  *  THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
  *  IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
- *  FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+ *  FITNESS FOR A PARTICULAR PURPOSE AND NON INFRINGEMENT. IN NO EVENT SHALL THE
  *  AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
  *  LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
  *  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  *  THE SOFTWARE.
- *
- *
  */
 
-namespace BaksDev\Field\Tire\CarType\Twig;
+declare(strict_types=1);
 
-use BaksDev\Field\Tire\CarType\Type\TireCarTypeEnum;
-use BaksDev\Field\Tire\CarType\Type\TireCarTypeField;
-use Twig\Environment;
-use Twig\Error\LoaderError;
-use Twig\Extension\AbstractExtension;
-use Twig\TwigFunction;
+namespace BaksDev\Field\Tire\Brand\Type;
 
-final class TireCarTypeRenderExtension extends AbstractExtension
+use Doctrine\DBAL\Platforms\AbstractPlatform;
+use Doctrine\DBAL\Types\StringType;
+
+final class TireBrandType extends StringType
 {
-	public function getFunctions() : array
+	
+	public function convertToDatabaseValue($value, AbstractPlatform $platform) : mixed
 	{
-		return [
-			new TwigFunction(TireCarTypeField::TYPE.'_render', [$this, 'render'], ['needs_environment' => true, 'is_safe' => ['html']]),
-		];
+		return $value instanceof TireBrandField ? $value->getTireBrandEnumValue() : (new TireBrandField($value))->getTireBrandEnumValue();
 	}
 	
-	public function render(Environment $twig, $value) : string
+	
+	public function convertToPHPValue($value, AbstractPlatform $platform) : mixed
 	{
-		try
-		{
-			return $twig->render('@Template/TireCarTypeField/template.html.twig', ['value' => $value]);
-		}
-		catch(LoaderError $loaderError)
-		{
-			return $twig->render('@TireCarTypeField/template.html.twig', ['value' => $value]);
-		}
+		return !empty($value) ? new TireBrandField($value) : $value;
 	}
+	
+	
+	public function getName() : string
+	{
+		return TireBrandField::TYPE;
+	}
+	
+	
+	public function requiresSQLCommentHint(AbstractPlatform $platform) : bool
+	{
+		return true;
+	}
+	
 }

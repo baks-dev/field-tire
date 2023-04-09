@@ -60,7 +60,8 @@ final class TireProfileFieldForm extends AbstractType
 				return $status->getValue();
 			},
 			'translation_domain' => 'field.tire.profile',
-			'placeholder' => 'placeholder'
+			'placeholder' => 'placeholder',
+			'attr' => [ 'data-select' => 'select2' ],
 		]);
 	}
 	

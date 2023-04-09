@@ -38,11 +38,13 @@ final class TireSeasonExtension extends AbstractExtension
 	public function getFunctions() : array
 	{
 		return [
-			new TwigFunction(TireSeasonField::TYPE, [$this, 'call'], ['needs_environment' => true, 'is_safe' => ['html']]),
+			new TwigFunction(TireSeasonField::TYPE, [$this, 'content'], ['needs_environment' => true, 'is_safe' => ['html']]),
+			new TwigFunction(TireSeasonField::TYPE.'_render', [$this, 'render'], ['needs_environment' => true, 'is_safe' => ['html']]),
+			new TwigFunction(TireSeasonField::TYPE.'_template', [$this, 'template'], ['needs_environment' => true, 'is_safe' => ['html']]),
 		];
 	}
 	
-	public function call(Environment $twig, string $value) : string
+	public function content(Environment $twig, string $value) : string
 	{
 		try
 		{
@@ -54,4 +56,29 @@ final class TireSeasonExtension extends AbstractExtension
 		}
 	}
 	
+	
+	public function render(Environment $twig, $value) : string
+	{
+		try
+		{
+			return $twig->render('@Template/TireSeasonField/render.html.twig', ['value' => $value]);
+		}
+		catch(LoaderError $loaderError)
+		{
+			return $twig->render('@TireSeasonField/render.html.twig', ['value' => $value]);
+		}
+	}
+	
+	
+	public function template(Environment $twig, $value) : string
+	{
+		try
+		{
+			return $twig->render('@Template/TireSeasonField/template.html.twig', ['value' => $value]);
+		}
+		catch(LoaderError $loaderError)
+		{
+			return $twig->render('@TireSeasonField/template.html.twig', ['value' => $value]);
+		}
+	}
 }

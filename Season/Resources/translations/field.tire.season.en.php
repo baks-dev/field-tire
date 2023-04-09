@@ -6,6 +6,7 @@ return [
 	
 	'summer'=> 'Summer',
 	'winter' => 'Winter',
-	'all' => 'All season'
+	'all' => 'All season',
+	'doesnt' => 'Doesn\'t matter'
 	
 ];

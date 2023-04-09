@@ -60,7 +60,8 @@ final class TireWidthFieldForm extends AbstractType
 				return $status->getValue();
 			},
 			'translation_domain' => 'field.tire.width',
-			'placeholder' => 'placeholder'
+			'placeholder' => 'placeholder',
+			'attr' => [ 'data-select' => 'select2' ],
 		]);
 	}
 	

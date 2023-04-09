@@ -25,6 +25,7 @@ declare(strict_types=1);
 
 namespace BaksDev\Field\Tire\Season\Form;
 
+use BaksDev\Field\Tire\Season\Type\TireSeasonEnum;
 use BaksDev\Field\Tire\Season\Type\TireSeasonField;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
@@ -34,16 +35,9 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
 final class TireSeasonFieldForm extends AbstractType
 {
 	
-	private TireSeasonFieldTransformer $transformer;
-	
-	public function __construct(TireSeasonFieldTransformer $transformer)
-	{
-		$this->transformer = $transformer;
-	}
-
 	public function buildForm(FormBuilderInterface $builder, array $options) : void
 	{
-		$builder->addModelTransformer($this->transformer);
+		$builder->addModelTransformer(new TireSeasonFieldTransformer($options['required']));
 	}
 	
 	public function configureOptions(OptionsResolver $resolver) : void

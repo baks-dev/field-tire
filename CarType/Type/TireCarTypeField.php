@@ -22,15 +22,17 @@ final class TireCarTypeField
 {
 	public const TYPE = 'tire_cartype_field';
 	
-	private TireCarTypeEnum $value;
+	private ?TireCarTypeEnum $value = null;
 	
-	public function __construct(string|TireCarTypeEnum $value)
+	public function __construct(null|string|TireCarTypeEnum $value)
 	{
 		if($value instanceof TireCarTypeEnum)
 		{
 			$this->value = $value;
+			return;
 		}
-		else
+		
+		if(is_string($value))
 		{
 			$this->value = TireCarTypeEnum::from($value);
 		}
@@ -38,13 +40,13 @@ final class TireCarTypeField
 	
 	public function __toString() : string
 	{
-		return $this->value->value;
+		return $this->value?->value ?: '';
 	}
 	
 	/** Возвращает числовое значение   */
-	public function getValue() : string
+	public function getValue() : ?string
 	{
-		return $this->value->value;
+		return $this->value?->value;
 	}
 	
 	/** Возвращает ключ значения */

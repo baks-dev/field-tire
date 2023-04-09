@@ -1,6 +1,6 @@
 <?php
 
 return [
-	'placeholder' => 'Studs',
+	'placeholder' => 'Anti-slip agent',
 	'label' => 'Studs',
 ];

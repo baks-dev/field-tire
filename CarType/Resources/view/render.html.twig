@@ -1,6 +1,4 @@
 {% trans_default_domain('field.tire.cartype') %}
-<div class='d-flex gap-3 align-items-center'>
-
 
 {# Легковой  #}
 {% if value == 'passenger' %}
@@ -9,6 +7,8 @@
 			width="30" height="30"
 			src="/assets/img/empty.png"
 			class="lazy"
+			data-bs-toggle="tooltip"
+			data-bs-placement="bottom"
 			alt="{{ 'passenger'|trans }}"
 			title="{{ 'passenger'|trans }}"
 	/>
@@ -20,8 +20,11 @@
 			width="28" height="28"
 			src="/assets/img/empty.png"
 			class="lazy"
+			data-bs-toggle="tooltip"
+			data-bs-placement="bottom"
 			alt="{{ 'jeep'|trans }}"
-			title="{{ 'jeep'|trans }}"
+			title="{{ 'label'|trans }} {{ 'jeep'|trans }}"
+			
 	/>
 	
 	
@@ -31,8 +34,10 @@
 			width="22" height="22"
 			src="/assets/img/empty.png"
 			class="lazy"
+			data-bs-toggle="tooltip"
+			data-bs-placement="bottom"
 			alt="{{ 'bus'|trans }}"
-			title="{{ 'bus'|trans }}"
+			title="{{ 'label'|trans }} {{ 'bus'|trans }}"
 	/>
 	
 {#  Грузовик #}
@@ -41,15 +46,11 @@
 			width="16" height="16"
 			src="/assets/img/empty.png"
 			class="lazy"
+			data-bs-toggle="tooltip"
+			data-bs-placement="bottom"
 			alt="{{ 'truck'|trans }}"
-			title="{{ 'truck'|trans }}"
+			title="{{ 'label'|trans }} {{ 'truck'|trans }}"
 	/>
 
 
 {% endif %}
-	
-	<span>
-		{{  value ? value|trans : 'doesnt'|trans }}
-	</span>
-
-</div>

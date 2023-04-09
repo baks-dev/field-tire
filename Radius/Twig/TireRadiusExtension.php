@@ -39,11 +39,13 @@ final class TireRadiusExtension extends AbstractExtension
 	public function getFunctions() : array
 	{
 		return [
-			new TwigFunction(TireRadiusField::TYPE, [$this, 'call'], ['needs_environment' => true, 'is_safe' => ['html']]),
+			new TwigFunction(TireRadiusField::TYPE, [$this, 'content'], ['needs_environment' => true, 'is_safe' => ['html']]),
+			new TwigFunction(TireRadiusField::TYPE.'_render', [$this, 'render'], ['needs_environment' => true, 'is_safe' => ['html']]),
+			new TwigFunction(TireRadiusField::TYPE.'_template', [$this, 'template'], ['needs_environment' => true, 'is_safe' => ['html']]),
 		];
 	}
 	
-	public function call(Environment $twig, string $value) : string
+	public function content(Environment $twig, string $value) : string
 	{
 		try
 		{
@@ -52,6 +54,30 @@ final class TireRadiusExtension extends AbstractExtension
 		catch(LoaderError $loaderError)
 		{
 			return $twig->render('@TireRadiusField/content.html.twig', ['value' => $value]);
+		}
+	}
+	
+	public function render(Environment $twig, $value) : string
+	{
+		try
+		{
+			return $twig->render('@Template/TireRadiusField/render.html.twig', ['value' => $value]);
+		}
+		catch(LoaderError $loaderError)
+		{
+			return $twig->render('@TireRadiusField/render.html.twig', ['value' => $value]);
+		}
+	}
+	
+	public function template(Environment $twig, $value) : string
+	{
+		try
+		{
+			return $twig->render('@Template/TireRadiusField/template.html.twig', ['value' => $value]);
+		}
+		catch(LoaderError $loaderError)
+		{
+			return $twig->render('@TireRadiusField/template.html.twig', ['value' => $value]);
 		}
 	}
 	
