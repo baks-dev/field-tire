@@ -1,6 +1,6 @@
 # BaksDev Field Tire 
 
-![Version](https://img.shields.io/badge/version-6.2-blue) ![php 8.1+](https://img.shields.io/badge/php-min%208.1-red.svg)
+![Version](https://img.shields.io/badge/version-6.2.1-blue) ![php 8.1+](https://img.shields.io/badge/php-min%208.1-red.svg)
 
 Пакет полей HTML для автомобильных шин
 
@@ -26,6 +26,7 @@ use BaksDev\Field\Tire\Radius\Choice\TireRadiusFieldChoice;
 use BaksDev\Field\Tire\Width\Choice\TireWidthFieldChoice;
 use BaksDev\Field\Tire\Season\Choice\TireSeasonFieldChoice;
 use BaksDev\Field\Tire\Studs\Choice\TireStudsFieldChoice;
+use BaksDev\Field\Tire\Euro\Choice\TireEuroFieldChoice;
 
 return static function (ContainerConfigurator $configurator) {
 	
@@ -64,12 +65,18 @@ return static function (ContainerConfigurator $configurator) {
 	$services->set(TireCarTypeFieldChoice::class)
 		->tag('baks.fields.choice')
 	;
+
+	/** Евроэтикетка шины */
+    $services->set(TireEuroFieldChoice::class)
+        ->tag('baks.fields.choice')
+    ;
 	
 	/** Шаблоны полей в форме */
 	$twig->formThemes([
 		'@TireSeasonField/form.row.html.twig',
 		'@TireStudsField/form.row.html.twig',
 		'@TireCarTypeField/form.row.html.twig',
+		'@TireEuroField/form.row.html.twig',
 	]);
 
 };
