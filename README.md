@@ -67,9 +67,9 @@ return static function (ContainerConfigurator $configurator) {
 	;
 
 	/** Евроэтикетка шины */
-    $services->set(TireEuroFieldChoice::class)
-        ->tag('baks.fields.choice')
-    ;
+	$services->set(TireEuroFieldChoice::class)
+		->tag('baks.fields.choice')
+	;
 	
 	/** Шаблоны полей в форме */
 	$twig->formThemes([
