@@ -118,6 +118,12 @@ template.html.twig)
 - /templates/TireCarTypeField/content.html.twig
 - /templates/TireCarTypeField/template.html.twig
 
+#### Евроэтикетка
+
+- /templates/TireEuroField/content.html.twig
+- /templates/TireEuroField/template.html.twig
+
+
 ## Журнал изменений ![Changelog](https://img.shields.io/badge/changelog-yellow)
 
 О том, что изменилось за последнее время, обратитесь к [CHANGELOG](CHANGELOG.md) за дополнительной информацией.
