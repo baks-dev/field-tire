@@ -1,4 +1,4 @@
-# BaksDev Field Tire 
+# BaksDev Field Tire
 
 ![Version](https://img.shields.io/badge/version-6.2.1-blue) ![php 8.1+](https://img.shields.io/badge/php-min%208.1-red.svg)
 
@@ -84,32 +84,39 @@ return static function (ContainerConfigurator $configurator) {
 ```
 
 ## Переопределение шаблонов
-Шаблоны пееропределяются в директории templates в виде текстового представления (content.html.twig), и шаблона (template.html.twig)
+
+Шаблоны пееропределяются в директории templates в виде текстового представления (content.html.twig), и шаблона (
+template.html.twig)
 
 #### Радиус шины
+
 - /templates/TireRadiusField/content.html.twig
 - /templates/TireRadiusField/template.html.twig
 
 #### Профиль нины
+
 - /templates/TireProfileField/content.html.twig
 - /templates/TireProfileField/template.html.twig
 
 #### Ширина нины
+
 - /templates/TireWidthField/content.html.twig
 - /templates/TireWidthField/template.html.twig
 
 #### Сезонность
+
 - /templates/TireSeasonField/content.html.twig
 - /templates/TireSeasonField/template.html.twig
 
 #### Шипы
+
 - /templates/TireStudsField/content.html.twig
 - /templates/TireStudsField/template.html.twig
 
 #### Тип автомобиля
+
 - /templates/TireCarTypeField/content.html.twig
 - /templates/TireCarTypeField/template.html.twig
-
 
 ## Журнал изменений ![Changelog](https://img.shields.io/badge/changelog-yellow)
 
