@@ -27,6 +27,7 @@ namespace BaksDev\Field\Tire\Radius\Type;
 
 enum TireRadiusEnum : int
 {
+	case NULL = 0;
 	case R12 = 12;
 	case R13 = 13;
 	case R14 = 14;
