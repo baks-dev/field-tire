@@ -28,8 +28,6 @@ namespace BaksDev\Field\Tire\Euro\Form;
 use BaksDev\Field\Tire\Euro\Type\ChoiceEconomyEnum;
 use BaksDev\Field\Tire\Euro\Type\ChoiceGripEnum;
 use Symfony\Component\Validator\Constraints as Assert;
-use Symfony\Component\Validator\Context\ExecutionContextInterface;
-use Symfony\Component\Validator\Mapping\ClassMetadata;
 
 
 final class TireEuroFieldDTO
@@ -80,41 +78,6 @@ final class TireEuroFieldDTO
     public function setSound(?int $sound): void
     {
         $this->sound = $sound;
-    }
-
-    public static function loadValidatorMetadata(ClassMetadata $metadata): void
-    {
-
-        dd('loadValidatorMetadata');
-
-    }
-
-    public function validate(ExecutionContextInterface $context, $payload)
-    {
-
-        dd(5646545);
-
-        if (empty($this->economy) && (!empty($this->grip) || !empty($this->sound)))
-        {
-            $context->buildViolation('')
-                ->atPath('economy')
-                ->addViolation();
-        }
-
-
-        if (empty($this->grip) && (!empty($this->economy) || !empty($this->sound)))
-        {
-            $context->buildViolation('')
-                ->atPath('grip')
-                ->addViolation();
-        }
-
-        if (empty($this->sound) && (!empty($this->economy) || !empty($this->grip)))
-        {
-            $context->buildViolation('')
-                ->atPath('grip')
-                ->addViolation();
-        }
     }
 
 }
