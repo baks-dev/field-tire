@@ -41,6 +41,12 @@ final class TireCarTypeFieldChoice implements FieldsChoiceInterface, ReferenceCh
 	{
 		return TireCarTypeField::TYPE;
 	}
+
+
+    public function class(): string
+    {
+        return TireCarTypeField::class;
+    }
 	
 	public function domain() : string
 	{

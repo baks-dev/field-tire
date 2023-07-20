@@ -41,8 +41,14 @@ final class TireProfileFieldChoice implements FieldsChoiceInterface, ReferenceCh
 	{
 		return TireProfileField::TYPE;
 	}
-	
-	public function domain() : string
+
+    public function class(): string
+    {
+        return TireProfileField::class;
+    }
+
+
+    public function domain() : string
 	{
 		return 'field.tire.profile';
 	}

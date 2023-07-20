@@ -27,7 +27,6 @@ namespace BaksDev\Field\Tire\Studs\Choice;
 
 use BaksDev\Core\Services\Fields\FieldsChoiceInterface;
 use BaksDev\Core\Services\Reference\ReferenceChoiceInterface;
-use BaksDev\Field\Pack\Checkbox\Type\CheckboxField;
 use BaksDev\Field\Tire\Studs\Form\TireStudsFieldForm;
 use BaksDev\Field\Tire\Studs\Type\TireStudsField;
 
@@ -42,8 +41,14 @@ final class TireStudsFieldChoice implements FieldsChoiceInterface, ReferenceChoi
 	{
 		return TireStudsField::TYPE;
 	}
-	
-//	public function choice() : bool
+
+    public function class(): string
+    {
+        return TireStudsField::class;
+    }
+
+
+    //	public function choice() : bool
 //	{
 //		/** Поле не является выбором */
 //		return false;

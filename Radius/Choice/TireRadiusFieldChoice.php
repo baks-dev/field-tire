@@ -41,8 +41,14 @@ final class TireRadiusFieldChoice implements FieldsChoiceInterface, ReferenceCho
 	{
 		return TireRadiusField::TYPE;
 	}
-	
-//	public function choice() : array
+
+    public function class(): string
+    {
+        return TireRadiusField::class;
+    }
+
+
+    //	public function choice() : array
 //	{
 //		return TireRadiusField::cases();
 //	}

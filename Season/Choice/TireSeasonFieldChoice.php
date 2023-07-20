@@ -41,8 +41,14 @@ final class TireSeasonFieldChoice implements FieldsChoiceInterface, ReferenceCho
 	{
 		return TireSeasonField::TYPE;
 	}
-	
-//	public function choice() : array
+
+    public function class(): string
+    {
+        return TireSeasonField::class;
+    }
+
+
+    //	public function choice() : array
 //	{
 //		return TireSeasonField::cases();
 //	}

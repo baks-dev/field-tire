@@ -25,12 +25,10 @@ declare(strict_types=1);
 
 namespace BaksDev\Field\Tire\Euro\Choice;
 
-use BaksDev\Contacts\Region\Form\ContactRegionChoice\ContactRegionFieldForm;
 use BaksDev\Core\Services\Fields\FieldsChoiceInterface;
 use BaksDev\Core\Services\Reference\ReferenceChoiceInterface;
 use BaksDev\Field\Tire\Euro\Form\TireEuroFieldForm;
 use BaksDev\Field\Tire\Euro\Type\TireEuroField;
-
 
 final class TireEuroFieldChoice implements FieldsChoiceInterface, ReferenceChoiceInterface
 {
@@ -42,6 +40,11 @@ final class TireEuroFieldChoice implements FieldsChoiceInterface, ReferenceChoic
     public function type() : string
     {
         return TireEuroField::TYPE;
+    }
+
+    public function class(): string
+    {
+        return TireEuroField::class;
     }
 
     public function domain() : string

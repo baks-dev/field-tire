@@ -41,8 +41,14 @@ final class TireWidthFieldChoice implements FieldsChoiceInterface, ReferenceChoi
 	{
 		return TireWidthField::TYPE;
 	}
-	
-//	public function choice() : array
+
+    public function class(): string
+    {
+        return TireWidthField::class;
+    }
+
+
+    //	public function choice() : array
 //	{
 //		return TireWidthField::cases();
 //	}
