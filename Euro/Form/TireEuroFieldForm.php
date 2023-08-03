@@ -32,11 +32,7 @@ use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\IntegerType;
 use Symfony\Component\Form\FormBuilderInterface;
-use Symfony\Component\Form\FormEvent;
-use Symfony\Component\Form\FormEvents;
 use Symfony\Component\OptionsResolver\OptionsResolver;
-use Symfony\Component\Validator\Constraints as Assert;
-use Symfony\Component\Validator\Context\ExecutionContextInterface;
 
 final class TireEuroFieldForm extends AbstractType
 {
@@ -122,9 +118,5 @@ final class TireEuroFieldForm extends AbstractType
         return TireEuroField::TYPE;
     }
 
-    public function validate(ExecutionContextInterface $context, $payload)
-    {
-        dd('ajhvf');
-    }
 
 }

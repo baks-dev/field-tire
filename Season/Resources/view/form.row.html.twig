@@ -13,13 +13,7 @@
 		
 		
 		{% for child in form.children|filter(child => not child.rendered) %}
-			
-			{#{% if form.vars.required and child.vars.data == false %}
-				
-				{{ dd(child.vars.data) }}
-			
-			{% endif %}#}
-			
+
 			<label class="btn p-2 border-dashed rounded-3 w-100 text-muted {{ child.vars.data ? 'active' }}">
 				<div class="d-flex align-items-center">
 					<div class="flex-grow-1">
