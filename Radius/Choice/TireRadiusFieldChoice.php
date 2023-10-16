@@ -37,7 +37,7 @@ final class TireRadiusFieldChoice implements FieldsChoiceInterface, ReferenceCho
 		return $key === TireRadiusField::TYPE;
 	}
 	
-	public function type() : string
+	public function type(): string
 	{
 		return TireRadiusField::TYPE;
 	}
@@ -54,14 +54,14 @@ final class TireRadiusFieldChoice implements FieldsChoiceInterface, ReferenceCho
 //	}
 	
 	
-	public function domain() : string
+	public function domain(): string
 	{
 		return 'field.tire.radius';
 	}
 	
 	
 	/** Возвращает класс формы для рендера */
-	public function form() : string
+	public function form(): string
 	{
 		return TireRadiusFieldForm::class;
 	}

@@ -37,7 +37,7 @@ final class TireEuroFieldChoice implements FieldsChoiceInterface, ReferenceChoic
         return $key === TireEuroField::TYPE;
     }
 
-    public function type() : string
+    public function type(): string
     {
         return TireEuroField::TYPE;
     }
@@ -47,13 +47,13 @@ final class TireEuroFieldChoice implements FieldsChoiceInterface, ReferenceChoic
         return TireEuroField::class;
     }
 
-    public function domain() : string
+    public function domain(): string
     {
         return 'field.tire.euro';
     }
 
     /** Возвращает класс формы для рендера */
-    public function form() : string
+    public function form(): string
     {
         return TireEuroFieldForm::class;
     }

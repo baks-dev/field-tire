@@ -23,17 +23,17 @@ use Doctrine\DBAL\Types\StringType;
 
 final class TireSeasonFieldType extends StringType
 {
-	public function convertToDatabaseValue($value, AbstractPlatform $platform) : mixed
+	public function convertToDatabaseValue($value, AbstractPlatform $platform): mixed
 	{
 		return $value instanceof TireSeasonField ? $value->getValue() : (new TireSeasonField($value))->getValue();
 	}
 	
-	public function convertToPHPValue($value, AbstractPlatform $platform) : mixed
+	public function convertToPHPValue($value, AbstractPlatform $platform): mixed
 	{
 		return !empty($value) ? new TireSeasonField($value) : $value;
 	}
 	
-	public function getName() : string
+	public function getName(): string
 	{
 		return TireSeasonField::TYPE;
 	}

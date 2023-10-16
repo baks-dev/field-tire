@@ -44,19 +44,19 @@ final class TireBrandField
 		}
 	}
 	
-	public function __toString() : string
+	public function __toString(): string
 	{
 		return $this->value->value;
 	}
 	
 	/** Возвращает числовое значение   */
-	public function getTireBrandEnumValue() : string
+	public function getTireBrandEnumValue(): string
 	{
 		return $this->value->value;
 	}
 	
 	/** Возвращает ключ значения */
-	public function getTireBrandEnumName() : string
+	public function getTireBrandEnumName(): string
 	{
 		return $this->value->name;
 	}

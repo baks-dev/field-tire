@@ -39,7 +39,7 @@ final class TireProfileFieldTransformer implements DataTransformerInterface
 	}
 	
 	
-	public function reverseTransform(mixed $value) : string
+	public function reverseTransform(mixed $value): string
 	{
 		return (string) $value;
 	}

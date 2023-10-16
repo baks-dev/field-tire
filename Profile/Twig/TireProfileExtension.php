@@ -43,8 +43,10 @@ final class TireProfileExtension extends AbstractExtension
 		];
 	}
 	
-	public function content(Environment $twig, string $value) : string
+	public function content(Environment $twig, ?string $value): ?string
 	{
+        if(!$value) { return null; }
+
 		try
 		{
 			return $twig->render('@Template/TireProfileField/content.html.twig', ['value' => $value]);
@@ -55,8 +57,10 @@ final class TireProfileExtension extends AbstractExtension
 		}
 	}
 	
-	public function template(Environment $twig, $value) : string
+	public function template(Environment $twig, ?string $value): ?string
 	{
+        if(!$value) { return null; }
+
 		try
 		{
 			return $twig->render('@Template/TireProfileField/template.html.twig', ['value' => $value]);
@@ -67,8 +71,10 @@ final class TireProfileExtension extends AbstractExtension
 		}
 	}
 	
-	public function render(Environment $twig, $value) : string
+	public function render(Environment $twig, ?string $value): ?string
 	{
+        if(!$value) { return null; }
+
 		try
 		{
 			return $twig->render('@Template/TireProfileField/render.html.twig', ['value' => $value]);

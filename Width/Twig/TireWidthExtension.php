@@ -45,8 +45,10 @@ final class TireWidthExtension extends AbstractExtension
 	}
 	
 	
-	public function content(Environment $twig, string $value) : string
+	public function content(Environment $twig, ?string $value): ?string
 	{
+        if(!$value) { return null; }
+
 		try
 		{
 			return $twig->render('@Template/TireWidthField/content.html.twig', ['value' => $value]);
@@ -57,7 +59,7 @@ final class TireWidthExtension extends AbstractExtension
 		}
 	}
 	
-	public function render(Environment $twig, $value) : string
+	public function render(Environment $twig, ?string $value): ?string
 	{
 		try
 		{
@@ -70,8 +72,10 @@ final class TireWidthExtension extends AbstractExtension
 	}
 	
 	
-	public function template(Environment $twig, $value) : string
+	public function template(Environment $twig, ?string $value): ?string
 	{
+        if(!$value) { return null; }
+
 		try
 		{
 			return $twig->render('@Template/TireWidthField/template.html.twig', ['value' => $value]);

@@ -52,7 +52,7 @@ final class TireSeasonFieldTransformer implements DataTransformerInterface
 	}
 	
 	
-	public function reverseTransform(mixed $value) : string
+	public function reverseTransform(mixed $value): string
 	{
 		return (string) $value;
 	}

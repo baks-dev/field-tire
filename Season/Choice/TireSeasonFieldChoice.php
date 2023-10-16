@@ -37,7 +37,7 @@ final class TireSeasonFieldChoice implements FieldsChoiceInterface, ReferenceCho
 		return $key === TireSeasonField::TYPE;
 	}
 	
-	public function type() : string
+	public function type(): string
 	{
 		return TireSeasonField::TYPE;
 	}
@@ -54,14 +54,14 @@ final class TireSeasonFieldChoice implements FieldsChoiceInterface, ReferenceCho
 //	}
 	
 	
-	public function domain() : string
+	public function domain(): string
 	{
 		return 'field.tire.season';
 	}
 	
 	
 	/** Возвращает класс формы для рендера */
-	public function form() : string
+	public function form(): string
 	{
 		return TireSeasonFieldForm::class;
 	}

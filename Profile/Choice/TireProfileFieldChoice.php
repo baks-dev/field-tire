@@ -37,7 +37,7 @@ final class TireProfileFieldChoice implements FieldsChoiceInterface, ReferenceCh
 		return $key === TireProfileField::TYPE;
 	}
 	
-	public function type() : string
+	public function type(): string
 	{
 		return TireProfileField::TYPE;
 	}
@@ -48,14 +48,14 @@ final class TireProfileFieldChoice implements FieldsChoiceInterface, ReferenceCh
     }
 
 
-    public function domain() : string
+    public function domain(): string
 	{
 		return 'field.tire.profile';
 	}
 	
 	
 	/** Возвращает класс формы для рендера */
-	public function form() : string
+	public function form(): string
 	{
 		return TireProfileFieldForm::class;
 	}

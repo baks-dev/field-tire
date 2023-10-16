@@ -36,7 +36,7 @@ final class TireCarTypeReferenceChoice implements ReferenceChoiceInterface
 		return $key === TireCarTypeField::TYPE;
 	}
 	
-	public function type() : string
+	public function type(): string
 	{
 		return TireCarTypeField::TYPE;
 	}
@@ -46,13 +46,13 @@ final class TireCarTypeReferenceChoice implements ReferenceChoiceInterface
 		return 'field.tire.cartype';
 	}
 	
-	public function domain() : string
+	public function domain(): string
 	{
 		return 'reference.color';
 	}
 	
 	/** Возвращает класс формы для рендера */
-	public function form() : string
+	public function form(): string
 	{
 		return TireCarTypeFieldForm::class;
 	}

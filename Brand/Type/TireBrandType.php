@@ -31,19 +31,19 @@ use Doctrine\DBAL\Types\StringType;
 final class TireBrandType extends StringType
 {
 	
-	public function convertToDatabaseValue($value, AbstractPlatform $platform) : mixed
+	public function convertToDatabaseValue($value, AbstractPlatform $platform): mixed
 	{
 		return $value instanceof TireBrandField ? $value->getTireBrandEnumValue() : (new TireBrandField($value))->getTireBrandEnumValue();
 	}
 	
 	
-	public function convertToPHPValue($value, AbstractPlatform $platform) : mixed
+	public function convertToPHPValue($value, AbstractPlatform $platform): mixed
 	{
 		return !empty($value) ? new TireBrandField($value) : $value;
 	}
 	
 	
-	public function getName() : string
+	public function getName(): string
 	{
 		return TireBrandField::TYPE;
 	}

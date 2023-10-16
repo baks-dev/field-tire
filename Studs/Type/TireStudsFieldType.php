@@ -24,19 +24,19 @@ use Doctrine\DBAL\Types\BooleanType;
 final class  TireStudsFieldType extends BooleanType
 {
 	
-	public function convertToDatabaseValue($value, AbstractPlatform $platform) : mixed
+	public function convertToDatabaseValue($value, AbstractPlatform $platform): mixed
 	{
 		return $value instanceof TireStudsField ? $value->getValue() : null;
 	}
 	
 	
-	public function convertToPHPValue($value, AbstractPlatform $platform) : mixed
+	public function convertToPHPValue($value, AbstractPlatform $platform): mixed
 	{
 		return !empty($value) ? new TireStudsField($value) : null;
 	}
 	
 	
-	public function getName() : string
+	public function getName(): string
 	{
 		return TireStudsField::TYPE;
 	}

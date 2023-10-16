@@ -35,7 +35,7 @@ final class TireStudsFieldTransformer implements DataTransformerInterface
 		return $value === 'true';
 	}
 	
-	public function reverseTransform(mixed $value) : string
+	public function reverseTransform(mixed $value): string
 	{
 		return $value ? 'true' : 'false';
 	}

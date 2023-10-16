@@ -43,7 +43,7 @@ final class TireCarTypeExtension extends AbstractExtension
 		];
 	}
 	
-	public function content(Environment $twig, string $value) : string
+	public function content(Environment $twig, string $value): string
 	{
 		try
 		{
@@ -55,7 +55,7 @@ final class TireCarTypeExtension extends AbstractExtension
 		}
 	}
 	
-	public function render(Environment $twig, $value) : string
+	public function render(Environment $twig, $value): string
 	{
 		try
 		{
@@ -68,7 +68,7 @@ final class TireCarTypeExtension extends AbstractExtension
 	}
 	
 	
-	public function template(Environment $twig, $value) : string
+	public function template(Environment $twig, $value): string
 	{
 		try
 		{

@@ -37,7 +37,7 @@ final class TireWidthFieldChoice implements FieldsChoiceInterface, ReferenceChoi
 		return $key === TireWidthField::TYPE;
 	}
 	
-	public function type() : string
+	public function type(): string
 	{
 		return TireWidthField::TYPE;
 	}
@@ -54,14 +54,14 @@ final class TireWidthFieldChoice implements FieldsChoiceInterface, ReferenceChoi
 //	}
 	
 	
-	public function domain() : string
+	public function domain(): string
 	{
 		return 'field.tire.width';
 	}
 	
 	
 	/** Возвращает класс формы для рендера */
-	public function form() : string
+	public function form(): string
 	{
 		return TireWidthFieldForm::class;
 	}

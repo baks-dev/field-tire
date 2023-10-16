@@ -24,19 +24,19 @@ use Doctrine\DBAL\Types\SmallIntType;
 final class TireProfileFieldType extends SmallIntType
 {
 
-	public function convertToDatabaseValue($value, AbstractPlatform $platform) : mixed
+	public function convertToDatabaseValue($value, AbstractPlatform $platform): mixed
 	{
 		return $value instanceof TireProfileField ? $value->getValue() : (new TireProfileField($value))->getValue();
 	}
 	
 	
-	public function convertToPHPValue($value, AbstractPlatform $platform) : mixed
+	public function convertToPHPValue($value, AbstractPlatform $platform): mixed
 	{
 		return !empty($value) ? new TireProfileField($value) : $value;
 	}
 	
 	
-	public function getName() : string
+	public function getName(): string
 	{
 		return TireProfileField::TYPE;
 	}

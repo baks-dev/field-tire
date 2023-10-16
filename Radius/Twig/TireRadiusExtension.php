@@ -45,8 +45,10 @@ final class TireRadiusExtension extends AbstractExtension
 		];
 	}
 	
-	public function content(Environment $twig, string $value) : string
+	public function content(Environment $twig, ?string $value): ?string
 	{
+        if(!$value) { return null; }
+
 		try
 		{
 			return $twig->render('@Template/TireRadiusField/content.html.twig', ['value' => $value]);
@@ -57,8 +59,10 @@ final class TireRadiusExtension extends AbstractExtension
 		}
 	}
 	
-	public function render(Environment $twig, $value) : string
+	public function render(Environment $twig, ?string $value): ?string
 	{
+        if(!$value) { return null; }
+
 		try
 		{
 			return $twig->render('@Template/TireRadiusField/render.html.twig', ['value' => $value]);
@@ -69,8 +73,10 @@ final class TireRadiusExtension extends AbstractExtension
 		}
 	}
 	
-	public function template(Environment $twig, $value) : string
+	public function template(Environment $twig, ?string $value): ?string
 	{
+        if(!$value) { return null; }
+
 		try
 		{
 			return $twig->render('@Template/TireRadiusField/template.html.twig', ['value' => $value]);

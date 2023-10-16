@@ -43,7 +43,7 @@ final class TireEuroColorExtension extends AbstractExtension
 		];
 	}
 	
-	public function getEconomyColor(string $value) : string
+	public function getEconomyColor(string $value): string
 	{
         return match ($value) {
             'A' => 'background-color: #008F30; color: #FFF;',
@@ -56,7 +56,7 @@ final class TireEuroColorExtension extends AbstractExtension
         };
 	}
 	
-	public function getGripColor($value) : string
+	public function getGripColor($value): string
 	{
         return match ($value) {
             'A' => 'background-color: #4684D0; color: #FFF;',

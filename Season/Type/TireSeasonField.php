@@ -39,7 +39,7 @@ final class TireSeasonField
 		
 	}
 	
-	public function __toString() : string
+	public function __toString(): string
 	{
 		return $this->value?->value ?: '';
 	}
@@ -51,7 +51,7 @@ final class TireSeasonField
 	}
 	
 	/** Возвращает ключ значения */
-	public function getName() : string
+	public function getName(): string
 	{
 		return $this->value->name;
 	}
