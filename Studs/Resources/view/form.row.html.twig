@@ -34,12 +34,10 @@
 		
 		{#{{ form_widget(form, { label: false }) }}
 		
-		{{ dump(form.children) }}
-		
+
 		{% for child in form.children|filter(child => not child.rendered) %}
 		
-		{{ dump(child) }}
-		
+
 		{% endfor %}#}
 		
 		{#{% for child in form.children|filter(child => not child.rendered) %}
