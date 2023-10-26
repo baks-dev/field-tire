@@ -26,12 +26,12 @@ final class TireRadiusFieldType extends SmallIntType
 
 	public function convertToDatabaseValue($value, AbstractPlatform $platform): mixed
 	{
-		return $value instanceof TireRadiusField ? $value->getValue() : (new TireRadiusField($value))->getValue();
+		return (int) filter_var($value, FILTER_SANITIZE_NUMBER_INT);
 	}
 	
 	public function convertToPHPValue($value, AbstractPlatform $platform): mixed
 	{
-		return !empty($value) ? new TireRadiusField($value) : $value;
+		return new TireRadiusField($value);
 	}
 	
 	public function getName(): string

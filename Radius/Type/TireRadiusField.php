@@ -18,57 +18,104 @@
 
 namespace BaksDev\Field\Tire\Radius\Type;
 
+use BaksDev\Field\Tire\Radius\Type\Radius\Collection\TireRadiusInterface;
+use InvalidArgumentException;
+
 final class TireRadiusField
 {
 	public const TYPE = 'tire_radius_field';
 	
-	private TireRadiusEnum $value;
+	private TireRadiusInterface $radius;
 	
-	public function __construct(int|TireRadiusEnum $value)
+	public function __construct(TireRadiusInterface|self|int|string $radius)
 	{
-		if($value instanceof TireRadiusEnum)
-		{
-			$this->value = $value;
-		}
-		else
-		{
-			$this->value = TireRadiusEnum::from($value);
-		}
+
+        if(is_string($radius) && class_exists($radius))
+        {
+            $instance = new $radius();
+
+            if($instance instanceof TireRadiusInterface)
+            {
+                $this->radius = $instance;
+                return;
+            }
+        }
+
+        if($radius instanceof TireRadiusInterface)
+        {
+            $this->radius = $radius;
+            return;
+        }
+
+        if($radius instanceof self)
+        {
+            $this->radius = $radius->getTireRadius();
+            return;
+        }
+
+        /** @var TireRadiusInterface $declare */
+        foreach(self::getDeclared() as $declare)
+        {
+            if($declare::equals($radius))
+            {
+                $this->radius = new $declare;
+                return;
+            }
+        }
+
+        throw new InvalidArgumentException(sprintf('Not found TireRadiusField %s', $radius));
+
 	}
 	
 	public function __toString(): string
 	{
-		return $this->value->value;
+		return $this->radius->getValue();
 	}
 	
-	/** Возвращает числовое значение   */
-	public function getValue() : int
+
+	public function getTireRadiusValue(): string
 	{
-		return $this->value->value;
-	}
-	
-	/** Возвращает ключ значения */
-	public function getName(): string
-	{
-		return $this->value->name;
+        return $this->radius->getValue();
 	}
 	
 	/** Возвращает значение Enum   */
-	public function getTireProfileField() : TireRadiusEnum
+	public function getTireRadius() : TireRadiusInterface
 	{
-		return $this->value;
+		return $this->radius;
 	}
-	
-	/** Возвращает массив из значнией TireProfileEnum */
-	public static function cases() : array
-	{
-		$case = null;
-		
-		foreach(TireRadiusEnum::cases() as $color)
-		{
-			$case[] = new self($color);
-		}
-		
-		return $case;
-	}
+
+
+    public static function cases(): array
+    {
+        $case = [];
+
+        foreach(self::getDeclared() as $radius)
+        {
+            /** @var TireRadiusInterface $radius */
+            $class = new $radius;
+            $case[$class::RADIUS] = new self($class);
+        }
+
+        ksort($case);
+
+        return $case;
+    }
+
+    public static function getDeclared(): array
+    {
+        return array_filter(
+            get_declared_classes(),
+            static function($className) {
+                return in_array(TireRadiusInterface::class, class_implements($className), true);
+            }
+        );
+    }
+
+    public function equals(mixed $radius): bool
+    {
+        $radius = new self($radius);
+
+        return $this->getTireRadiusValue() === $radius->getTireRadiusValue();
+    }
+
 }

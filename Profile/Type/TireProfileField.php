@@ -18,58 +18,106 @@
 
 namespace BaksDev\Field\Tire\Profile\Type;
 
+use BaksDev\Field\Tire\Profile\Type\Profile\Collection\TireProfileInterface;
+use InvalidArgumentException;
+
 final class TireProfileField
 {
 	public const TYPE = 'tire_profile_field';
 	
-	private TireProfileEnum $value;
+	private TireProfileInterface $profile;
 	
 	
-	public function __construct(int|TireProfileEnum $value)
+	public function __construct(TireProfileInterface|self|int|string $profile)
 	{
-		if($value instanceof TireProfileEnum)
-		{
-			$this->value = $value;
-		}
-		else
-		{
-			$this->value = TireProfileEnum::from($value);
-		}
+        if(is_string($profile) && class_exists($profile))
+        {
+            $instance = new $profile();
+
+            if($instance instanceof TireProfileInterface)
+            {
+                $this->profile = $instance;
+                return;
+            }
+        }
+
+        if($profile instanceof TireProfileInterface)
+        {
+            $this->profile = $profile;
+            return;
+        }
+
+        if($profile instanceof self)
+        {
+            $this->profile = $profile->getTireProfile();
+            return;
+        }
+
+        /** @var TireProfileInterface $declare */
+        foreach(self::getDeclared() as $declare)
+        {
+            if($declare::equals($profile))
+            {
+                $this->profile = new $declare;
+                return;
+            }
+        }
+
+        throw new InvalidArgumentException(sprintf('Not found TireProfileField %s', $profile));
 	}
 	
 	public function __toString(): string
 	{
-		return $this->value->value;
+		return (string) $this->profile->getValue();
 	}
 	
-	/** Возвращает числовое значение   */
-	public function getValue() : int
-	{
-		return $this->value->value;
-	}
-	
+
 	/** Возвращает ключ значения */
-	public function getName(): string
+	public function getTireProfileValue(): int
 	{
-		return $this->value->name;
+		return $this->profile->getValue();
 	}
 	
 	/** Возвращает значение Enum   */
-	public function getTireProfileField() : TireProfileEnum
+	public function getTireProfile() : TireProfileInterface
 	{
-		return $this->value;
+		return $this->profile;
 	}
-	
-	/** Возвращает массив из значнией TireProfileEnum */
-	public static function cases() : array
-	{
-		$case = null;
-		
-		foreach(TireProfileEnum::cases() as $color)
-		{
-			$case[] = new self($color);
-		}
-		
-		return $case;
-	}
+
+
+    public static function cases(): array
+    {
+        $case = [];
+
+        foreach(self::getDeclared() as $profile)
+        {
+            /** @var TireProfileInterface $profile */
+            $class = new $profile;
+            $case[$class::PROFILE] = new self($class);
+        }
+
+        ksort($case);
+
+        return $case;
+    }
+
+    public static function getDeclared(): array
+    {
+        return array_filter(
+            get_declared_classes(),
+            static function($className) {
+                return in_array(TireProfileInterface::class, class_implements($className), true);
+            }
+        );
+    }
+
+    public function equals(mixed $profile): bool
+    {
+        $profile = new self($profile);
+
+        return $this->getTireProfileValue() === $profile->getTireProfileValue();
+    }
+    
+    
+    
 }

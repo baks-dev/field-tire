@@ -25,13 +25,8 @@
 
 namespace BaksDev\Field\Tire\Studs\Twig;
 
-use BaksDev\Field\Tire\Radius\Type\TireRadiusEnum;
-use BaksDev\Field\Tire\Studs\Type\TireStudsEnum;
-use BaksDev\Field\Tire\Studs\Type\TireStudsField;
-use Twig\Environment;
-use Twig\Error\LoaderError;
+
 use Twig\Extension\AbstractExtension;
-use Twig\TwigFunction;
 
 final class TireStudsRenderExtension extends AbstractExtension
 {

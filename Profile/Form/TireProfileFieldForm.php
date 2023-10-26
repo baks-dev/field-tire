@@ -53,11 +53,11 @@ final class TireProfileFieldForm extends AbstractType
 	{
 		$resolver->setDefaults([
 			'choices' => TireProfileField::cases(),
-			'choice_value' => function($status) {
-				return $status?->getValue();
+			'choice_value' => function(?TireProfileField $profile) {
+				return $profile?->getTireProfileValue();
 			},
-			'choice_label' => function($status) {
-				return $status->getValue();
+			'choice_label' => function(TireProfileField $profile) {
+				return $profile->getTireProfileValue();
 			},
 			'translation_domain' => 'field.tire.profile',
 			'placeholder' => 'placeholder',

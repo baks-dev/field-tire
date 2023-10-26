@@ -18,58 +18,99 @@
 
 namespace BaksDev\Field\Tire\Width\Type;
 
+use BaksDev\Field\Tire\Width\Type\Width\Collection\TireWidthInterface;
+use InvalidArgumentException;
+
 final class TireWidthField
 {
 	public const TYPE = 'tire_width_field';
 	
-	private TireWidthEnum $value;
+	private TireWidthInterface $width;
 	
-	
-	public function __construct(int|TireWidthEnum $value)
+	public function __construct(TireWidthInterface|self|int|string $width)
 	{
-		if($value instanceof TireWidthEnum)
-		{
-			$this->value = $value;
-		}
-		else
-		{
-			$this->value = TireWidthEnum::from($value);
-		}
+        if(is_string($width) && class_exists($width))
+        {
+            $instance = new $width();
+
+            if($instance instanceof TireWidthInterface)
+            {
+                $this->width = $instance;
+                return;
+            }
+        }
+
+        if($width instanceof TireWidthInterface)
+        {
+            $this->width = $width;
+            return;
+        }
+
+        if($width instanceof self)
+        {
+            $this->width = $width->getTireWidth();
+            return;
+        }
+
+        /** @var TireWidthInterface $declare */
+        foreach(self::getDeclared() as $declare)
+        {
+            if($declare::equals($width))
+            {
+                $this->width = new $declare;
+                return;
+            }
+        }
+
+        throw new InvalidArgumentException(sprintf('Not found TireRadiusField %s', $width));
 	}
 	
 	public function __toString(): string
 	{
-		return $this->value->value;
+		return $this->width->getValue();
 	}
-	
-	/** Возвращает числовое значение   */
-	public function getValue() : int
+
+    public function getTireWidth() : TireWidthInterface
+    {
+        return $this->width;
+    }
+
+	public function getTireWidthValue() : int
 	{
-		return $this->value->value;
+		return $this->width->getValue();
 	}
-	
-	/** Возвращает ключ значения */
-	public function getName(): string
-	{
-		return $this->value->name;
-	}
-	
-	/** Возвращает значение Enum   */
-	public function getTireWidthField() : TireWidthEnum
-	{
-		return $this->value;
-	}
-	
-	/** Возвращает массив из значнией TireWidthEnum */
-	public static function cases() : array
-	{
-		$case = null;
-		
-		foreach(TireWidthEnum::cases() as $color)
-		{
-			$case[] = new self($color);
-		}
-		
-		return $case;
-	}
+
+    public static function cases(): array
+    {
+        $case = [];
+
+        foreach(self::getDeclared() as $width)
+        {
+            /** @var TireWidthInterface $width */
+            $class = new $width;
+            $case[$class::WIDTH] = new self($class);
+        }
+
+        ksort($case);
+
+        return $case;
+    }
+
+    public static function getDeclared(): array
+    {
+        return array_filter(
+            get_declared_classes(),
+            static function($className) {
+                return in_array(TireWidthInterface::class, class_implements($className), true);
+            }
+        );
+    }
+
+    public function equals(mixed $width): bool
+    {
+        $width = new self($width);
+
+        return $this->getTireWidthValue() === $width->getTireWidthValue();
+    }
+
 }

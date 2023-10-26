@@ -25,14 +25,11 @@
 
 namespace BaksDev\Field\Tire\Radius\Twig;
 
-use BaksDev\Field\Tire\Radius\Type\TireRadiusEnum;
 use BaksDev\Field\Tire\Radius\Type\TireRadiusField;
-use Symfony\Contracts\Translation\TranslatorInterface;
 use Twig\Environment;
 use Twig\Error\LoaderError;
 use Twig\Extension\AbstractExtension;
 use Twig\TwigFunction;
-use Symfony\Component\DependencyInjection\ContainerInterface as Container;
 
 final class TireRadiusExtension extends AbstractExtension
 {

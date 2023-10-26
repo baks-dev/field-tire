@@ -26,13 +26,13 @@ final class TireProfileFieldType extends SmallIntType
 
 	public function convertToDatabaseValue($value, AbstractPlatform $platform): mixed
 	{
-		return $value instanceof TireProfileField ? $value->getValue() : (new TireProfileField($value))->getValue();
+        return (int) filter_var($value, FILTER_SANITIZE_NUMBER_INT);
 	}
 	
 	
 	public function convertToPHPValue($value, AbstractPlatform $platform): mixed
 	{
-		return !empty($value) ? new TireProfileField($value) : $value;
+		return new TireProfileField($value);
 	}
 	
 	

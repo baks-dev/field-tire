@@ -54,11 +54,11 @@ final class TireRadiusFieldForm extends AbstractType
 
 		$resolver->setDefaults([
 			'choices' => TireRadiusField::cases(),
-			'choice_value' => function($status) {
-				return $status?->getValue();
+			'choice_value' => function(?TireRadiusField $radius) {
+				return $radius?->getTireRadiusValue();
 			},
-			'choice_label' => function($status) {
-				return $status->getName();
+			'choice_label' => function(TireRadiusField $radius) {
+				return $radius->getTireRadiusValue();
 			},
 			'translation_domain' => 'field.tire.radius',
 			'placeholder' => 'placeholder',

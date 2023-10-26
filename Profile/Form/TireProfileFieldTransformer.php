@@ -35,7 +35,7 @@ final class TireProfileFieldTransformer implements DataTransformerInterface
 	{
 		if(empty($value)) { return null; }
 		
-		return new TireProfileField((int) $value);
+		return new TireProfileField($value);
 	}
 	
 	

@@ -25,14 +25,7 @@
 
 namespace BaksDev\Field\Tire\Season\Twig;
 
-use BaksDev\Field\Tire\Radius\Type\TireRadiusEnum;
-use BaksDev\Field\Tire\Season\Type\TireSeasonEnum;
-use BaksDev\Field\Tire\Season\Type\TireSeasonField;
-use Symfony\Contracts\Translation\TranslatorInterface;
-use Twig\Environment;
-use Twig\Error\LoaderError;
 use Twig\Extension\AbstractExtension;
-use Twig\TwigFunction;
 
 final class TireSeasonRenderExtension extends AbstractExtension
 {

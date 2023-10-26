@@ -25,7 +25,7 @@
 
 namespace BaksDev\Field\Tire\Width\Twig;
 
-use BaksDev\Field\Tire\Width\Type\TireWidthEnum;
+
 use BaksDev\Field\Tire\Width\Type\TireWidthField;
 use Twig\Environment;
 use Twig\Error\LoaderError;

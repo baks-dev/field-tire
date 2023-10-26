@@ -14,9 +14,9 @@ return static function (ContainerConfigurator $configurator) {
 	
 	$namespace = 'BaksDev\Field\Tire\Profile';
 	
-	$services->load($namespace.'\Form\\', __DIR__.'/../../Form')
-		//->exclude(__DIR__.'/../../Repository/**/*DTO.php')
-	;
-	
+	$services->load($namespace.'\Form\\', __DIR__.'/../../Form');
+	$services->load($namespace.'\Type\Profile\\', __DIR__.'/../../Type/Profile');
+	$services->load($namespace.'\Listeners\\', __DIR__.'/../../Listeners');
+
 };
 
