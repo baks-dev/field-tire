@@ -32,7 +32,7 @@ final class TireWidthFieldType extends SmallIntType
 	
 	public function convertToPHPValue($value, AbstractPlatform $platform): mixed
 	{
-		return new TireWidthField($value);
+        return !empty($value) ? new TireWidthField($value) : null;
 	}
 	
 	

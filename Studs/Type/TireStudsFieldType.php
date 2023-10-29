@@ -26,7 +26,7 @@ final class  TireStudsFieldType extends BooleanType
 	
 	public function convertToDatabaseValue($value, AbstractPlatform $platform): mixed
 	{
-		return $value instanceof TireStudsField ? $value->getValue() : null;
+		return (string) $value;
 	}
 	
 	

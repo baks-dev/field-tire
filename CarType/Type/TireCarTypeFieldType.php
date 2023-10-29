@@ -25,7 +25,7 @@ final class TireCarTypeFieldType extends StringType
 {
 	public function convertToDatabaseValue($value, AbstractPlatform $platform): mixed
 	{
-		return $value instanceof TireCarTypeField ? $value->getValue() : (new TireCarTypeField($value))->getValue();
+		return (string) $value;
 	}
 	
 	public function convertToPHPValue($value, AbstractPlatform $platform): mixed

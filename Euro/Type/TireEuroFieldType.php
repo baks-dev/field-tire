@@ -12,7 +12,7 @@ final class TireEuroFieldType extends StringType
 	
 	public function convertToDatabaseValue($value, AbstractPlatform $platform): mixed
 	{
-		return $value instanceof TireEuroField ? $value->getValue() : $value;
+		return (string) $value;
 	}
 	
 	

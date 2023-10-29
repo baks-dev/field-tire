@@ -33,9 +33,8 @@ final class TireBrandType extends StringType
 	
 	public function convertToDatabaseValue($value, AbstractPlatform $platform): mixed
 	{
-		return $value instanceof TireBrandField ? $value->getTireBrandEnumValue() : (new TireBrandField($value))->getTireBrandEnumValue();
+		return (string) $value;
 	}
-	
 	
 	public function convertToPHPValue($value, AbstractPlatform $platform): mixed
 	{
