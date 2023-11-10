@@ -34,8 +34,8 @@ final class TireRadiusFieldTransformer implements DataTransformerInterface
 	public function transform(mixed $value)
 	{
 		if(empty($value)) { return null; }
-		
-		return new TireRadiusField((int) $value);
+
+		return new TireRadiusField($value);
 	}
 	
 	

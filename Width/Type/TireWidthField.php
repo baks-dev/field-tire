@@ -25,7 +25,7 @@ final class TireWidthField
 {
 	public const TYPE = 'tire_width_field';
 	
-	private TireWidthInterface $width;
+	private ?TireWidthInterface $width = null;
 	
 	public function __construct(TireWidthInterface|self|int|string $width)
 	{
@@ -61,8 +61,6 @@ final class TireWidthField
                 return;
             }
         }
-
-        throw new InvalidArgumentException(sprintf('Not found TireRadiusField %s', $width));
 	}
 	
 	public function __toString(): string
@@ -70,14 +68,14 @@ final class TireWidthField
 		return $this->width->getValue();
 	}
 
-    public function getTireWidth() : TireWidthInterface
+    public function getTireWidth() : ?TireWidthInterface
     {
         return $this->width;
     }
 
-	public function getTireWidthValue() : int
+	public function getTireWidthValue() : ?int
 	{
-		return $this->width->getValue();
+		return $this->width?->getValue();
 	}
 
     public static function cases(): array

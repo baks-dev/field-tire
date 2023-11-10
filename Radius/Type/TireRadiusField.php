@@ -23,13 +23,12 @@ use InvalidArgumentException;
 
 final class TireRadiusField
 {
-	public const TYPE = 'tire_radius_field';
-	
-	private TireRadiusInterface $radius;
-	
-	public function __construct(TireRadiusInterface|self|int|string $radius)
-	{
+    public const TYPE = 'tire_radius_field';
 
+    private ?TireRadiusInterface $radius = null;
+
+    public function __construct(TireRadiusInterface|self|int|string $radius)
+    {
         if(is_string($radius) && class_exists($radius))
         {
             $instance = new $radius();
@@ -63,27 +62,24 @@ final class TireRadiusField
             }
         }
 
-        throw new InvalidArgumentException(sprintf('Not found TireRadiusField %s', $radius));
+        //throw new InvalidArgumentException(sprintf('Not found TireRadiusField %s', $radius));
 
-	}
-	
-	public function __toString(): string
-	{
-		return $this->radius->getValue();
-	}
-	
+    }
 
-	public function getTireRadiusValue(): string
-	{
+    public function __toString(): string
+    {
         return $this->radius->getValue();
-	}
-	
-	/** Возвращает значение Enum   */
-	public function getTireRadius() : TireRadiusInterface
-	{
-		return $this->radius;
-	}
+    }
 
+    public function getTireRadius(): ?TireRadiusInterface
+    {
+        return $this->radius;
+    }
+
+    public function getTireRadiusValue(): ?string
+    {
+        return $this->radius?->getValue();
+    }
 
     public static function cases(): array
     {

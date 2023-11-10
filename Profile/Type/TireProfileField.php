@@ -25,7 +25,7 @@ final class TireProfileField
 {
 	public const TYPE = 'tire_profile_field';
 	
-	private TireProfileInterface $profile;
+	private ?TireProfileInterface $profile = null;
 	
 	
 	public function __construct(TireProfileInterface|self|int|string $profile)
@@ -63,23 +63,20 @@ final class TireProfileField
             }
         }
 
-        throw new InvalidArgumentException(sprintf('Not found TireProfileField %s', $profile));
+        //throw new InvalidArgumentException(sprintf('Not found TireProfileField %s', $profile));
 	}
 	
 	public function __toString(): string
 	{
 		return (string) $this->profile->getValue();
 	}
-	
 
-	/** Возвращает ключ значения */
-	public function getTireProfileValue(): int
+	public function getTireProfileValue(): ?int
 	{
-		return $this->profile->getValue();
+		return $this->profile?->getValue();
 	}
-	
-	/** Возвращает значение Enum   */
-	public function getTireProfile() : TireProfileInterface
+
+	public function getTireProfile() : ?TireProfileInterface
 	{
 		return $this->profile;
 	}
