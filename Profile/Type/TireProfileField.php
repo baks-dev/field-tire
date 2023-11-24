@@ -27,7 +27,6 @@ final class TireProfileField
 	
 	private ?TireProfileInterface $profile = null;
 	
-	
 	public function __construct(TireProfileInterface|self|int|string $profile)
 	{
         if(is_string($profile) && class_exists($profile))
@@ -114,7 +113,4 @@ final class TireProfileField
 
         return $this->getTireProfileValue() === $profile->getTireProfileValue();
     }
-    
-    
-    
 }

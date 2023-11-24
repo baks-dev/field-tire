@@ -44,7 +44,7 @@ final class W325 implements TireWidthInterface
     {
         if(is_string($width))
         {
-            $width = strtolower($width);
+            $width = mb_strtolower($width);
         }
 
         return in_array($width, [self::WIDTH, (string) self::WIDTH, 'w'.self::WIDTH], true);

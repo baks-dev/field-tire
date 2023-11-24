@@ -45,7 +45,7 @@ final class R18 implements TireRadiusInterface
     {
         if(is_string($radius))
         {
-            $radius = strtolower($radius);
+            $radius = mb_strtolower($radius);
         }
 
         return in_array($radius, [self::RADIUS, (string) self::RADIUS, 'r'.self::RADIUS], true);

@@ -44,7 +44,7 @@ final class P70 implements TireProfileInterface
     {
         if(is_string($profile))
         {
-            $profile = strtolower($profile);
+            $profile = mb_strtolower($profile);
         }
 
         return in_array($profile, [self::PROFILE, (string) self::PROFILE, 'p'.self::PROFILE], true);

@@ -68,7 +68,7 @@ final class TireRadiusField
 
     public function __toString(): string
     {
-        return $this->radius->getValue();
+        return $this->radius?->getValue() ?: '';
     }
 
     public function getTireRadius(): ?TireRadiusInterface
