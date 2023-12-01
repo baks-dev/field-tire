@@ -4,13 +4,27 @@
 	
 	
 	{# <label class="form-label">{{ 'label'|trans }}</label> #}
-	<label class="form-label">{{ form.vars.label }}</label>
+	{#<label class="form-label">{{ form.vars.label }}</label>#}
+
+
+	{% if form.vars.label or form.vars.label is null %}
+		<label class="form-label">
+			{% if form.vars.label is null %}
+				{{ 'label'|trans }}
+			{% else %}
+				{{ form.vars.label }}
+			{% endif %}
+		</label>
+	{% endif %}
 	
-	<div class="d-flex flex-column align-items-center pb-3 radio-buttons gap-3"
+	<div class="d-flex flex-column align-items-start radio-buttons gap-3"
 			data-buttons="true"
 			style='clear: both'>
-		
-		
+
+		{#{% if form.vars.label is null %}
+			<label class="form-label">{{ 'label'|trans }}</label>
+		{% endif %}#}
+
 		
 		{% for child in form.children|filter(child => not child.rendered) %}
 
@@ -21,9 +35,7 @@
                     <div class="form-check d-flex align-items-center mb-0">
                        
                        <div class='mb-1'>
-						   
-						 
-						   
+
 						   {{ form_widget(child, { label: false }) }}
 					   </div>
 						

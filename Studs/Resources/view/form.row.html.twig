@@ -1,18 +1,30 @@
 {% trans_default_domain('field.tire.studs') %}
 
 {% block tire_studs_field_row %}
-	
-	{# <label class="form-label">{{ 'label'|trans }}</label> #}
-	<label class="form-label">{{ form.vars.label }}</label>
-	
-	<div class="d-flex flex-column align-items-center pb-3 radio-buttons gap-3"
-			data-buttons="true"
-			style='clear: both'>
-		
-		
-		<label class="btn p-2 border-dashed rounded-3 w-100 text-muted {{ form.vars.data ? 'active' }}">
-			<div class="d-flex align-items-center">
-				<div class="flex-grow-1">
+
+    {# <label class="form-label">{{ 'label'|trans }}</label> #}
+
+    {% if form.vars.label or form.vars.label is null %}
+        <label class="form-label">
+            {% if form.vars.label is null %}
+                {{ 'placeholder'|trans }}
+            {% else %}
+                {{ form.vars.label }}
+            {% endif %}
+        </label>
+    {% endif %}
+
+    <div class="d-flex flex-column align-items-start radio-buttons gap-3"
+         data-buttons="true"
+         style='clear: both'>
+
+        {# {% if form.vars.label is null %}
+			<label class="form-label">{{ 'placeholder'|trans }}</label>
+		{% endif %} #}
+
+        <label class="btn p-2 border-dashed rounded-3 w-100 text-muted {{ form.vars.data ? 'active' }}">
+            <div class="d-flex align-items-center">
+                <div class="flex-grow-1">
                 <span class="h5">
                     <div class="form-check d-flex align-items-center mb-0">
                        
@@ -21,26 +33,26 @@
                         <span style="font-size: 1rem;">
 							
 							{{ include(_self|replace({ "form.row.html.twig": "template.html.twig" }), { 'value' : true }) }}
-							
-							{# <span class='ms-3'>{{ 'label'|trans }}</span> #}
-	
-							{#{{ form.vars.value|trans }}#}
+
+                            {# <span class='ms-3'>{{ 'label'|trans }}</span> #}
+
+                            {# {{ form.vars.value|trans }} #}
                         </span>
                     </div>
                 </span>
-				</div>
-			</div>
-		</label>
-		
-		{#{{ form_widget(form, { label: false }) }}
+                </div>
+            </div>
+        </label>
+
+        {# {{ form_widget(form, { label: false }) }}
 		
 
 		{% for child in form.children|filter(child => not child.rendered) %}
 		
 
-		{% endfor %}#}
-		
-		{#{% for child in form.children|filter(child => not child.rendered) %}
+		{% endfor %} #}
+
+        {# {% for child in form.children|filter(child => not child.rendered) %}
 			
 			<label class="btn p-2 border-dashed rounded-3 w-100 text-muted {{ child.vars.data ? 'active' }}">
 				<div class="d-flex align-items-center">
@@ -88,8 +100,8 @@
 				</div>
 			</label>
 			
-		{% endfor %}#}
-	</div>
+		{% endfor %} #}
+    </div>
 
 
 
