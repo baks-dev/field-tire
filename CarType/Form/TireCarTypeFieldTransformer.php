@@ -39,8 +39,8 @@ final class TireCarTypeFieldTransformer implements DataTransformerInterface
 		$this->required = $required;
 	}
 	
-	public function transform(mixed $value)
-	{
+	public function transform(mixed $value): TireCarTypeField
+    {
 		if($this->required && empty($value)) { $value = TireCarTypeEnum::PASSENGER; }
 		
 		return new TireCarTypeField($value);

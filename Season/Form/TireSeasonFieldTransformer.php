@@ -41,8 +41,8 @@ final class TireSeasonFieldTransformer implements DataTransformerInterface
 	}
 	
 	
-	public function transform(mixed $value)
-	{
+	public function transform(mixed $value): TireSeasonField
+    {
 		if($this->required && empty($value))
 		{
 			$value = TireSeasonEnum::SUMMER;
