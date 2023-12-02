@@ -31,8 +31,8 @@ use Symfony\Component\Form\DataTransformerInterface;
 final class TireWidthFieldTransformer implements DataTransformerInterface
 {
 	
-	public function transform(mixed $value)
-	{
+	public function transform(mixed $value): ?TireWidthField
+    {
 		if(empty($value)) { return null; }
 		
 		return new TireWidthField((int) $value);

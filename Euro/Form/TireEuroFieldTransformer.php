@@ -41,7 +41,7 @@ final class TireEuroFieldTransformer implements DataTransformerInterface
         $this->required = $required;
     }
 
-    public function transform(mixed $value)
+    public function transform(mixed $value): TireEuroFieldDTO
     {
         $TireEuroFieldDTO = new TireEuroFieldDTO();
 
@@ -92,7 +92,7 @@ final class TireEuroFieldTransformer implements DataTransformerInterface
 
     public function reverseTransform(mixed $value): string
     {
-        /** @var \BaksDev\Field\Tire\Euro\Form\TireEuroFieldDTO $value */
+        /** @var TireEuroFieldDTO $value */
 
         $economy = $value->getEconomy();
         $grip = $value->getGrip();

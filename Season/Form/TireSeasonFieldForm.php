@@ -55,14 +55,14 @@ final class TireSeasonFieldForm extends AbstractType
 		]);
 	}
 	
-	public function getParent()
-	{
+	public function getParent(): string
+    {
 		//return RadioType::class;
 		return ChoiceType::class;
 	}
 	
-	public function getBlockPrefix()
-	{
+	public function getBlockPrefix(): string
+    {
 		return 'tire_season_field';
 	}
 	
