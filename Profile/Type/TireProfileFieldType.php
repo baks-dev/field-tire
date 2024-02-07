@@ -20,31 +20,32 @@ namespace BaksDev\Field\Tire\Profile\Type;
 
 use Doctrine\DBAL\Platforms\AbstractPlatform;
 use Doctrine\DBAL\Types\SmallIntType;
+use Doctrine\DBAL\Types\Type;
 
-final class TireProfileFieldType extends SmallIntType
+final class TireProfileFieldType extends Type
 {
 
-	public function convertToDatabaseValue($value, AbstractPlatform $platform): mixed
-	{
+    public function convertToDatabaseValue($value, AbstractPlatform $platform): int
+    {
         return (int) filter_var($value, FILTER_SANITIZE_NUMBER_INT);
-	}
-	
-	
-	public function convertToPHPValue($value, AbstractPlatform $platform): mixed
-	{
+    }
+
+
+    public function convertToPHPValue($value, AbstractPlatform $platform): ?TireProfileField
+    {
         return !empty($value) ? new TireProfileField($value) : null;
-	}
-	
-	
-	public function getName(): string
-	{
-		return TireProfileField::TYPE;
-	}
-	
-	
-	public function requiresSQLCommentHint(AbstractPlatform $platform) : bool
-	{
-		return true;
-	}
-	
+    }
+
+
+    public function getName(): string
+    {
+        return TireProfileField::TYPE;
+    }
+
+
+    public function getSQLDeclaration(array $column, AbstractPlatform $platform): string
+    {
+        return $platform->getSmallIntTypeDeclarationSQL($column);
+    }
+
 }

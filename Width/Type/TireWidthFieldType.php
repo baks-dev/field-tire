@@ -20,17 +20,18 @@ namespace BaksDev\Field\Tire\Width\Type;
 
 use Doctrine\DBAL\Platforms\AbstractPlatform;
 use Doctrine\DBAL\Types\SmallIntType;
+use Doctrine\DBAL\Types\Type;
 
-final class TireWidthFieldType extends SmallIntType
+final class TireWidthFieldType extends Type
 {
 
-	public function convertToDatabaseValue($value, AbstractPlatform $platform): mixed
+	public function convertToDatabaseValue($value, AbstractPlatform $platform): int
 	{
         return (int) filter_var($value, FILTER_SANITIZE_NUMBER_INT);
 	}
 	
 	
-	public function convertToPHPValue($value, AbstractPlatform $platform): mixed
+	public function convertToPHPValue($value, AbstractPlatform $platform): ?TireWidthField
 	{
         return !empty($value) ? new TireWidthField($value) : null;
 	}
@@ -46,5 +47,10 @@ final class TireWidthFieldType extends SmallIntType
 	{
 		return true;
 	}
+
+    public function getSQLDeclaration(array $column, AbstractPlatform $platform): string
+    {
+        return $platform->getSmallIntTypeDeclarationSQL($column);
+    }
 	
 }

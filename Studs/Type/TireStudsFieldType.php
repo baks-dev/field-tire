@@ -19,20 +19,19 @@
 namespace BaksDev\Field\Tire\Studs\Type;
 
 use Doctrine\DBAL\Platforms\AbstractPlatform;
-use Doctrine\DBAL\Types\BooleanType;
+use Doctrine\DBAL\Types\Type;
 
-final class  TireStudsFieldType extends BooleanType
+final class TireStudsFieldType extends Type
 {
-	
-	public function convertToDatabaseValue($value, AbstractPlatform $platform): mixed
+	public function convertToDatabaseValue($value, AbstractPlatform $platform): bool
 	{
-		return (string) $value;
+        return $value instanceof TireStudsField ? $value->getValue() : false;
 	}
 	
 	
-	public function convertToPHPValue($value, AbstractPlatform $platform): mixed
+	public function convertToPHPValue($value, AbstractPlatform $platform): bool|TireStudsField
 	{
-		return !empty($value) ? new TireStudsField($value) : null;
+		return !empty($value) ? new TireStudsField($value) : false;
 	}
 	
 	
@@ -46,5 +45,10 @@ final class  TireStudsFieldType extends BooleanType
 	{
 		return true;
 	}
+
+    public function getSQLDeclaration(array $column, AbstractPlatform $platform): string
+    {
+        return $platform->getBooleanTypeDeclarationSQL($column);
+    }
 	
 }

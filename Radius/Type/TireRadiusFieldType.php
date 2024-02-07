@@ -20,16 +20,17 @@ namespace BaksDev\Field\Tire\Radius\Type;
 
 use Doctrine\DBAL\Platforms\AbstractPlatform;
 use Doctrine\DBAL\Types\SmallIntType;
+use Doctrine\DBAL\Types\Type;
 
-final class TireRadiusFieldType extends SmallIntType
+final class TireRadiusFieldType extends Type
 {
 
-	public function convertToDatabaseValue($value, AbstractPlatform $platform): mixed
+	public function convertToDatabaseValue($value, AbstractPlatform $platform): int
 	{
 		return (int) filter_var($value, FILTER_SANITIZE_NUMBER_INT);
 	}
 	
-	public function convertToPHPValue($value, AbstractPlatform $platform): mixed
+	public function convertToPHPValue($value, AbstractPlatform $platform): ?TireRadiusField
 	{
         return !empty($value) ? new TireRadiusField($value) : null;
 	}
@@ -43,5 +44,9 @@ final class TireRadiusFieldType extends SmallIntType
 	{
 		return true;
 	}
-	
+
+    public function getSQLDeclaration(array $column, AbstractPlatform $platform): string
+    {
+        return $platform->getSmallIntTypeDeclarationSQL($column);
+    }
 }
