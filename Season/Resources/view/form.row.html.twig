@@ -3,8 +3,22 @@
 {% block tire_season_field_row %}
 
 
+
     {# <label class="form-label">{{ 'label'|trans }}</label> #}
     {# <label class="form-label">{{ form.vars.label }}</label> #}
+
+    {#<div {{ block('widget_container_attributes') }}>
+        {% set i=1 %}
+        {%- for child in form %}
+            <div class="radio-{{i}}">
+                {{- form_widget(child) -}}
+                {{- form_label(child, null, {translation_domain: choice_translation_domain}) -}}
+            </div>
+            {% set i=i+1 %}
+        {% endfor -%}
+    </div>#}
+
+
 
 
     {% if form.vars.label or form.vars.label is null %}
@@ -17,7 +31,7 @@
         </label>
     {% endif %}
 
-    <div class="d-flex flex-column align-items-start radio-buttons gap-3"
+    <div class="d-flex flex-column align-items-start radio-buttons gap-2 mb-3"
          data-buttons="true"
          style='clear: both'>
 
@@ -28,13 +42,15 @@
 
         {% for child in form.children|filter(child => not child.rendered) %}
 
-            <label class="btn p-2 border-dashed rounded-3 w-100 text-muted {{ child.vars.data ? 'active' }}">
+
+
+            <label class="btn p-2 border-2 border-dotted rounded-3 w-100 text-muted {{ child.vars.data ? 'active' }}">
 				<span class="d-flex align-items-center">
 					<span class="flex-grow-1">
                         <span class="h5">
                             <span class="form-check d-flex align-items-center mb-0">
                                <span class='mb-1'>
-                                   {{ form_widget(child, { label: false }) }}
+                                   {{ form_widget(child, { label: false, attr: { class: 'btn-check' } }) }}
                                </span>
 
                                 <span style="font-size: 1rem;">
@@ -47,8 +63,7 @@
             </label>
 
 
-
-            {# <label class="btn px-5 py-1 border-dashed rounded-3 w-100 {{ child.vars.data ? 'active' }}">
+            {# <label class="btn px-5 py-1 border-dotted rounded-3 w-100 {{ child.vars.data ? 'active' }}">
             #}{# <input type="checkbox"
 								id="product_form_price_request"
 								name="product_form[price][request]"
@@ -80,6 +95,5 @@
         {% endfor %}
     </div>
 
-
-
 {% endblock %}
+
