@@ -4,7 +4,7 @@
 
     {% set euro = value|json_decode %}
 
-    <div class="btn-group" role="group" aria-label="Basic example">
+    <div class="btn-group" role="group" aria-label="{{ euro[0] }}">
 
         <button type="button" class="btn btn-sm d-flex align-items-center px-1 py-0 small"
                 style="{{ euro_economy_color(euro[0]) }}"
