@@ -52,6 +52,8 @@ final class TireRadiusFieldForm extends AbstractType
 	public function configureOptions(OptionsResolver $resolver) : void
 	{
 
+
+
 		$resolver->setDefaults([
 			'choices' => TireRadiusField::cases(),
 			'choice_value' => function(?TireRadiusField $radius) {

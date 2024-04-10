@@ -31,7 +31,7 @@ use Symfony\Component\DependencyInjection\Attribute\AutoconfigureTag;
 interface TireRadiusInterface
 {
     /** Возвращает значение (value) */
-    public function getValue(): int;
+    public function getValue(): string;
 
     /** Проверяет, относится ли значение к данному объекту */
     public static function equals(mixed $radius): bool;
