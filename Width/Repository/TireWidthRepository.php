@@ -70,13 +70,6 @@ final class TireWidthRepository implements TireWidthInterface
                 'offer.event = product.event'
             );
 
-        $dbal
-            ->leftJoin(
-                'offer',
-                ProductOfferQuantity::class,
-                'offer_quantity',
-                'offer_quantity.offer = offer.id'
-            );
 
         $dbal
             ->addSelect('variation.value AS variation')
@@ -87,14 +80,6 @@ final class TireWidthRepository implements TireWidthInterface
                 'variation.offer = offer.id'
             );
 
-        $dbal
-            ->addSelect('variation.value AS variation')
-            ->leftJoin(
-                'variation',
-                ProductVariationQuantity::class,
-                'variation_quantity',
-                'variation_quantity.variation = variation.id'
-            );
 
         $dbal
             ->addSelect('modification.value AS modification')
@@ -105,13 +90,6 @@ final class TireWidthRepository implements TireWidthInterface
                 'modification.variation = variation.id'
             );
 
-        $dbal
-            ->leftJoin(
-                'modification',
-                ProductModificationQuantity::class,
-                'modification_quantity',
-                'modification_quantity.modification = modification.id')
-        ;
 
         return $dbal;
     }
@@ -202,6 +180,32 @@ final class TireWidthRepository implements TireWidthInterface
         }
 
         $dbal = $this->builder();
+
+        $dbal
+            ->leftJoin(
+                'offer',
+                ProductOfferQuantity::class,
+                'offer_quantity',
+                'offer_quantity.offer = offer.id'
+            );
+
+        $dbal
+
+            ->leftJoin(
+                'variation',
+                ProductVariationQuantity::class,
+                'variation_quantity',
+                'variation_quantity.variation = variation.id'
+            );
+
+
+        $dbal
+            ->leftJoin(
+                'modification',
+                ProductModificationQuantity::class,
+                'modification_quantity',
+                'modification_quantity.modification = modification.id')
+        ;
 
         $dbal->where('modification_quantity.quantity > 0');
         $dbal->orWhere('variation_quantity.quantity > 0');
