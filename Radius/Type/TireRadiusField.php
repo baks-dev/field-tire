@@ -62,7 +62,7 @@ final class TireRadiusField
             }
         }
 
-        throw new InvalidArgumentException(sprintf('Not found TireRadiusField %s', $radius));
+        //throw new InvalidArgumentException(sprintf('Not found TireRadiusField %s', $radius));
 
     }
 

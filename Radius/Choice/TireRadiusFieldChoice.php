@@ -28,6 +28,8 @@ namespace BaksDev\Field\Tire\Radius\Choice;
 use BaksDev\Core\Services\Fields\FieldsChoiceInterface;
 use BaksDev\Core\Services\Reference\ReferenceChoiceInterface;
 use BaksDev\Field\Tire\Radius\Form\TireRadiusFieldForm;
+use BaksDev\Field\Tire\Radius\Form\TireRadiusFieldFormAvailable;
+use BaksDev\Field\Tire\Radius\Form\TireRadiusFieldFormExists;
 use BaksDev\Field\Tire\Radius\Type\TireRadiusField;
 
 final class TireRadiusFieldChoice implements FieldsChoiceInterface, ReferenceChoiceInterface
@@ -65,5 +67,17 @@ final class TireRadiusFieldChoice implements FieldsChoiceInterface, ReferenceCho
 	{
 		return TireRadiusFieldForm::class;
 	}
+
+    /** Возвращает класс формы для рендера c имеющимися размерами в карточках */
+    public function formFilterExists(): string
+    {
+        return TireRadiusFieldFormExists::class;
+    }
+
+    /** Возвращает класс формы для рендера c имеющимися размерами в карточках */
+    public function formFilterAvailable(): string
+    {
+        return TireRadiusFieldFormAvailable::class;
+    }
 	
 }

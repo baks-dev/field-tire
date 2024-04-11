@@ -16,6 +16,7 @@ return static function (ContainerConfigurator $configurator) {
 	$services->load($namespace.'\Form\\', __DIR__.'/../../Form');
 	$services->load($namespace.'\Type\Width\\', __DIR__.'/../../Type/Width');
 	$services->load($namespace.'\Listeners\\', __DIR__.'/../../Listeners');
+	$services->load($namespace.'\Repository\\', __DIR__.'/../../Repository');
 
 };
 

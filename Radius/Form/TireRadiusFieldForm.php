@@ -25,6 +25,7 @@ declare(strict_types=1);
 
 namespace BaksDev\Field\Tire\Radius\Form;
 
+use BaksDev\Field\Tire\Radius\Repository\TireRadiusInterface;
 use BaksDev\Field\Tire\Radius\Type\TireRadiusField;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
@@ -36,12 +37,13 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
 final class TireRadiusFieldForm extends AbstractType
 {
 	private TireRadiusFieldTransformer $transformer;
-	
-	
-	public function __construct(TireRadiusFieldTransformer $transformer)
+
+    public function __construct(
+        TireRadiusFieldTransformer $transformer
+    )
 	{
 		$this->transformer = $transformer;
-	}
+    }
 	
 	public function buildForm(FormBuilderInterface $builder, array $options) : void
 	{
@@ -51,11 +53,10 @@ final class TireRadiusFieldForm extends AbstractType
 	
 	public function configureOptions(OptionsResolver $resolver) : void
 	{
-
-
+        $cases = TireRadiusField::cases();
 
 		$resolver->setDefaults([
-			'choices' => TireRadiusField::cases(),
+			'choices' => $cases,
 			'choice_value' => function(?TireRadiusField $radius) {
 				return $radius?->getTireRadiusValue();
 			},
