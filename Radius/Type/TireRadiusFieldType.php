@@ -24,10 +24,9 @@ use Doctrine\DBAL\Types\Type;
 
 final class TireRadiusFieldType extends Type
 {
-
-	public function convertToDatabaseValue($value, AbstractPlatform $platform): int
+	public function convertToDatabaseValue($value, AbstractPlatform $platform): string
 	{
-		return (int) filter_var($value, FILTER_SANITIZE_NUMBER_INT);
+		return (string) $value;
 	}
 	
 	public function convertToPHPValue($value, AbstractPlatform $platform): ?TireRadiusField

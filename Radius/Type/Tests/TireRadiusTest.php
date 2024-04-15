@@ -59,7 +59,13 @@ final class TireRadiusTest extends KernelTestCase
             $platform = $this->getMockForAbstractClass(AbstractPlatform::class);
 
             $convertToDatabase = $TireRadiusFieldType->convertToDatabaseValue($TireRadiusField, $platform);
+            dump($TireRadiusField->getTireRadiusValue(), $convertToDatabase);
+
+
             self::assertEquals($TireRadiusField->getTireRadiusValue(), $convertToDatabase);
+
+
+
 
             $convertToPHP = $TireRadiusFieldType->convertToPHPValue($convertToDatabase, $platform);
             self::assertInstanceOf(TireRadiusField::class, $convertToPHP);
