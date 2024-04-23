@@ -58,5 +58,9 @@ final class TireCarTypeFieldChoice implements FieldsChoiceInterface, ReferenceCh
 	{
 		return TireCarTypeFieldForm::class;
 	}
-	
+
+    public function constraints(): ?array
+    {
+        return null;
+    }
 }

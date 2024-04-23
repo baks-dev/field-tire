@@ -31,7 +31,6 @@ use BaksDev\Field\Tire\Profile\Form\TireProfileFieldForm;
 use BaksDev\Field\Tire\Profile\Form\TireProfileFieldFormAvailable;
 use BaksDev\Field\Tire\Profile\Form\TireProfileFieldFormExists;
 use BaksDev\Field\Tire\Profile\Type\TireProfileField;
-use BaksDev\Field\Tire\Radius\Form\TireRadiusFieldFormExists;
 
 final class TireProfileFieldChoice implements FieldsChoiceInterface, ReferenceChoiceInterface
 {
@@ -73,5 +72,10 @@ final class TireProfileFieldChoice implements FieldsChoiceInterface, ReferenceCh
     public function formFilterAvailable(): string
     {
         return TireProfileFieldFormAvailable::class;
+    }
+
+    public function constraints(): ?array
+    {
+        return null;
     }
 }

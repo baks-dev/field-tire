@@ -49,12 +49,6 @@ final class TireRadiusFieldChoice implements FieldsChoiceInterface, ReferenceCho
         return TireRadiusField::class;
     }
 
-
-    //	public function choice() : array
-//	{
-//		return TireRadiusField::cases();
-//	}
-	
 	
 	public function domain(): string
 	{
@@ -78,6 +72,11 @@ final class TireRadiusFieldChoice implements FieldsChoiceInterface, ReferenceCho
     public function formFilterAvailable(): string
     {
         return TireRadiusFieldFormAvailable::class;
+    }
+
+    public function constraints(): ?array
+    {
+        return null;
     }
 	
 }

@@ -1,6 +1,6 @@
 # BaksDev Field Tire
 
-[![Version](https://img.shields.io/badge/version-7.0.19-blue)](https://github.com/baks-dev/field-tire/releases)
+[![Version](https://img.shields.io/badge/version-7.0.20-blue)](https://github.com/baks-dev/field-tire/releases)
 ![php 8.2+](https://img.shields.io/badge/php-min%208.1-red.svg)
 
 Пакет полей HTML для автомобильных шин

@@ -47,14 +47,6 @@ final class TireStudsFieldChoice implements FieldsChoiceInterface, ReferenceChoi
         return TireStudsField::class;
     }
 
-
-    //	public function choice() : bool
-//	{
-//		/** Поле не является выбором */
-//		return false;
-//	}
-	
-	
 	public function domain(): string
 	{
 		return 'field.tire.studs';
@@ -66,5 +58,9 @@ final class TireStudsFieldChoice implements FieldsChoiceInterface, ReferenceChoi
 	{
 		return TireStudsFieldForm::class;
 	}
-	
+
+    public function constraints(): ?array
+    {
+        return null;
+    }
 }

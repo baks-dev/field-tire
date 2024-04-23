@@ -72,4 +72,9 @@ final class TireWidthFieldChoice implements FieldsChoiceInterface, ReferenceChoi
     {
         return TireWidthFieldFormAvailable::class;
     }
+
+    public function constraints(): ?array
+    {
+        return null;
+    }
 }

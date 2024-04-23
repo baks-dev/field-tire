@@ -58,4 +58,8 @@ final class TireEuroFieldChoice implements FieldsChoiceInterface, ReferenceChoic
         return TireEuroFieldForm::class;
     }
 
+    public function constraints(): ?array
+    {
+        return null;
+    }
 }

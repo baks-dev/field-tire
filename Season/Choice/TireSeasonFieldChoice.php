@@ -47,12 +47,6 @@ final class TireSeasonFieldChoice implements FieldsChoiceInterface, ReferenceCho
         return TireSeasonField::class;
     }
 
-
-    //	public function choice() : array
-//	{
-//		return TireSeasonField::cases();
-//	}
-	
 	
 	public function domain(): string
 	{
@@ -65,5 +59,10 @@ final class TireSeasonFieldChoice implements FieldsChoiceInterface, ReferenceCho
 	{
 		return TireSeasonFieldForm::class;
 	}
+
+    public function constraints(): ?array
+    {
+        return null;
+    }
 	
 }
