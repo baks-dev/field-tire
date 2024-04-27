@@ -155,7 +155,7 @@ final class TireWidthRepository implements TireWidthInterface
     }
 
 
-    /** Метод возвращает только имеющие в карточках радиусы */
+    /** Метод возвращает только имеющие в карточках параметры */
     public function cases(): array|bool
     {
         if(!class_exists(BaksDevProductsProductBundle::class))
@@ -171,7 +171,7 @@ final class TireWidthRepository implements TireWidthInterface
 
     }
 
-    /** Метод возвращает только имеющие в карточках радиусы */
+    /** Метод возвращает только имеющие в карточках параметры */
     public function available(): array|bool
     {
         if(!class_exists(BaksDevProductsProductBundle::class))

@@ -1,6 +1,6 @@
 # BaksDev Field Tire
 
-[![Version](https://img.shields.io/badge/version-7.0.20-blue)](https://github.com/baks-dev/field-tire/releases)
+[![Version](https://img.shields.io/badge/version-7.0.21-blue)](https://github.com/baks-dev/field-tire/releases)
 ![php 8.2+](https://img.shields.io/badge/php-min%208.1-red.svg)
 
 Пакет полей HTML для автомобильных шин
@@ -37,7 +37,7 @@ return static function (ContainerConfigurator $configurator) {
             ->autoconfigure(true)
 	;
 
-	/** Радиус  */
+	/** Диаметр  */
 	$services->set(TireRadiusFieldChoice::class)
 		->tag('baks.fields.choice')
 	;
@@ -89,7 +89,7 @@ return static function (ContainerConfigurator $configurator) {
 Шаблоны пееропределяются в директории templates в виде текстового представления (content.html.twig), и шаблона (
 template.html.twig)
 
-#### Радиус шины
+#### Диаметр шины
 
 - /templates/TireRadiusField/content.html.twig
 - /templates/TireRadiusField/template.html.twig

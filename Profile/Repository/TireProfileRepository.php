@@ -174,7 +174,7 @@ final class TireProfileRepository implements TireProfileInterface
     }
 
 
-    /** Метод возвращает только имеющие в карточках радиусы */
+    /** Метод возвращает только имеющие в карточках параметры */
     public function available(): array|bool
     {
         if(!class_exists(BaksDevProductsProductBundle::class))
