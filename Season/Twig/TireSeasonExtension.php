@@ -48,11 +48,11 @@ final class TireSeasonExtension extends AbstractExtension
 	{
 		try
 		{
-			return $twig->render('@Template/TireSeasonField/content.html.twig', ['value' => $value]);
+			return $twig->render('@Template/field-tire/season/content.html.twig', ['value' => $value]);
 		}
 		catch(LoaderError $loaderError)
 		{
-			return $twig->render('@TireSeasonField/content.html.twig', ['value' => $value]);
+			return $twig->render('@field-tire-season/content.html.twig', ['value' => $value]);
 		}
 	}
 	
@@ -61,11 +61,11 @@ final class TireSeasonExtension extends AbstractExtension
 	{
 		try
 		{
-			return $twig->render('@Template/TireSeasonField/render.html.twig', ['value' => $value]);
+			return $twig->render('@Template/field-tire/season/render.html.twig', ['value' => $value]);
 		}
 		catch(LoaderError $loaderError)
 		{
-			return $twig->render('@TireSeasonField/render.html.twig', ['value' => $value]);
+			return $twig->render('@field-tire-season/render.html.twig', ['value' => $value]);
 		}
 	}
 	
@@ -74,11 +74,11 @@ final class TireSeasonExtension extends AbstractExtension
 	{
 		try
 		{
-			return $twig->render('@Template/TireSeasonField/template.html.twig', ['value' => $value]);
+			return $twig->render('@Template/field-tire/season/template.html.twig', ['value' => $value]);
 		}
 		catch(LoaderError $loaderError)
 		{
-			return $twig->render('@TireSeasonField/template.html.twig', ['value' => $value]);
+			return $twig->render('@field-tire-season/template.html.twig', ['value' => $value]);
 		}
 	}
 }

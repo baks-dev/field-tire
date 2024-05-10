@@ -48,11 +48,11 @@ final class TireEuroExtension extends AbstractExtension
 	{
 		try
 		{
-			return $twig->render('@Template/TireEuroField/content.html.twig', ['value' => $value]);
+			return $twig->render('@Template/field-tire/euro/content.html.twig', ['value' => $value]);
 		}
 		catch(LoaderError $loaderError)
 		{
-			return $twig->render('@TireEuroField/content.html.twig', ['value' => $value]);
+			return $twig->render('@field-tire-euro/content.html.twig', ['value' => $value]);
 		}
 	}
 	
@@ -60,11 +60,11 @@ final class TireEuroExtension extends AbstractExtension
 	{
 		try
 		{
-			return $twig->render('@Template/TireEuroField/render.html.twig', ['value' => $value]);
+			return $twig->render('@Template/field-tire/euro/render.html.twig', ['value' => $value]);
 		}
 		catch(LoaderError $loaderError)
 		{
-			return $twig->render('@TireEuroField/render.html.twig', ['value' => $value]);
+			return $twig->render('@field-tire-euro/render.html.twig', ['value' => $value]);
 		}
 	}
 	
@@ -73,11 +73,11 @@ final class TireEuroExtension extends AbstractExtension
 	{
 		try
 		{
-			return $twig->render('@Template/TireEuroField/template.html.twig', ['value' => $value]);
+			return $twig->render('@Template/field-tire/euro/template.html.twig', ['value' => $value]);
 		}
 		catch(LoaderError $loaderError)
 		{
-			return $twig->render('@TireEuroField/template.html.twig', ['value' => $value]);
+			return $twig->render('@field-tire-euro/template.html.twig', ['value' => $value]);
 		}
 	}
 	

@@ -1,6 +1,6 @@
 # BaksDev Field Tire
 
-[![Version](https://img.shields.io/badge/version-7.0.21-blue)](https://github.com/baks-dev/field-tire/releases)
+[![Version](https://img.shields.io/badge/version-7.0.22-blue)](https://github.com/baks-dev/field-tire/releases)
 ![php 8.2+](https://img.shields.io/badge/php-min%208.1-red.svg)
 
 Пакет полей HTML для автомобильных шин
@@ -74,10 +74,10 @@ return static function (ContainerConfigurator $configurator) {
 	
 	/** Шаблоны полей в форме */
 	$twig->formThemes([
-		'@TireSeasonField/form.row.html.twig',
-		'@TireStudsField/form.row.html.twig',
-		'@TireCarTypeField/form.row.html.twig',
-		'@TireEuroField/form.row.html.twig',
+		'@field-tire-season/form.row.html.twig',
+		'@field-tire-studs/form.row.html.twig',
+		'@field-tire-cartype/form.row.html.twig',
+		'@field-tire-euro/form.row.html.twig',
 	]);
 
 };
@@ -91,38 +91,38 @@ template.html.twig)
 
 #### Диаметр шины
 
-- /templates/TireRadiusField/content.html.twig
-- /templates/TireRadiusField/template.html.twig
+- /templates/field-tire/radius/content.html.twig
+- /templates/field-tire/radius/template.html.twig
 
 #### Профиль нины
 
-- /templates/TireProfileField/content.html.twig
-- /templates/TireProfileField/template.html.twig
+- /templates/field-tire/profile/content.html.twig
+- /templates/field-tire/profile/template.html.twig
 
 #### Ширина нины
 
-- /templates/TireWidthField/content.html.twig
-- /templates/TireWidthField/template.html.twig
+- /templates/field-tire/width/content.html.twig
+- /templates/field-tire/width/template.html.twig
 
 #### Сезонность
 
-- /templates/TireSeasonField/content.html.twig
-- /templates/TireSeasonField/template.html.twig
+- /templates/field-tire/season/content.html.twig
+- /templates/field-tire/season/template.html.twig
 
 #### Шипы
 
-- /templates/TireStudsField/content.html.twig
-- /templates/TireStudsField/template.html.twig
+- /templates/field-tire/studs/content.html.twig
+- /templates/field-tire/studs/template.html.twig
 
 #### Тип автомобиля
 
-- /templates/TireCarTypeField/content.html.twig
-- /templates/TireCarTypeField/template.html.twig
+- /templates/field-tire/cartype/content.html.twig
+- /templates/field-tire/cartype/template.html.twig
 
 #### Евроэтикетка
 
-- /templates/TireEuroField/content.html.twig
-- /templates/TireEuroField/template.html.twig
+- /templates/field-tire/euro/content.html.twig
+- /templates/field-tire/euro/template.html.twig
 
 
 ## Лицензия ![License](https://img.shields.io/badge/MIT-green)

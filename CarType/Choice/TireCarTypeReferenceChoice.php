@@ -40,6 +40,12 @@ final class TireCarTypeReferenceChoice implements ReferenceChoiceInterface
 	{
 		return TireCarTypeField::TYPE;
 	}
+
+    /** Возвращает класс */
+    public function class(): string
+    {
+        return TireCarTypeField::class;
+    }
 	
 	public function choice() : array
 	{
@@ -56,4 +62,6 @@ final class TireCarTypeReferenceChoice implements ReferenceChoiceInterface
 	{
 		return TireCarTypeFieldForm::class;
 	}
+
+
 }

@@ -20,7 +20,7 @@ return static function(ContainerConfigurator $configurator, TwigConfig $config) 
 	$namespace = 'BaksDev\Field\Tire\Profile';
 	$services->load($namespace.'\Twig\\', __DIR__.'/../../Twig');
 	
-	$config->path(__DIR__.'/../view', 'TireProfileField');
+	$config->path(__DIR__.'/../view', 'field-tire-profile');
 	
 };
 

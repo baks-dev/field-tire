@@ -1,7 +1,7 @@
 <?php
 
 return [
-	'placeholder' => 'Выберите диаметр из списка ...',
+	'placeholder' => 'Выберите диаметр из списка ...', // Homologation
 	'label' => 'Диаметр',
 	
 	'12' => 'R12',

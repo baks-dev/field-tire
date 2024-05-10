@@ -21,7 +21,7 @@ return static function(ContainerConfigurator $configurator, TwigConfig $config) 
 	
 	$services->load($namespace.'\Twig\\', __DIR__.'/../../Twig');
 	
-	$config->path(__DIR__.'/../view', 'TireRadiusField');
+	$config->path(__DIR__.'/../view', 'field-tire-radius');
 	
 };
 

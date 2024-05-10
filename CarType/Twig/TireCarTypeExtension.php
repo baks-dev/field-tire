@@ -47,11 +47,11 @@ final class TireCarTypeExtension extends AbstractExtension
 	{
 		try
 		{
-			return $twig->render('@Template/TireCarTypeField/content.html.twig', ['value' => $value]);
+			return $twig->render('@Template/field-tire/cartype/content.html.twig', ['value' => $value]);
 		}
 		catch(LoaderError $loaderError)
 		{
-			return $twig->render('@TireCarTypeField/content.html.twig', ['value' => $value]);
+			return $twig->render('@field-tire-cartype/content.html.twig', ['value' => $value]);
 		}
 	}
 	
@@ -59,11 +59,11 @@ final class TireCarTypeExtension extends AbstractExtension
 	{
 		try
 		{
-			return $twig->render('@Template/TireCarTypeField/render.html.twig', ['value' => $value]);
+			return $twig->render('@Template/field-tire/cartype/render.html.twig', ['value' => $value]);
 		}
 		catch(LoaderError $loaderError)
 		{
-			return $twig->render('@TireCarTypeField/render.html.twig', ['value' => $value]);
+			return $twig->render('@field-tire-cartype/render.html.twig', ['value' => $value]);
 		}
 	}
 	
@@ -72,11 +72,11 @@ final class TireCarTypeExtension extends AbstractExtension
 	{
 		try
 		{
-			return $twig->render('@Template/TireCarTypeField/template.html.twig', ['value' => $value]);
+			return $twig->render('@Template/field-tire/cartype/template.html.twig', ['value' => $value]);
 		}
 		catch(LoaderError $loaderError)
 		{
-			return $twig->render('@TireCarTypeField/template.html.twig', ['value' => $value]);
+			return $twig->render('@field-tire-cartype/template.html.twig', ['value' => $value]);
 		}
 	}
 	

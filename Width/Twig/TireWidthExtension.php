@@ -51,11 +51,11 @@ final class TireWidthExtension extends AbstractExtension
 
 		try
 		{
-            $render =  $twig->render('@Template/TireWidthField/content.html.twig', ['value' => $value]);
+            $render =  $twig->render('@Template/field-tire/width/content.html.twig', ['value' => $value]);
 		}
 		catch(LoaderError $loaderError)
 		{
-            $render =  $twig->render('@TireWidthField/content.html.twig', ['value' => $value]);
+            $render =  $twig->render('@field-tire-width/content.html.twig', ['value' => $value]);
 		}
 
         return trim($render);
@@ -65,11 +65,11 @@ final class TireWidthExtension extends AbstractExtension
 	{
 		try
 		{
-            $render =  $twig->render('@Template/TireWidthField/render.html.twig', ['value' => $value]);
+            $render =  $twig->render('@Template/field-tire/width/render.html.twig', ['value' => $value]);
 		}
 		catch(LoaderError $loaderError)
 		{
-            $render =  $twig->render('@TireWidthField/render.html.twig', ['value' => $value]);
+            $render =  $twig->render('@field-tire-width/render.html.twig', ['value' => $value]);
 		}
 
         return trim($render);
@@ -82,11 +82,11 @@ final class TireWidthExtension extends AbstractExtension
 
 		try
 		{
-            $render =  $twig->render('@Template/TireWidthField/template.html.twig', ['value' => $value]);
+            $render =  $twig->render('@Template/field-tire/width/template.html.twig', ['value' => $value]);
 		}
 		catch(LoaderError $loaderError)
 		{
-            $render =  $twig->render('@TireWidthField/template.html.twig', ['value' => $value]);
+            $render =  $twig->render('@field-tire-width/template.html.twig', ['value' => $value]);
 		}
 
         return trim($render);

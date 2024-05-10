@@ -48,11 +48,11 @@ final class TireRadiusExtension extends AbstractExtension
 
 		try
 		{
-            $render = $twig->render('@Template/TireRadiusField/content.html.twig', ['value' => $value]);
+            $render = $twig->render('@Template/field-tire/radius/content.html.twig', ['value' => $value]);
 		}
 		catch(LoaderError $loaderError)
 		{
-            $render = $twig->render('@TireRadiusField/content.html.twig', ['value' => $value]);
+            $render = $twig->render('@field-tire-radius/content.html.twig', ['value' => $value]);
 		}
 
         return trim($render);
@@ -64,11 +64,11 @@ final class TireRadiusExtension extends AbstractExtension
 
 		try
 		{
-            $render =  $twig->render('@Template/TireRadiusField/render.html.twig', ['value' => $value]);
+            $render =  $twig->render('@Template/field-tire/radius/render.html.twig', ['value' => $value]);
 		}
 		catch(LoaderError $loaderError)
 		{
-            $render = $twig->render('@TireRadiusField/render.html.twig', ['value' => $value]);
+            $render = $twig->render('@field-tire-radius/render.html.twig', ['value' => $value]);
 		}
 
         return trim($render);
@@ -80,11 +80,11 @@ final class TireRadiusExtension extends AbstractExtension
 
 		try
 		{
-            $render =  $twig->render('@Template/TireRadiusField/template.html.twig', ['value' => $value]);
+            $render =  $twig->render('@Template/field-tire/radius/template.html.twig', ['value' => $value]);
 		}
 		catch(LoaderError $loaderError)
 		{
-            $render =  $twig->render('@TireRadiusField/template.html.twig', ['value' => $value]);
+            $render =  $twig->render('@field-tire-radius/template.html.twig', ['value' => $value]);
 		}
 
         return trim($render);

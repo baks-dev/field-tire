@@ -1,7 +1,7 @@
 {
   "namespaces": [
     {
-      "namespace": "TireEuroField",
+      "namespace": "field-tire-euro",
       "path": "Resources/view"
     }
   ]

@@ -21,7 +21,7 @@ return static function(ContainerConfigurator $configurator, TwigConfig $twig) {
 	
 	$services->load($namespace.'\Twig\\', __DIR__.'/../../Twig');
 	
-	$twig->path(__DIR__.'/../view', 'TireCarTypeField');
+	$twig->path(__DIR__.'/../view', 'field-tire-cartype');
 
 };
 

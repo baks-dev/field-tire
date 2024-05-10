@@ -50,11 +50,11 @@ final class TireStudsExtension extends AbstractExtension
 		
 		try
 		{
-			return $twig->render('@Template/TireStudsField/content.html.twig', ['value' => $value]);
+			return $twig->render('@Template/field-tire/studs/content.html.twig', ['value' => $value]);
 		}
 		catch(LoaderError $loaderError)
 		{
-			return $twig->render('@TireStudsField/content.html.twig', ['value' => $value]);
+			return $twig->render('@field-tire-studs/content.html.twig', ['value' => $value]);
 		}
 		
 	}
@@ -63,11 +63,11 @@ final class TireStudsExtension extends AbstractExtension
 	{
 		try
 		{
-			return $twig->render('@Template/TireStudsField/template.html.twig', ['value' => $value == 'true' ]);
+			return $twig->render('@Template/field-tire/studs/template.html.twig', ['value' => $value == 'true' ]);
 		}
 		catch(LoaderError $loaderError)
 		{
-			return $twig->render('@TireStudsField/template.html.twig', ['value' => $value == 'true']);
+			return $twig->render('@field-tire-studs/template.html.twig', ['value' => $value == 'true']);
 		}
 	}
 	
@@ -75,11 +75,11 @@ final class TireStudsExtension extends AbstractExtension
 	{
 		try
 		{
-			return $twig->render('@Template/TireStudsField/render.html.twig', ['value' => $value == 'true' ]);
+			return $twig->render('@Template/field-tire/studs/render.html.twig', ['value' => $value == 'true' ]);
 		}
 		catch(LoaderError $loaderError)
 		{
-			return $twig->render('@TireStudsField/render.html.twig', ['value' => $value == 'true']);
+			return $twig->render('@field-tire-studs/render.html.twig', ['value' => $value == 'true']);
 		}
 	}
 }

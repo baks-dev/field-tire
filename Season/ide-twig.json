@@ -1,7 +1,7 @@
 {
   "namespaces": [
     {
-      "namespace": "TireSeasonField",
+      "namespace": "field-tire-season",
       "path": "Resources/view"
     }
   ]

@@ -1,7 +1,7 @@
 {
   "namespaces": [
     {
-      "namespace": "TireProfileField",
+      "namespace": "field-tire-profile",
       "path": "Resources/view"
     }
   ]

@@ -21,7 +21,7 @@ return static function(ContainerConfigurator $configurator, TwigConfig $config) 
 	
 	$services->load($namespace.'\Twig\\', __DIR__.'/../../Twig');
 	
-	$config->path(__DIR__.'/../view', 'TireWidthField');
+	$config->path(__DIR__.'/../view', 'field-tire-width');
 	
 };
 
