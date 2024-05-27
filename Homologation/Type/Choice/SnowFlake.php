@@ -46,7 +46,7 @@ final class SnowFlake implements TireHomologationInterface
         $homologation = (string) $homologation;
         $homologation = mb_strtolower($homologation);
 
-        return mb_strtolower(self::HOMOLOGATION) === $homologation;
+        return in_array($homologation, ['snowflake', '*']);
     }
 }
 

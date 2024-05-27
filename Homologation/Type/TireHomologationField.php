@@ -18,7 +18,6 @@
 
 namespace BaksDev\Field\Tire\Homologation\Type;
 
-use BaksDev\Field\Tire\Homologation\Type\Choice\Collection\TireHomologationCollection;
 use BaksDev\Field\Tire\Homologation\Type\Choice\Collection\TireHomologationInterface;
 use InvalidArgumentException;
 
@@ -26,71 +25,71 @@ final class TireHomologationField
 {
     public const TYPE = 'tire_homologation_field';
 
-    private ?TireHomologationInterface $radius = null;
+    private ?TireHomologationInterface $homologation = null;
 
-    public function __construct(TireHomologationInterface|self|int|string $radius)
+    public function __construct(TireHomologationInterface|self|int|string $homologation)
     {
-        if(is_string($radius) && class_exists($radius))
+        if(is_string($homologation) && class_exists($homologation))
         {
-            $instance = new $radius();
+            $instance = new $homologation();
 
             if($instance instanceof TireHomologationInterface)
             {
-                $this->radius = $instance;
+                $this->homologation = $instance;
                 return;
             }
         }
 
-        if($radius instanceof TireHomologationInterface)
+        if($homologation instanceof TireHomologationInterface)
         {
-            $this->radius = $radius;
+            $this->homologation = $homologation;
             return;
         }
 
-        if($radius instanceof self)
+        if($homologation instanceof self)
         {
-            $this->radius = $radius->getTireRadius();
+            $this->homologation = $homologation->getTireHomologation();
             return;
         }
 
         /** @var TireHomologationInterface $declare */
         foreach(self::getDeclared() as $declare)
         {
-            if($declare::equals($radius))
+            if($declare::equals($homologation))
             {
-                $this->radius = new $declare;
+                $this->homologation = new $declare;
                 return;
             }
         }
 
-        //throw new InvalidArgumentException(sprintf('Not found TireRadiusField %s', $radius));
+        //throw new InvalidArgumentException(sprintf('Not found TireHomologationField %s', $homologation));
 
     }
 
     public function __toString(): string
     {
-        return $this->radius?->getValue() ?: '';
+        return $this->homologation?->getValue() ?: '';
     }
 
-    public function getTireRadius(): ?TireHomologationInterface
+    public function getTireHomologation(): ?TireHomologationInterface
     {
-        return $this->radius;
+        return $this->homologation;
     }
 
-    public function getTireRadiusValue(): ?string
+    public function getTireHomologationValue(): ?string
     {
-        return $this->radius?->getValue();
+        return $this->homologation?->getValue();
     }
 
     public static function cases(): array
     {
         $case = [];
 
-        foreach(self::getDeclared() as $radius)
+        foreach(self::getDeclared() as $homologation)
         {
-            /** @var TireHomologationInterface $radius */
-            $class = new $radius;
-            $case[$class::RADIUS] = new self($class);
+            /** @var TireHomologationInterface $homologation */
+            $class = new $homologation;
+            $case[$class::HOMOLOGATION] = new self($class);
         }
 
         ksort($case);
@@ -108,11 +107,11 @@ final class TireHomologationField
         );
     }
 
-    public function equals(mixed $radius): bool
+    public function equals(mixed $homologation): bool
     {
-        $radius = new self($radius);
+        $homologation = new self($homologation);
 
-        return $this->getTireRadiusValue() === $radius->getTireRadiusValue();
+        return $this->getTireHomologationValue() === $homologation->getTireHomologationValue();
     }
 
 }

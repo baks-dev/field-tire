@@ -13,10 +13,11 @@ return static function (ContainerConfigurator $configurator) {
 	;
 	
 	$namespace = 'BaksDev\Field\Tire\Homologation';
-	
-	$services->load($namespace.'\Form\\', __DIR__.'/../../Form')
-		//->exclude(__DIR__.'/../../Repository/**/*DTO.php')
-	;
-	
+
+	$services->load($namespace.'\Form\\', __DIR__.'/../../Form');
+    $services->load($namespace.'\Type\Choice\\', __DIR__.'/../../Type/Choice');
+    $services->load($namespace.'\Listeners\\', __DIR__.'/../../Listeners');
+
+
 };
 

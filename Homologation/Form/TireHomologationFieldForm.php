@@ -25,7 +25,6 @@ declare(strict_types=1);
 
 namespace BaksDev\Field\Tire\Homologation\Form;
 
-use BaksDev\Field\Tire\Homologation\Type\TireHomologationEnum;
 use BaksDev\Field\Tire\Homologation\Type\TireHomologationField;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
@@ -34,36 +33,42 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
 
 final class TireHomologationFieldForm extends AbstractType
 {
+	private TireHomologationFieldTransformer $transformer;
+
+    public function __construct(
+        TireHomologationFieldTransformer $transformer
+    )
+	{
+		$this->transformer = $transformer;
+    }
 	
 	public function buildForm(FormBuilderInterface $builder, array $options) : void
 	{
-		$builder->addModelTransformer(new TireHomologationFieldTransformer($options['required']));
+		$builder->addModelTransformer($this->transformer);
 	}
+	
 	
 	public function configureOptions(OptionsResolver $resolver) : void
 	{
+        $cases = TireHomologationField::cases();
+
 		$resolver->setDefaults([
-			'choices' => TireHomologationField::cases(),
-			'choice_value' => function($status) {
-				return $status?->getValue();
+			'choices' => $cases,
+			'choice_value' => function(?TireHomologationField $homologation) {
+				return $homologation?->getTireHomologationValue();
 			},
-			'choice_label' => function($status) {
-				return $status->getValue();
+			'choice_label' => function(TireHomologationField $homologation) {
+				return $homologation->getTireHomologationValue();
 			},
-			'translation_domain' => 'field.tire.season',
-			'expanded' => true,
+			'translation_domain' => 'field.tire.homologation',
+			'placeholder' => 'placeholder',
+			'attr' => [ 'data-select' => 'select2' ],
 		]);
 	}
 	
 	public function getParent(): string
     {
-		//return RadioType::class;
 		return ChoiceType::class;
-	}
-	
-	public function getBlockPrefix(): string
-    {
-		return 'tire_season_field';
 	}
 	
 }

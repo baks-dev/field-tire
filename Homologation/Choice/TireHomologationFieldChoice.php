@@ -46,14 +46,12 @@ final class TireHomologationFieldChoice implements FieldsChoiceInterface, Refere
     {
         return TireHomologationField::class;
     }
-
 	
 	public function domain(): string
 	{
-		return 'field.tire.season';
+		return 'field.tire.homologation';
 	}
-	
-	
+
 	/** Возвращает класс формы для рендера */
 	public function form(): string
 	{

@@ -23,7 +23,7 @@ config/packages/field.php
 namespace Symfony\Component\DependencyInjection\Loader\Configurator;
 
 use BaksDev\Field\Tire\Profile\Choice\TireProfileFieldChoice;
-use BaksDev\Field\Tire\Radius\Choice\TireRadiusFieldChoice;
+use BaksDev\Field\Tire\Homologation\Choice\TireHomologationFieldChoice;
 use BaksDev\Field\Tire\Width\Choice\TireWidthFieldChoice;
 use BaksDev\Field\Tire\Season\Choice\TireSeasonFieldChoice;
 use BaksDev\Field\Tire\Studs\Choice\TireStudsFieldChoice;
@@ -38,7 +38,7 @@ return static function (ContainerConfigurator $configurator) {
 	;
 
 	/** Диаметр  */
-	$services->set(TireRadiusFieldChoice::class)
+	$services->set(TireHomologationFieldChoice::class)
 		->tag('baks.fields.choice')
 	;
 	

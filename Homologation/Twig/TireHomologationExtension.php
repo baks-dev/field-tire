@@ -25,9 +25,7 @@
 
 namespace BaksDev\Field\Tire\Homologation\Twig;
 
-use BaksDev\Field\Tire\Homologation\Type\TireHomologationEnum;
 use BaksDev\Field\Tire\Homologation\Type\TireHomologationField;
-use Symfony\Contracts\Translation\TranslatorInterface;
 use Twig\Environment;
 use Twig\Error\LoaderError;
 use Twig\Extension\AbstractExtension;
@@ -44,41 +42,52 @@ final class TireHomologationExtension extends AbstractExtension
 		];
 	}
 	
-	public function content(Environment $twig, string $value): string
+	public function content(Environment $twig, ?string $value): ?string
 	{
+        if(!$value) { return null; }
+
 		try
 		{
-			return $twig->render('@Template/field-tire/homologation/content.html.twig', ['value' => $value]);
+            $render = $twig->render('@Template/field-tire/homologation/content.html.twig', ['value' => $value]);
 		}
 		catch(LoaderError $loaderError)
 		{
-			return $twig->render('@field-tire-homologation/content.html.twig', ['value' => $value]);
+            $render = $twig->render('@field-tire-homologation/content.html.twig', ['value' => $value]);
 		}
+
+        return trim($render);
 	}
 	
-	
-	public function render(Environment $twig, $value): string
+	public function render(Environment $twig, ?string $value): ?string
 	{
+        if(!$value) { return null; }
+
 		try
 		{
-			return $twig->render('@Template/field-tire/homologation/render.html.twig', ['value' => $value]);
+            $render =  $twig->render('@Template/field-tire/homologation/render.html.twig', ['value' => $value]);
 		}
 		catch(LoaderError $loaderError)
 		{
-			return $twig->render('@field-tire-homologation/render.html.twig', ['value' => $value]);
+            $render = $twig->render('@field-tire-homologation/render.html.twig', ['value' => $value]);
 		}
+
+        return trim($render);
 	}
 	
-	
-	public function template(Environment $twig, $value): string
+	public function template(Environment $twig, ?string $value): ?string
 	{
+        if(!$value) { return null; }
+
 		try
 		{
-			return $twig->render('@Template/field-tire/homologation/template.html.twig', ['value' => $value]);
+            $render =  $twig->render('@Template/field-tire/homologation/template.html.twig', ['value' => $value]);
 		}
 		catch(LoaderError $loaderError)
 		{
-			return $twig->render('@field-tire-homologation/template.html.twig', ['value' => $value]);
+            $render =  $twig->render('@field-tire-homologation/template.html.twig', ['value' => $value]);
 		}
+
+        return trim($render);
 	}
+	
 }

@@ -5,7 +5,7 @@
     {# <label class="form-label">{{ 'label'|trans }}</label> #}
 
     {% if form.vars.label or form.vars.label is null %}
-        <label class="form-label" for="{{ form.vars.id }}">
+        <label class="form-label">
             {% if form.vars.label is null %}
                 {{ 'placeholder'|trans }}
             {% else %}

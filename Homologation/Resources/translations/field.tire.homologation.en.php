@@ -1,13 +1,11 @@
 <?php
 
 return [
-	'placeholder' => 'Choose a season ...',
-	'label' => 'Seasonality',
-	
-	'summer'=> 'Summer',
-	'winter' => 'Winter',
-	'all' => 'All season',
-	'doesnt' => 'Doesn\'t matter',
+	'placeholder' => 'Choose a homologation ...',
+	'label' => 'Homologation',
 
-	'studs' => 'Studs'
+    'false' => 'Отсутствует',
+    'Iflake' => 'I*',
+    'plus' => '+',
+    'snowflake' => '*',
 ];

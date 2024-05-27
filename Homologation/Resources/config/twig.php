@@ -5,7 +5,7 @@ namespace Symfony\Component\DependencyInjection\Loader\Configurator;
 use BaksDev\Reference\Color\Twig\ColorExtension;
 use Symfony\Config\TwigConfig;
 
-return static function(ContainerConfigurator $configurator, TwigConfig $twig) {
+return static function(ContainerConfigurator $configurator, TwigConfig $config) {
 	$services = $configurator->services()
 		->defaults()
 		->autowire()
@@ -21,8 +21,8 @@ return static function(ContainerConfigurator $configurator, TwigConfig $twig) {
 	
 	$services->load($namespace.'\Twig\\', __DIR__.'/../../Twig');
 	
-	$twig->path(__DIR__.'/../view', 'field-tire-homologation');
-
+	$config->path(__DIR__.'/../view', 'field-tire-homologation');
+	
 };
 
 

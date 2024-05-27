@@ -25,29 +25,17 @@ declare(strict_types=1);
 
 namespace BaksDev\Field\Tire\Homologation\Form;
 
-use BaksDev\Field\Tire\Homologation\Type\TireHomologationEnum;
+use BaksDev\Field\Tire\Homologation\Type\Choice\FalseHomologation;
 use BaksDev\Field\Tire\Homologation\Type\TireHomologationField;
 use Symfony\Component\Form\DataTransformerInterface;
 
 final class TireHomologationFieldTransformer implements DataTransformerInterface
 {
 	
-	private bool $required;
-	
-	
-	public function __construct(bool $required)
-	{
-		$this->required = $required;
-	}
-	
-	
-	public function transform(mixed $value): TireHomologationField
+	public function transform(mixed $value): ?TireHomologationField
     {
-		if($this->required && empty($value))
-		{
-			$value = TireHomologationEnum::SUMMER;
-		}
-		
+		if(empty($value)) { return new TireHomologationField(FalseHomologation::class); }
+
 		return new TireHomologationField($value);
 	}
 	
