@@ -1,6 +1,6 @@
 # BaksDev Field Tire
 
-[![Version](https://img.shields.io/badge/version-7.0.22-blue)](https://github.com/baks-dev/field-tire/releases)
+[![Version](https://img.shields.io/badge/version-7.0.23-blue)](https://github.com/baks-dev/field-tire/releases)
 ![php 8.2+](https://img.shields.io/badge/php-min%208.1-red.svg)
 
 Пакет полей HTML для автомобильных шин
@@ -23,7 +23,7 @@ config/packages/field.php
 namespace Symfony\Component\DependencyInjection\Loader\Configurator;
 
 use BaksDev\Field\Tire\Profile\Choice\TireProfileFieldChoice;
-use BaksDev\Field\Tire\Homologation\Choice\TireHomologationFieldChoice;
+use BaksDev\Field\Tire\Radius\Choice\TireRadiusFieldChoice;
 use BaksDev\Field\Tire\Width\Choice\TireWidthFieldChoice;
 use BaksDev\Field\Tire\Season\Choice\TireSeasonFieldChoice;
 use BaksDev\Field\Tire\Studs\Choice\TireStudsFieldChoice;
@@ -38,7 +38,7 @@ return static function (ContainerConfigurator $configurator) {
 	;
 
 	/** Диаметр  */
-	$services->set(TireHomologationFieldChoice::class)
+	$services->set(TireRadiusFieldChoice::class)
 		->tag('baks.fields.choice')
 	;
 	

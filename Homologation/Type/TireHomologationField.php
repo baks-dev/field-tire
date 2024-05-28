@@ -110,7 +110,6 @@ final class TireHomologationField
     public function equals(mixed $homologation): bool
     {
         $homologation = new self($homologation);
-
         return $this->getTireHomologationValue() === $homologation->getTireHomologationValue();
     }
 

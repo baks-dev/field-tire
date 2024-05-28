@@ -32,7 +32,7 @@ use Symfony\Component\DependencyInjection\Attribute\AutoconfigureTag;
 #[AutoconfigureTag('baks.tire.homologation')]
 final class GOE implements TireHomologationInterface
 {
-    
+    /** Отсутствует */
     public const HOMOLOGATION = 'GOE';
 
     /** Возвращает значение (value) */
@@ -47,7 +47,7 @@ final class GOE implements TireHomologationInterface
         $homologation = (string) $homologation;
         $homologation = mb_strtolower($homologation);
 
-        return in_array($homologation, ['goe', 'g0e']);
+        return mb_strtolower(self::HOMOLOGATION) === $homologation;
     }
 }
 

@@ -50,6 +50,11 @@ final class TireHomologationTest extends KernelTestCase
         {
             $TireHomologationField = new TireHomologationField($case->getValue());
 
+            if(!$TireHomologationField->equals($case::class))
+            {
+                dump($case::class);
+            }
+
             self::assertTrue($TireHomologationField->equals($case::class)); // немспейс интерфейса
             self::assertTrue($TireHomologationField->equals($case)); // объект интерфейса
             self::assertTrue($TireHomologationField->equals($case->getValue())); // срока
