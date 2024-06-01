@@ -33,7 +33,7 @@ use Symfony\Component\DependencyInjection\Attribute\AutoconfigureTag;
 final class A7A implements TireHomologationInterface
 {
     /** Отсутствует */
-    public const HOMOLOGATION = 'A6A';
+    public const HOMOLOGATION = 'A7A';
 
     /** Возвращает значение (value) */
     public function getValue(): string
