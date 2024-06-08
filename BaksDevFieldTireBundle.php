@@ -19,40 +19,9 @@ use Symfony\Component\HttpKernel\Bundle\AbstractBundle;
 
 class BaksDevFieldTireBundle extends AbstractBundle
 {
-	
-	public function prependExtension(ContainerConfigurator $container, ContainerBuilder $builder) : void
-	{
-		foreach(new DirectoryIterator(__DIR__) as $current)
-		{
-			if($current->isDot())
-			{
-				continue;
-			}
-			
-			if($current->isDir())
-			{
-				$path = $current->getPathname().'/Resources/config/';
 
-                if(!is_dir($path))
-                {
-                    continue;
-                }
-				
-				foreach(new DirectoryIterator($path) as $config)
-				{
-					if($config->isDot() || $config->isDir())
-					{
-						continue;
-					}
-					
-					if($config->isFile() && $config->getExtension() === 'php' && $config->getFilename() !== 'routes.php')
-					{
-						$container->import($config->getPathname());
-					}
-				}
-			}
-		}
-		
-	}
+    public const NAMESPACE = __NAMESPACE__.'\\';
+
+    public const PATH = __DIR__.DIRECTORY_SEPARATOR;
 	
 }
