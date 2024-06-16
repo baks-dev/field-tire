@@ -8,7 +8,7 @@
 ## Установка
 
 ``` bash
-$ composer require baks-dev/field-tire
+composer require baks-dev/field-tire
 ```
 
 ## Настройки
@@ -31,47 +31,6 @@ use BaksDev\Field\Tire\Euro\Choice\TireEuroFieldChoice;
 
 return static function (ContainerConfigurator $configurator) {
 	
-	$services = $configurator->services()
-            ->defaults()
-            ->autowire(true)
-            ->autoconfigure(true)
-	;
-
-	/** Диаметр  */
-	$services->set(TireRadiusFieldChoice::class)
-		->tag('baks.fields.choice')
-	;
-	
-	/** Профиль  */
-	$services->set(TireProfileFieldChoice::class)
-		->tag('baks.fields.choice')
-	;
-	
-	/** Ширина */
-	$services->set(TireWidthFieldChoice::class)
-		->tag('baks.fields.choice')
-	;
-	
-	/** Сезон */
-	$services->set(TireSeasonFieldChoice::class)
-		->tag('baks.fields.choice')
-	;
-	
-	/** Шипы */
-	$services->set(TireStudsFieldChoice::class)
-		->tag('baks.fields.choice')
-	;
-	
-	/** Тип автомобиля */
-	$services->set(TireCarTypeFieldChoice::class)
-		->tag('baks.fields.choice')
-	;
-
-	/** Евроэтикетка шины */
-	$services->set(TireEuroFieldChoice::class)
-		->tag('baks.fields.choice')
-	;
-	
 	/** Шаблоны полей в форме */
 	$twig->formThemes([
 		'@field-tire-season/form.row.html.twig',
@@ -86,7 +45,7 @@ return static function (ContainerConfigurator $configurator) {
 
 ## Переопределение шаблонов
 
-Шаблоны пееропределяются в директории templates в виде текстового представления (content.html.twig), и шаблона (
+Шаблоны переопределяются в директории templates в виде текстового представления (content.html.twig), и шаблона (
 template.html.twig)
 
 #### Диаметр шины
