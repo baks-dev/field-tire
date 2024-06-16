@@ -22,13 +22,6 @@ config/packages/field.php
 
 namespace Symfony\Component\DependencyInjection\Loader\Configurator;
 
-use BaksDev\Field\Tire\Profile\Choice\TireProfileFieldChoice;
-use BaksDev\Field\Tire\Radius\Choice\TireRadiusFieldChoice;
-use BaksDev\Field\Tire\Width\Choice\TireWidthFieldChoice;
-use BaksDev\Field\Tire\Season\Choice\TireSeasonFieldChoice;
-use BaksDev\Field\Tire\Studs\Choice\TireStudsFieldChoice;
-use BaksDev\Field\Tire\Euro\Choice\TireEuroFieldChoice;
-
 return static function (ContainerConfigurator $configurator) {
 	
 	/** Шаблоны полей в форме */
