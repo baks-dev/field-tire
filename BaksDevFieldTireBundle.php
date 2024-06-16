@@ -12,14 +12,20 @@ declare(strict_types=1);
 
 namespace BaksDev\Field\Tire;
 
-use DirectoryIterator;
+use BaksDev\Field\Tire\CarType\Choice\TireCarTypeFieldChoice;
+use BaksDev\Field\Tire\Euro\Choice\TireEuroFieldChoice;
+use BaksDev\Field\Tire\Homologation\Choice\TireHomologationFieldChoice;
+use BaksDev\Field\Tire\Profile\Choice\TireProfileFieldChoice;
+use BaksDev\Field\Tire\Radius\Choice\TireRadiusFieldChoice;
+use BaksDev\Field\Tire\Season\Choice\TireSeasonFieldChoice;
+use BaksDev\Field\Tire\Studs\Choice\TireStudsFieldChoice;
+use BaksDev\Field\Tire\Width\Choice\TireWidthFieldChoice;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\DependencyInjection\Loader\Configurator\ContainerConfigurator;
 use Symfony\Component\HttpKernel\Bundle\AbstractBundle;
 
 class BaksDevFieldTireBundle extends AbstractBundle
 {
-
     public const NAMESPACE = __NAMESPACE__.'\\';
 
     public const PATH = __DIR__.DIRECTORY_SEPARATOR;
@@ -89,6 +95,44 @@ class BaksDevFieldTireBundle extends AbstractBundle
         $services
             ->load(self::NAMESPACE.'Width\Form\\', self::PATH.'Width/Form')
             ->exclude(self::PATH.'Width/Form/**/*DTO.php');
+
+
+        // Радиус
+        $services->set(TireRadiusFieldChoice::class)
+            ->tag('baks.fields.choice')
+            ->tag('baks.reference.choice');
+
+        // Профиль
+        $services->set(TireProfileFieldChoice::class)
+            ->tag('baks.fields.choice')
+            ->tag('baks.reference.choice');
+
+        // Ширина
+        $services->set(TireWidthFieldChoice::class)
+            ->tag('baks.fields.choice')
+            ->tag('baks.reference.choice');
+
+        // Сезон
+        $services->set(TireSeasonFieldChoice::class)
+            ->tag('baks.fields.choice');
+
+        // Шипы
+        $services->set(TireStudsFieldChoice::class)
+            ->tag('baks.fields.choice');
+
+        // Тип автомобиля
+        $services->set(TireCarTypeFieldChoice::class)
+            ->tag('baks.fields.choice');
+
+        // Евроэтикетка шины
+        $services->set(TireEuroFieldChoice::class)
+            ->tag('baks.fields.choice');
+
+        // Homologation
+        $services->set(TireHomologationFieldChoice::class)
+            ->tag('baks.fields.choice')
+            ->tag('baks.reference.choice');
+
 
     }
 
