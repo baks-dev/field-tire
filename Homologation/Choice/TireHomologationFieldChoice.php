@@ -32,37 +32,37 @@ use BaksDev\Field\Tire\Homologation\Type\TireHomologationField;
 
 final class TireHomologationFieldChoice implements FieldsChoiceInterface, ReferenceChoiceInterface
 {
-	public function equals($key) : bool
-	{
-		return $key === TireHomologationField::TYPE;
-	}
-	
-	public function type(): string
-	{
-		return TireHomologationField::TYPE;
-	}
+    public function equals($key): bool
+    {
+        return $key === TireHomologationField::TYPE;
+    }
+
+    public function type(): string
+    {
+        return TireHomologationField::TYPE;
+    }
 
     public function class(): string
     {
         return TireHomologationField::class;
     }
 
-	
-	public function domain(): string
-	{
-		return 'field.tire.season';
-	}
-	
-	
-	/** Возвращает класс формы для рендера */
-	public function form(): string
-	{
-		return TireHomologationFieldForm::class;
-	}
+
+    public function domain(): string
+    {
+        return 'field.tire.homologation';
+    }
+
+
+    /** Возвращает класс формы для рендера */
+    public function form(): string
+    {
+        return TireHomologationFieldForm::class;
+    }
 
     public function constraints(): ?array
     {
         return null;
     }
-	
+
 }
