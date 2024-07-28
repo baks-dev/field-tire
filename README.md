@@ -20,9 +20,9 @@ config/packages/field.php
 ``` php
 <?php
 
-namespace Symfony\Component\DependencyInjection\Loader\Configurator;
+use Symfony\Config\TwigConfig;
 
-return static function (ContainerConfigurator $configurator) {
+return static function (TwigConfig $twig) {
 	
 	/** Шаблоны полей в форме */
 	$twig->formThemes([
