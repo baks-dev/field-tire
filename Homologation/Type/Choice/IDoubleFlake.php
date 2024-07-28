@@ -33,7 +33,7 @@ use Symfony\Component\DependencyInjection\Attribute\AutoconfigureTag;
 final class IDoubleFlake implements TireHomologationInterface
 {
     
-    public const HOMOLOGATION = 'IDoubleFlake'; // II*
+    public const HOMOLOGATION = 'II*'; // II*
 
     /** Возвращает значение (value) */
     public function getValue(): string

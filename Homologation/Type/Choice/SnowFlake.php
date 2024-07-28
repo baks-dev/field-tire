@@ -32,7 +32,7 @@ use Symfony\Component\DependencyInjection\Attribute\AutoconfigureTag;
 #[AutoconfigureTag('baks.tire.homologation')]
 final class SnowFlake implements TireHomologationInterface
 {
-    public const HOMOLOGATION = 'snowflake'; // *
+    public const HOMOLOGATION = '*'; // *
 
     /** Возвращает значение (value) */
     public function getValue(): string

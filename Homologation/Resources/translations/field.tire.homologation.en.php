@@ -1,10 +1,10 @@
 <?php
 
 return [
-    'placeholder' => 'Homologation from the list...', // Homologation
-    'label' => 'Homologation',
+    'placeholder' => 'Выберите Омологацию из списка ...', // Homologation
+    'label' => 'Омологация',
 
-    'false' => 'Missing',
+    'false' => 'Отсутствует',
     'Iflake' => 'I*',
 
     'snowflake' => '*',
@@ -12,34 +12,50 @@ return [
     'ALP' => ' (Alpina)',
     'AR' => ' (Alfa Romeo)',
     'ARR' => ' (Alfa Romeo)',
+
     'AM' => ' (Aston Martin)',
     'AM2' => ' (Aston Martin)',
     'AM4' => ' (Aston Martin)',
     'A4A' => ' (Aston Martin)',
     'A6A' => ' (Aston Martin)',
-    'A7A' => ' (Aston Martin)',
+    'A7A' => ' (Aston Martin Vantage 2020)',
     'A8A' => ' (Aston Martin)',
-    'AM8' => ' (Aston Martin)',
-    'AM9' => ' (Aston Martin)',
-    'AMP' => ' (Aston Martin)',
-    'AMR' => ' (Aston Martin)',
+    'AM8' => ' (Aston Martin DB8)',
+    'AM9' => ' (Aston Martin DB9)',
+    'AM10' => ' (Aston Martin DB10)',
+    'AM11' => ' (Aston Martin DB11)',
+    'AMP' => ' (Aston Martin ONE-77)',
+    'AMR' => ' (Aston Martin Rapide)',
     'AMS' => ' (Aston Martin)',
-    'AMX' => ' (Aston Martin)',
-    'AMV' => ' (Aston Martin)',
-    'AO' => ' (Audi)',
+    'AMX' => ' (Aston Martin DBX)',
+    'AMV' => ' (Aston Martin Vanquish)',
+    'AML' => ' (Aston Martin Lagonda)',
+    'A2A' => ' (Aston Martin Vantage)',
+    'A5A' => ' (Aston Martin DB11 <2018)',
+    'AM6' => ' (Aston Martin DB6)',
 
-    'RO1' => ' (Audi)',
-    'RO2' => ' (Audi)',
+    'AO' => ' (Audi)',
+    'AO+' => ' (Audi Electric)',
+
+    'RO1' => ' (Audi Quattro)',
+    'RO2' => ' (Audi Quattro)',
     'AOE' => ' (Audi Original Extended)',
     'AO1' => ' (Audi)',
     'АО1' => ' (Audi)',
     'АО2' => ' (Audi)',
     'MONO' => ' (BAC MONO)',
+
+    'BG' => '(Bugatti Chiron)',
+
     'B' => ' (Bentley)',
-    'B1' => ' (Bentley)',
-    'BC' => ' (Bentley)',
-    'BL' => ' (Bentley)',
+    'B1' => ' (Bentley Bentayga)',
+    'BC' => ' (Continental Bentley Flying Spur)',
+    'BL' => ' (Bentley Flying Spur)',
+
     '*' => ' (BMW, Mini, Rolls Royce)',
+
+    'i*' => '(BMW iX)',
+    '*1' => '(BMW X5/X6)',
 
     'I' => ' (NIO)',
     'I*' => ' (BMW)', // ???????????
@@ -73,6 +89,8 @@ return [
     'JAG' => ' (Jaguar)',
     'JP' => ' (Jeep)',
     'L' => ' (Lamborghini)',
+    'LM' => ' (Pirelli Lamborghini Urus <2022)',
+    'LB' => ' (Lamborghini Huracan 2WD)',
     'L1' => ' (Lamborghini)',
 
     'LR' => ' (Land Rover)',
@@ -90,16 +108,19 @@ return [
     'MC' => ' (MCLaren)',
     'MC1' => ' (MCLaren)',
     'MC2' => ' (MCLaren)',
-    'MC-C' => ' (MCLaren)',
+    'MC-C' => ' (MCLaren Artura)',
 
     'E MO' => ' (Mercedes)',
     'MO' => ' (Mercedes)',
-    'MO1' => ' (Mercedes)',
+    'MO1' => ' (Mercedes AMG)',
+    'MO2' => ' (Mercedes AMG)',
+    'MO1A' => ' (Mercedes AMG)',
+
     'MOE' => ' (Mercedes Original Extended)',
     'MOE-S' => ' (Mercedes Original Extended Silent)',
     'MO-S ' => ' (Mercedes Original Silent)',
     'MO-V ' => ' (Mercedes Original Vans)',
-    'MO1A' => ' (Mercedes)',
+
     'MO1B' => ' (Mercedes)',
     'MO-P' => ' (Mercedes)',
 
@@ -150,6 +171,8 @@ return [
     'T1' => ' (Tesla)',
 
     'VW' => ' Volkswagen',
+
+
 
 
 ];

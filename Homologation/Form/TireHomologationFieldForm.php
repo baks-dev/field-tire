@@ -30,45 +30,60 @@ use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
+use Symfony\Contracts\Translation\TranslatorInterface;
 
 final class TireHomologationFieldForm extends AbstractType
 {
-	private TireHomologationFieldTransformer $transformer;
-
     public function __construct(
-        TireHomologationFieldTransformer $transformer
-    )
-	{
-		$this->transformer = $transformer;
+        private readonly TireHomologationFieldTransformer $transformer,
+        private readonly TranslatorInterface $translator
+    ) {}
+
+    public function buildForm(FormBuilderInterface $builder, array $options): void
+    {
+        $builder->addModelTransformer($this->transformer);
     }
-	
-	public function buildForm(FormBuilderInterface $builder, array $options) : void
-	{
-		$builder->addModelTransformer($this->transformer);
-	}
-	
-	
-	public function configureOptions(OptionsResolver $resolver) : void
-	{
+
+
+    public function configureOptions(OptionsResolver $resolver): void
+    {
         $cases = TireHomologationField::cases();
 
-		$resolver->setDefaults([
-			'choices' => $cases,
-			'choice_value' => function(?TireHomologationField $homologation) {
-				return $homologation?->getTireHomologationValue();
-			},
-			'choice_label' => function(TireHomologationField $homologation) {
-				return $homologation->getTireHomologationValue();
-			},
-			'translation_domain' => 'field.tire.homologation',
-			'placeholder' => 'placeholder',
-			'attr' => [ 'data-select' => 'select2' ],
-		]);
-	}
-	
-	public function getParent(): string
+        $resolver->setDefaults([
+            'choices' => $cases,
+            'choice_value' => function (?TireHomologationField $homologation) {
+                return $homologation?->getTireHomologationValue();
+            },
+            'choice_label' => function (TireHomologationField $homologation) {
+
+                $value = $homologation->getTireHomologationValue();
+
+                return match ($value)
+                {
+                    'false', => $this->translator->trans($homologation?->getTireHomologationValue(), domain: 'field.tire.homologation'),
+                    default => $value
+                };
+            },
+            'choice_attr' => function (?TireHomologationField $homologation) {
+
+                $value = $homologation?->getTireHomologationValue();
+
+                return match ($value)
+                {
+                    'false', => [],
+                    default => ['data-filter' => $this->translator->trans($homologation?->getTireHomologationValue(), domain: 'field.tire.homologation')]
+                };
+            },
+
+            //'translation_domain' => 'field.tire.homologation',
+            'placeholder' => $this->translator->trans('placeholder', domain: 'field.tire.homologation'),
+            'attr' => ['data-select' => 'select2'],
+        ]);
+    }
+
+    public function getParent(): string
     {
-		return ChoiceType::class;
-	}
-	
+        return ChoiceType::class;
+    }
+
 }

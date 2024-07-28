@@ -33,7 +33,7 @@ use Symfony\Component\DependencyInjection\Attribute\AutoconfigureTag;
 final class TpcSpec implements TireHomologationInterface
 {
     
-    public const HOMOLOGATION = 'tpcspec';
+    public const HOMOLOGATION = 'TPC SPEC';
 
     /** Возвращает значение (value) */
     public function getValue(): string

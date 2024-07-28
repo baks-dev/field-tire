@@ -47,7 +47,7 @@ final class MOS implements TireHomologationInterface
         $homologation = (string) $homologation;
         $homologation = mb_strtolower($homologation);
 
-        return in_array($homologation, ['mo-s', 'm0-s']);
+        return mb_strtolower(self::HOMOLOGATION) === $homologation;
     }
 }
 
