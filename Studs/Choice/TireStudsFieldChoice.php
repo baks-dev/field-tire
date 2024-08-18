@@ -32,32 +32,32 @@ use BaksDev\Field\Tire\Studs\Type\TireStudsField;
 
 final class TireStudsFieldChoice implements FieldsChoiceInterface, ReferenceChoiceInterface
 {
-	public function equals($key) : bool
-	{
-		return $key === TireStudsField::TYPE;
-	}
-	
-	public function type(): string
-	{
-		return TireStudsField::TYPE;
-	}
+    public function equals($key): bool
+    {
+        return $key === TireStudsField::TYPE;
+    }
+
+    public function type(): string
+    {
+        return TireStudsField::TYPE;
+    }
 
     public function class(): string
     {
         return TireStudsField::class;
     }
 
-	public function domain(): string
-	{
-		return 'field.tire.studs';
-	}
-	
-	
-	/** Возвращает класс формы для рендера */
-	public function form(): string
-	{
-		return TireStudsFieldForm::class;
-	}
+    public function domain(): string
+    {
+        return 'field.tire.studs';
+    }
+
+
+    /** Возвращает класс формы для рендера */
+    public function form(): string
+    {
+        return TireStudsFieldForm::class;
+    }
 
     public function constraints(): ?array
     {

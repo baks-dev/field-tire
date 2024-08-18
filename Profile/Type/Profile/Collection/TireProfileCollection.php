@@ -25,14 +25,14 @@ declare(strict_types=1);
 
 namespace BaksDev\Field\Tire\Profile\Type\Profile\Collection;
 
-use Symfony\Component\DependencyInjection\Attribute\TaggedIterator;
+use Symfony\Component\DependencyInjection\Attribute\AutowireIterator;
 
 final class TireProfileCollection
 {
     private iterable $collection;
 
     public function __construct(
-        #[TaggedIterator('baks.tire.profile')] iterable $collection)
+        #[AutowireIterator('baks.tire.profile')] iterable $collection)
     {
         $this->collection = $collection;
     }

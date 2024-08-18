@@ -36,45 +36,43 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
 
 final class TireWidthFieldFormAvailable extends AbstractType
 {
-	
-	private TireWidthFieldTransformer $transformer;
+    private TireWidthFieldTransformer $transformer;
     private TireWidthInterface $tireWidth;
 
 
     public function __construct(
         TireWidthFieldTransformer $transformer,
         TireWidthInterface $tireWidth
-    )
-	{
-		$this->transformer = $transformer;
+    ) {
+        $this->transformer = $transformer;
         $this->tireWidth = $tireWidth;
     }
-	
-	public function buildForm(FormBuilderInterface $builder, array $options) : void
-	{
-		$builder->addModelTransformer($this->transformer);
-	}
-	
-	public function configureOptions(OptionsResolver $resolver) : void
-	{
+
+    public function buildForm(FormBuilderInterface $builder, array $options): void
+    {
+        $builder->addModelTransformer($this->transformer);
+    }
+
+    public function configureOptions(OptionsResolver $resolver): void
+    {
         $cases = $this->tireWidth->available();
 
-		$resolver->setDefaults([
-			'choices' => $cases,
-			'choice_value' => function(?TireWidthField $width) {
-				return $width?->getTireWidthValue();
-			},
-			'choice_label' => function(TireWidthField $width) {
-				return $width->getTireWidthValue();
-			},
-			'translation_domain' => 'field.tire.width',
-			'placeholder' => 'placeholder',
-			'attr' => [ 'data-select' => 'select2' ],
-		]);
-	}
-	
-	public function getParent(): string
+        $resolver->setDefaults([
+            'choices' => $cases,
+            'choice_value' => function (?TireWidthField $width) {
+                return $width?->getTireWidthValue();
+            },
+            'choice_label' => function (TireWidthField $width) {
+                return $width->getTireWidthValue();
+            },
+            'translation_domain' => 'field.tire.width',
+            'placeholder' => 'placeholder',
+            'attr' => ['data-select' => 'select2'],
+        ]);
+    }
+
+    public function getParent(): string
     {
-		return ChoiceType::class;
-	}
+        return ChoiceType::class;
+    }
 }

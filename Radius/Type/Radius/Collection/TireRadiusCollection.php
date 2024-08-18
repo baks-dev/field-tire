@@ -25,7 +25,7 @@ declare(strict_types=1);
 
 namespace BaksDev\Field\Tire\Radius\Type\Radius\Collection;
 
-use Symfony\Component\DependencyInjection\Attribute\TaggedIterator;
+use Symfony\Component\DependencyInjection\Attribute\AutowireIterator;
 
 final class TireRadiusCollection
 {
@@ -33,7 +33,7 @@ final class TireRadiusCollection
     private iterable $collection;
 
     public function __construct(
-        #[TaggedIterator('baks.tire.radius')] iterable $collection)
+        #[AutowireIterator('baks.tire.radius')] iterable $collection)
     {
         $this->collection = $collection;
     }

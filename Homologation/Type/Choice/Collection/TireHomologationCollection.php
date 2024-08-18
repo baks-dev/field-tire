@@ -25,7 +25,7 @@ declare(strict_types=1);
 
 namespace BaksDev\Field\Tire\Homologation\Type\Choice\Collection;
 
-use Symfony\Component\DependencyInjection\Attribute\TaggedIterator;
+use Symfony\Component\DependencyInjection\Attribute\AutowireIterator;
 
 final class TireHomologationCollection
 {
@@ -33,7 +33,7 @@ final class TireHomologationCollection
     private iterable $collection;
 
     public function __construct(
-        #[TaggedIterator('baks.tire.homologation')] iterable $collection)
+        #[AutowireIterator('baks.tire.homologation')] iterable $collection)
     {
         $this->collection = $collection;
     }

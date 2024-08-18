@@ -23,12 +23,12 @@ use InvalidArgumentException;
 
 final class TireWidthField
 {
-	public const TYPE = 'tire_width_field';
-	
-	private ?TireWidthInterface $width = null;
-	
-	public function __construct(TireWidthInterface|self|int|string $width)
-	{
+    public const TYPE = 'tire_width_field';
+
+    private ?TireWidthInterface $width = null;
+
+    public function __construct(TireWidthInterface|self|int|string $width)
+    {
         if(is_string($width) && class_exists($width))
         {
             $instance = new $width();
@@ -57,26 +57,26 @@ final class TireWidthField
         {
             if($declare::equals($width))
             {
-                $this->width = new $declare;
+                $this->width = new $declare();
                 return;
             }
         }
-	}
-	
-	public function __toString(): string
-	{
-		return $this->width->getValue();
-	}
+    }
 
-    public function getTireWidth() : ?TireWidthInterface
+    public function __toString(): string
+    {
+        return $this->width->getValue();
+    }
+
+    public function getTireWidth(): ?TireWidthInterface
     {
         return $this->width;
     }
 
-	public function getTireWidthValue() : ?int
-	{
-		return $this->width?->getValue();
-	}
+    public function getTireWidthValue(): ?int
+    {
+        return $this->width?->getValue();
+    }
 
     public static function cases(): array
     {
@@ -85,7 +85,7 @@ final class TireWidthField
         foreach(self::getDeclared() as $width)
         {
             /** @var TireWidthInterface $width */
-            $class = new $width;
+            $class = new $width();
             $case[$class::WIDTH] = new self($class);
         }
 
@@ -98,7 +98,7 @@ final class TireWidthField
     {
         return array_filter(
             get_declared_classes(),
-            static function($className) {
+            static function ($className) {
                 return in_array(TireWidthInterface::class, class_implements($className), true);
             }
         );

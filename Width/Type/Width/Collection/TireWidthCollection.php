@@ -25,15 +25,15 @@ declare(strict_types=1);
 
 namespace BaksDev\Field\Tire\Width\Type\Width\Collection;
 
-use Symfony\Component\DependencyInjection\Attribute\TaggedIterator;
+use Symfony\Component\DependencyInjection\Attribute\AutowireIterator;
 
 final class TireWidthCollection
 {
     private iterable $collection;
 
     public function __construct(
-        #[TaggedIterator('baks.tire.width')] iterable $collection)
-    {
+        #[AutowireIterator('baks.tire.width')] iterable $collection
+    ) {
         $this->collection = $collection;
     }
 
@@ -42,7 +42,8 @@ final class TireWidthCollection
     {
         $case = null;
 
-        foreach ($this->collection as $init) {
+        foreach($this->collection as $init)
+        {
             $case[] = new $init();
         }
 

@@ -26,8 +26,12 @@ declare(strict_types=1);
 namespace BaksDev\Field\Tire\Width\Repository;
 
 use BaksDev\Core\Doctrine\DBALQueryBuilder;
+use BaksDev\Field\Tire\Profile\Type\TireProfileField;
 use BaksDev\Field\Tire\Radius\Type\TireRadiusField;
 use BaksDev\Field\Tire\Width\Type\TireWidthField;
+use BaksDev\Products\Category\Entity\Offers\CategoryProductOffers;
+use BaksDev\Products\Category\Entity\Offers\Variation\CategoryProductVariation;
+use BaksDev\Products\Category\Entity\Offers\Variation\Modification\CategoryProductModification;
 use BaksDev\Products\Product\BaksDevProductsProductBundle;
 use BaksDev\Products\Product\Entity\Offers\ProductOffer;
 use BaksDev\Products\Product\Entity\Offers\Quantity\ProductOfferQuantity;
@@ -40,7 +44,6 @@ use Symfony\Component\Cache\Adapter\FilesystemAdapter;
 use Symfony\Component\Cache\Adapter\PhpArrayAdapter;
 use Symfony\Component\DependencyInjection\Attribute\Autowire;
 
-
 final class TireWidthRepository implements TireWidthInterface
 {
     private DBALQueryBuilder $DBALQueryBuilder;
@@ -49,8 +52,7 @@ final class TireWidthRepository implements TireWidthInterface
     public function __construct(
         #[Autowire('%kernel.project_dir%')] string $project_dir,
         DBALQueryBuilder $DBALQueryBuilder,
-    )
-    {
+    ) {
         $this->DBALQueryBuilder = $DBALQueryBuilder;
         $this->project_dir = $project_dir;
     }
@@ -91,65 +93,98 @@ final class TireWidthRepository implements TireWidthInterface
             );
 
 
+        $dbal
+            ->addSelect('category_offers.reference AS offer_reference')
+            ->leftJoin(
+                'offer',
+                CategoryProductOffers::class,
+                'category_offers',
+                'category_offers.id = offer.category_offer'
+            );
+
+        $dbal
+            ->addSelect('category_variation.reference AS variation_reference')
+            ->leftJoin(
+                'variation',
+                CategoryProductVariation::class,
+                'category_variation',
+                'category_variation.id = variation.category_variation'
+            );
+
+        $dbal
+            ->addSelect('category_modification.reference AS modification_reference')
+            ->leftJoin(
+                'modification',
+                CategoryProductModification::class,
+                'category_modification',
+                'category_modification.id = modification.category_modification'
+            );
+
+        $dbal
+            ->where('
+                            category_offers.reference = :reference OR
+                            category_variation.reference = :reference OR
+                            category_modification.reference = :reference
+                        ')
+            ->setParameter(
+                'reference',
+                TireWidthField::TYPE
+            );
+
         return $dbal;
     }
 
-
     private function filter(?array $cases, string $key): array
     {
+
         if($cases)
         {
+            $key = TireWidthField::TYPE.'_'.$key;
+            $type = TireWidthField::TYPE;
+            $class = TireWidthField::class;
 
             $cache = new PhpArrayAdapter(
-                $this->project_dir.'/var/cache/prod/field-tire-width-'.$key.'.cache',
+                $this->project_dir.'/var/cache/prod/'.$key.'.cache',
                 new FilesystemAdapter()
             );
 
-            if($cache->hasItem('field-tire-width-'.$key))
+            if($cache->hasItem($key))
             {
-                return $cache->getItem('field-tire-width-'.$key)->get();
+                return $cache->getItem($key)->get();
             }
 
             $case = [];
 
             foreach($cases as $data)
             {
-                if(isset($case[$data['offer']], $case[$data['variation']], $case[$data['modification']],))
+                if(isset($case[$data['offer']], $case[$data['variation']], $case[$data['modification']]))
                 {
                     continue;
                 }
 
-                $radius = new TireWidthField($data['offer']);
-
-                if($radius->getTireWidthValue())
+                if($data['offer_reference'] === $type)
                 {
-                    $case[$data['offer']] = $radius;
-                    continue;
+                    $case[$data['offer']] = new $class($data['offer']);
                 }
 
-                $radius = new TireWidthField($data['variation']);
-
-                if($radius->getTireWidthValue())
+                if($data['variation_reference'] === $type)
                 {
-                    $case[$data['variation']] = $radius;
-                    continue;
+                    $case[$data['variation']] = new $class($data['variation']);
                 }
 
-                $radius = new TireWidthField($data['modification']);
-
-                if($radius->getTireWidthValue())
+                if($data['modification_reference'] === $type)
                 {
-                    $case[$data['modification']] = $radius;
+                    $case[$data['modification']] = new $class($data['modification']);
                 }
+
             }
 
             ksort($case);
 
-            $cache->warmUp(['field-tire-width-'.$key => $case]);
-
-            return $case;
+            $cache->warmUp([$key => $case]);
 
         }
+
 
         return TireWidthField::cases();
     }
@@ -165,7 +200,7 @@ final class TireWidthRepository implements TireWidthInterface
 
         $dbal = $this->builder();
 
-        $cases = $dbal->enableCache('field-tire')->fetchAllAssociative();
+        $cases = $dbal->enableCache('products-product')->fetchAllAssociative();
 
         return $this->filter($cases, 'cases');
 
@@ -190,7 +225,6 @@ final class TireWidthRepository implements TireWidthInterface
             );
 
         $dbal
-
             ->leftJoin(
                 'variation',
                 ProductVariationQuantity::class,
@@ -204,14 +238,14 @@ final class TireWidthRepository implements TireWidthInterface
                 'modification',
                 ProductModificationQuantity::class,
                 'modification_quantity',
-                'modification_quantity.modification = modification.id')
-        ;
+                'modification_quantity.modification = modification.id'
+            );
 
-        $dbal->where('modification_quantity.quantity > 0');
-        $dbal->orWhere('variation_quantity.quantity > 0');
-        $dbal->orWhere('offer_quantity.quantity > 0');
+        $dbal->where('category_offers.reference = :reference AND modification_quantity.quantity > 0');
+        $dbal->orWhere('category_variation.reference = :reference AND variation_quantity.quantity > 0');
+        $dbal->orWhere('category_modification.reference = :reference AND offer_quantity.quantity > 0');
 
-        $cases = $dbal->enableCache('field-tire')->fetchAllAssociative();
+        $cases = $dbal->enableCache('products-product')->fetchAllAssociative();
 
         return $this->filter($cases, 'available');
 
