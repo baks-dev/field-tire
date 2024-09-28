@@ -35,31 +35,31 @@ use BaksDev\Field\Tire\Width\Type\TireWidthField;
 
 final class TireWidthFieldChoice implements FieldsChoiceInterface, ReferenceChoiceInterface
 {
-	public function equals($key) : bool
-	{
-		return $key === TireWidthField::TYPE;
-	}
-	
-	public function type(): string
-	{
-		return TireWidthField::TYPE;
-	}
+    public function equals($key): bool
+    {
+        return $key === TireWidthField::TYPE;
+    }
+
+    public function type(): string
+    {
+        return TireWidthField::TYPE;
+    }
 
     public function class(): string
     {
         return TireWidthField::class;
     }
 
-	public function domain(): string
-	{
-		return 'field.tire.width';
-	}
+    public function domain(): string
+    {
+        return 'field.tire.width';
+    }
 
-	/** Возвращает класс формы для рендера */
-	public function form(): string
-	{
-		return TireWidthFieldForm::class;
-	}
+    /** Возвращает класс формы для рендера */
+    public function form(): string
+    {
+        return TireWidthFieldForm::class;
+    }
 
     /** Возвращает класс формы для рендера c имеющимися размерами в карточках */
     public function formFilterExists(): string
