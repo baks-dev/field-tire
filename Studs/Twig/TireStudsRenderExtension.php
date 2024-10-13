@@ -25,17 +25,12 @@
 
 namespace BaksDev\Field\Tire\Studs\Twig;
 
-
 use Twig\Extension\AbstractExtension;
 
 final class TireStudsRenderExtension extends AbstractExtension
 {
-	public function getFunctions() : array
-	{
-		return [
-		
-		];
-	}
-	
-
+    public function getFunctions(): array
+    {
+        return [];
+    }
 }

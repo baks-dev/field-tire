@@ -34,52 +34,44 @@ use Twig\TwigFunction;
 
 final class TireStudsExtension extends AbstractExtension
 {
-	public function getFunctions() : array
-	{
-		return [
-			new TwigFunction(TireStudsField::TYPE, [$this, 'call'], ['needs_environment' => true, 'is_safe' => ['html']]),
-			new TwigFunction(TireStudsField::TYPE.'_render', [$this, 'render'], ['needs_environment' => true, 'is_safe' => ['html']]),
-			new TwigFunction(TireStudsField::TYPE.'_template', [$this, 'template'], ['needs_environment' => true, 'is_safe' => ['html']]),
-			
-		];
-	}
-	
-	public function call(Environment $twig, mixed $value) : ?string
-	{
-		return $value == 'true' ? 'Шипы' : null;
-		
-		try
-		{
-			return $twig->render('@Template/field-tire/studs/content.html.twig', ['value' => $value]);
-		}
-		catch(LoaderError $loaderError)
-		{
-			return $twig->render('@field-tire-studs/content.html.twig', ['value' => $value]);
-		}
-		
-	}
-	
-	public function template(Environment $twig, mixed $value) : ?string
-	{
-		try
-		{
-			return $twig->render('@Template/field-tire/studs/template.html.twig', ['value' => $value == 'true' ]);
-		}
-		catch(LoaderError $loaderError)
-		{
-			return $twig->render('@field-tire-studs/template.html.twig', ['value' => $value == 'true']);
-		}
-	}
-	
-	public function render(Environment $twig, mixed $value) : ?string
-	{
-		try
-		{
-			return $twig->render('@Template/field-tire/studs/render.html.twig', ['value' => $value == 'true' ]);
-		}
-		catch(LoaderError $loaderError)
-		{
-			return $twig->render('@field-tire-studs/render.html.twig', ['value' => $value == 'true']);
-		}
-	}
+    public function getFunctions(): array
+    {
+        return [
+            new TwigFunction(TireStudsField::TYPE, [$this, 'call'], ['needs_environment' => true, 'is_safe' => ['html']]),
+            new TwigFunction(TireStudsField::TYPE.'_render', [$this, 'render'], ['needs_environment' => true, 'is_safe' => ['html']]),
+            new TwigFunction(TireStudsField::TYPE.'_template', [$this, 'template'], ['needs_environment' => true, 'is_safe' => ['html']]),
+
+        ];
+    }
+
+    public function call(Environment $twig, mixed $value): ?string
+    {
+        return $value == 'true' ? 'Шипы' : null;
+
+
+    }
+
+    public function template(Environment $twig, mixed $value): ?string
+    {
+        try
+        {
+            return $twig->render('@Template/field-tire/studs/template.html.twig', ['value' => $value === 'true']);
+        }
+        catch(LoaderError $loaderError)
+        {
+            return $twig->render('@field-tire-studs/template.html.twig', ['value' => $value === 'true']);
+        }
+    }
+
+    public function render(Environment $twig, mixed $value): ?string
+    {
+        try
+        {
+            return $twig->render('@Template/field-tire/studs/render.html.twig', ['value' => $value === 'true']);
+        }
+        catch(LoaderError $loaderError)
+        {
+            return $twig->render('@field-tire-studs/render.html.twig', ['value' => $value === 'true']);
+        }
+    }
 }

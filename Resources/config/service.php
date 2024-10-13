@@ -23,7 +23,6 @@
 
 namespace Symfony\Component\DependencyInjection\Loader\Configurator;
 
-use BaksDev\Field\Pack\Integer\Choice\IntegerFieldChoice;
 use BaksDev\Field\Tire\BaksDevFieldTireBundle;
 use BaksDev\Field\Tire\CarType\Choice\TireCarTypeFieldChoice;
 use BaksDev\Field\Tire\Euro\Choice\TireEuroFieldChoice;
@@ -31,6 +30,7 @@ use BaksDev\Field\Tire\Homologation\Choice\TireHomologationFieldChoice;
 use BaksDev\Field\Tire\Profile\Choice\TireProfileFieldChoice;
 use BaksDev\Field\Tire\Radius\Choice\TireRadiusFieldChoice;
 use BaksDev\Field\Tire\Season\Choice\TireSeasonFieldChoice;
+use BaksDev\Field\Tire\Spiky\Choice\TireSpikyFieldChoice;
 use BaksDev\Field\Tire\Studs\Choice\TireStudsFieldChoice;
 use BaksDev\Field\Tire\Width\Choice\TireWidthFieldChoice;
 
