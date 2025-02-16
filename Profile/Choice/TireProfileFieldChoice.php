@@ -40,7 +40,7 @@ final class TireProfileFieldChoice implements FieldsChoiceInterface, ReferenceCh
 	}
 
     /** Возвращает класс поля */
-    public function class(): string
+    public function type(): string
     {
 		return TireProfileField::TYPE;
 	}
