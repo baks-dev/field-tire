@@ -29,9 +29,9 @@ use BaksDev\Field\Tire\Width\Type\Width\Collection\TireWidthInterface;
 use Symfony\Component\DependencyInjection\Attribute\AutoconfigureTag;
 
 #[AutoconfigureTag('baks.tire.width')]
-final class W175 implements TireWidthInterface
+final class W33 implements TireWidthInterface
 {
-    public const int WIDTH = 175;
+    public const int WIDTH = 33;
 
     /** Возвращает значение (value) */
     public function getValue(): int

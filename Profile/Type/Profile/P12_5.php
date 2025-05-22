@@ -23,30 +23,37 @@
 
 declare(strict_types=1);
 
-namespace BaksDev\Field\Tire\Width\Type\Width;
+namespace BaksDev\Field\Tire\Profile\Type\Profile;
 
-use BaksDev\Field\Tire\Width\Type\Width\Collection\TireWidthInterface;
+use BaksDev\Field\Tire\Profile\Type\Profile\Collection\TireProfileInterface;
 use Symfony\Component\DependencyInjection\Attribute\AutoconfigureTag;
 
-#[AutoconfigureTag('baks.tire.width')]
-final class W175 implements TireWidthInterface
+#[AutoconfigureTag('baks.tire.profile')]
+final class P12_5 implements TireProfileInterface
 {
-    public const int WIDTH = 175;
+    public const float PROFILE = 12.5;
+
+    public function __toString(): string
+    {
+        return (string) self::PROFILE;
+    }
 
     /** Возвращает значение (value) */
-    public function getValue(): int
+    public function getValue(): float
     {
-        return self::WIDTH;
+        return self::PROFILE;
     }
 
     /** Проверяет, относится ли значение к данному объекту */
-    public static function equals(mixed $width): bool
+    public static function equals(mixed $profile): bool
     {
-        if(is_string($width))
+        if(is_string($profile))
         {
-            $width = mb_strtolower($width);
+            $profile = mb_strtolower($profile);
         }
 
-        return in_array($width, [self::WIDTH, (string) self::WIDTH, 'w'.self::WIDTH], true);
+        return in_array($profile, [self::PROFILE, (string) self::PROFILE, 'p'.self::PROFILE], true);
     }
+
+
 }
