@@ -21,40 +21,39 @@
  *  THE SOFTWARE.
  */
 
-namespace BaksDev\Field\Tire\Profile\Type;
+declare(strict_types=1);
 
-use Doctrine\DBAL\Platforms\AbstractPlatform;
-use Doctrine\DBAL\Types\SmallIntType;
-use Doctrine\DBAL\Types\Type;
+namespace BaksDev\Field\Tire\Profile\Type\Profile;
 
-final class TireProfileFieldType extends Type
+use BaksDev\Field\Tire\Profile\Type\Profile\Collection\TireProfileInterface;
+use Symfony\Component\DependencyInjection\Attribute\AutoconfigureTag;
+
+#[AutoconfigureTag('baks.tire.profile')]
+final class P9_5 implements TireProfileInterface
 {
-    public function convertToDatabaseValue($value, AbstractPlatform $platform): int|float
+    public const float PROFILE = 9.5;
+
+    public function __toString(): string
     {
-        if($value instanceof TireProfileField)
+        return (string) self::PROFILE;
+    }
+
+    /** Возвращает значение (value) */
+    public function getValue(): float
+    {
+        return self::PROFILE;
+    }
+
+    /** Проверяет, относится ли значение к данному объекту */
+    public static function equals(mixed $profile): bool
+    {
+        if(is_string($profile))
         {
-            $value = $value->getTireProfileValue();
+            $profile = mb_strtolower($profile);
         }
 
-        return $value;
+        return in_array($profile, [self::PROFILE, (string) self::PROFILE, 'p'.self::PROFILE], true);
     }
 
-
-    public function convertToPHPValue($value, AbstractPlatform $platform): ?TireProfileField
-    {
-        return !empty($value) ? new TireProfileField($value) : null;
-    }
-
-
-    public function getName(): string
-    {
-        return TireProfileField::TYPE;
-    }
-
-
-    public function getSQLDeclaration(array $column, AbstractPlatform $platform): string
-    {
-        return $platform->getSmallIntTypeDeclarationSQL($column);
-    }
 
 }

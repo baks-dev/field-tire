@@ -47,6 +47,11 @@ final class P12_5 implements TireProfileInterface
     /** Проверяет, относится ли значение к данному объекту */
     public static function equals(mixed $profile): bool
     {
+        if(is_float($profile))
+        {
+            $profile = (string) $profile;
+        }
+
         if(is_string($profile))
         {
             $profile = mb_strtolower($profile);

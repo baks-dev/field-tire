@@ -30,8 +30,8 @@ final class TireProfileField
     public const string TYPE = 'tire_profile_field';
 	
 	private ?TireProfileInterface $profile = null;
-	
-	public function __construct(TireProfileInterface|self|int|string $profile)
+
+    public function __construct(TireProfileInterface|self|int|float|string $profile)
 	{
         if(is_string($profile) && class_exists($profile))
         {
@@ -59,6 +59,8 @@ final class TireProfileField
         /** @var TireProfileInterface $declare */
         foreach(self::getDeclared() as $declare)
         {
+            dump($profile);
+
             if($declare::equals($profile))
             {
                 $this->profile = new $declare;

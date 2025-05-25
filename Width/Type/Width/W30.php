@@ -21,40 +21,32 @@
  *  THE SOFTWARE.
  */
 
-namespace BaksDev\Field\Tire\Profile\Type;
+declare(strict_types=1);
 
-use Doctrine\DBAL\Platforms\AbstractPlatform;
-use Doctrine\DBAL\Types\SmallIntType;
-use Doctrine\DBAL\Types\Type;
+namespace BaksDev\Field\Tire\Width\Type\Width;
 
-final class TireProfileFieldType extends Type
+use BaksDev\Field\Tire\Width\Type\Width\Collection\TireWidthInterface;
+use Symfony\Component\DependencyInjection\Attribute\AutoconfigureTag;
+
+#[AutoconfigureTag('baks.tire.width')]
+final class W30 implements TireWidthInterface
 {
-    public function convertToDatabaseValue($value, AbstractPlatform $platform): int|float
+    public const int WIDTH = 30;
+
+    /** Возвращает значение (value) */
+    public function getValue(): int
     {
-        if($value instanceof TireProfileField)
+        return self::WIDTH;
+    }
+
+    /** Проверяет, относится ли значение к данному объекту */
+    public static function equals(mixed $width): bool
+    {
+        if(is_string($width))
         {
-            $value = $value->getTireProfileValue();
+            $width = mb_strtolower($width);
         }
 
-        return $value;
+        return in_array($width, [self::WIDTH, (string) self::WIDTH, 'w'.self::WIDTH], true);
     }
-
-
-    public function convertToPHPValue($value, AbstractPlatform $platform): ?TireProfileField
-    {
-        return !empty($value) ? new TireProfileField($value) : null;
-    }
-
-
-    public function getName(): string
-    {
-        return TireProfileField::TYPE;
-    }
-
-
-    public function getSQLDeclaration(array $column, AbstractPlatform $platform): string
-    {
-        return $platform->getSmallIntTypeDeclarationSQL($column);
-    }
-
 }
