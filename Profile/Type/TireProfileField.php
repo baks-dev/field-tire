@@ -59,8 +59,6 @@ final class TireProfileField
         /** @var TireProfileInterface $declare */
         foreach(self::getDeclared() as $declare)
         {
-            dump($profile);
-
             if($declare::equals($profile))
             {
                 $this->profile = new $declare;
