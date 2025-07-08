@@ -50,7 +50,7 @@
 
         </div>
 
-        <div class="w-50 d-flex align-items-center gap-1 mb-3">
+        <div class="d-flex flex-wrap align-items-center gap-1 mb-3">
             {% for element in child %}
                 <label for="{{ element.vars.id }}" class="d-flex form-control border-light w-auto">
                     {{ form_widget(element, { label: false }) }}
@@ -70,27 +70,36 @@
         let grip = document.querySelectorAll('.change-grip');
         let sound = document.querySelector('.euro-sound');
 
-        economy.forEach(function (economyInput) {
+        economy.forEach(function(economyInput)
+        {
 
-            economyInput.addEventListener('change', function () {
-                document.querySelectorAll('.change-economy').forEach(function (economyUncheck) {
+            economyInput.addEventListener('change', function()
+            {
+                document.querySelectorAll('.change-economy').forEach(function(economyUncheck)
+                {
 
-                    if (economyInput.value != economyUncheck.value) {
+                    if(economyInput.value != economyUncheck.value)
+                    {
                         economyUncheck.checked = false;
-                    } else {
+                    } else
+                    {
 
                         let sound = document.querySelector('.euro-sound');
 
                         /** Если имеется выбранный элемент - выделяем один из элементов Класс сцепления */
-                        if (economyUncheck.checked === true) {
-                            if (!document.querySelector('.change-grip:checked')) {
+                        if(economyUncheck.checked === true)
+                        {
+                            if(!document.querySelector('.change-grip:checked'))
+                            {
                                 document.querySelector('.change-grip').checked = true;
                             }
 
                             sound.setAttribute('required', 'required');  /* Уровень шума обязательный */
 
-                        } else {
-                            document.querySelectorAll('.change-grip:checked').forEach(function (gripChecked) {
+                        } else
+                        {
+                            document.querySelectorAll('.change-grip:checked').forEach(function(gripChecked)
+                            {
                                 gripChecked.checked = false
                             });
 
@@ -102,8 +111,10 @@
 
 
                 /* Сбрасываем другие элементы */
-                document.querySelectorAll('.change-economy').forEach(function (economyUncheck) {
-                    if (economyInput.value != economyUncheck.value) {
+                document.querySelectorAll('.change-economy').forEach(function(economyUncheck)
+                {
+                    if(economyInput.value != economyUncheck.value)
+                    {
                         economyUncheck.checked = false;
                     }
                 });
@@ -112,28 +123,37 @@
         });
 
 
-        grip.forEach(function (gripInput) {
+        grip.forEach(function(gripInput)
+        {
 
-            gripInput.addEventListener('change', function () {
-                document.querySelectorAll('.change-grip').forEach(function (gripUncheck) {
+            gripInput.addEventListener('change', function()
+            {
+                document.querySelectorAll('.change-grip').forEach(function(gripUncheck)
+                {
 
-                    if (gripInput.value != gripUncheck.value) {
+                    if(gripInput.value != gripUncheck.value)
+                    {
                         gripUncheck.checked = false;
-                    } else {
+                    } else
+                    {
 
                         let sound = document.querySelector('.euro-sound');
 
                         /** Если имеется выбранный элемент - выделяем один из элементов Класс сцепления */
-                        if (gripUncheck.checked === true) {
+                        if(gripUncheck.checked === true)
+                        {
 
-                            if (!document.querySelector('.change-economy:checked')) {
+                            if(!document.querySelector('.change-economy:checked'))
+                            {
                                 document.querySelector('.change-economy').checked = true;
                             }
 
                             sound.setAttribute('required', 'required');  /* Уровень шума обязательный */
 
-                        } else {
-                            document.querySelectorAll('.change-economy:checked').forEach(function (economyChecked) {
+                        } else
+                        {
+                            document.querySelectorAll('.change-economy:checked').forEach(function(economyChecked)
+                            {
                                 economyChecked.checked = false
                             });
 
@@ -144,8 +164,10 @@
                 });
 
                 /* Сбрасываем другие элементы */
-                document.querySelectorAll('.change-grip').forEach(function (gripUncheck) {
-                    if (gripInput.value != gripUncheck.value) {
+                document.querySelectorAll('.change-grip').forEach(function(gripUncheck)
+                {
+                    if(gripInput.value != gripUncheck.value)
+                    {
                         gripUncheck.checked = false;
                     }
                 });
@@ -153,11 +175,14 @@
         });
 
 
-        if (sound) {
+        if(sound)
+        {
 
-            setTimeout(function initSound() {
+            setTimeout(function initSound()
+            {
 
-                if (typeof soundValue.debounce === 'function') {
+                if(typeof soundValue.debounce === 'function')
+                {
 
                     sound.addEventListener('input', soundValue.debounce(300));
                     return;
@@ -167,31 +192,37 @@
             }, 100);
         }
 
-        function soundValue() {
+        function soundValue()
+        {
 
             let sound = document.querySelector('.euro-sound');
 
-            if (sound.value) {
-                if (!document.querySelector('.change-grip:checked')) {
+            if(sound.value)
+            {
+                if(!document.querySelector('.change-grip:checked'))
+                {
                     document.querySelector('.change-grip').checked = true;
                 }
 
-                if (!document.querySelector('.change-economy:checked')) {
+                if(!document.querySelector('.change-economy:checked'))
+                {
                     document.querySelector('.change-economy').checked = true;
                 }
 
                 sound.setAttribute('required', 'required');  /* Уровень шума обязательный */
-            }
-            else
+            } else
             {
-                if (document.querySelector('.change-economy:checked').getAttribute("type") === 'checkbox' ||
-                    document.querySelector('.change-economy:checked').getAttribute("type") === 'checkbox') {
+                if(document.querySelector('.change-economy:checked').getAttribute("type") === 'checkbox' ||
+                    document.querySelector('.change-economy:checked').getAttribute("type") === 'checkbox')
+                {
 
-                    document.querySelectorAll('.change-economy:checked').forEach(function (economyChecked) {
+                    document.querySelectorAll('.change-economy:checked').forEach(function(economyChecked)
+                    {
                         economyChecked.checked = false
                     });
 
-                    document.querySelectorAll('.change-grip:checked').forEach(function (gripChecked) {
+                    document.querySelectorAll('.change-grip:checked').forEach(function(gripChecked)
+                    {
                         gripChecked.checked = false
                     });
 
