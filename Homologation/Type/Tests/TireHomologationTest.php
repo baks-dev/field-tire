@@ -61,7 +61,9 @@ final class TireHomologationTest extends KernelTestCase
             self::assertTrue($TireHomologationField->equals($TireHomologationField)); // объект класса
 
             $TireHomologationFieldType = new TireHomologationFieldType();
-            $platform = $this->getMockForAbstractClass(AbstractPlatform::class);
+            $platform = $this
+                ->getMockBuilder(AbstractPlatform::class)
+                ->getMock();
 
             $convertToDatabase = $TireHomologationFieldType->convertToDatabaseValue($TireHomologationField, $platform);
             self::assertEquals($TireHomologationField->getTireHomologationValue(), $convertToDatabase);

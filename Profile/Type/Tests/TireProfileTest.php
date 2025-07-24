@@ -56,7 +56,9 @@ final class TireProfileTest extends KernelTestCase
             self::assertTrue($TireProfileField->equals($TireProfileField)); // объект класса
 
             $TireProfileFieldType = new TireProfileFieldType();
-            $platform = $this->getMockForAbstractClass(AbstractPlatform::class);
+            $platform = $this
+                ->getMockBuilder(AbstractPlatform::class)
+                ->getMock();
 
             $convertToDatabase = $TireProfileFieldType->convertToDatabaseValue($TireProfileField, $platform);
             self::assertEquals($TireProfileField->getTireProfileValue(), $convertToDatabase);
