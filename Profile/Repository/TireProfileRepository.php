@@ -166,7 +166,7 @@ final readonly class TireProfileRepository implements TireProfileInterface
     }
 
 
-    /** Метод возвращает только имеющие в карточках параметры */
+    /** Метод возвращает только имеющие в карточках параметры в наличии */
     public function available(): array|bool
     {
         if(!class_exists(BaksDevProductsProductBundle::class))

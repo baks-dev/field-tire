@@ -21,13 +21,40 @@
  *  THE SOFTWARE.
  */
 
-namespace BaksDev\Field\Tire\Profile\Repository;
+declare(strict_types=1);
 
-interface TireProfileInterface
+namespace BaksDev\Field\Tire\Radius\Repository\Tests;
+
+use BaksDev\Core\Doctrine\DBALQueryBuilder;
+use BaksDev\Field\Tire\Radius\Repository\TireRadiusInterface;
+use Doctrine\ORM\EntityManagerInterface;
+use PHPUnit\Framework\Attributes\DependsOnClass;
+use PHPUnit\Framework\Attributes\Group;
+use Symfony\Bundle\FrameworkBundle\Test\KernelTestCase;
+use Symfony\Component\DependencyInjection\Attribute\When;
+
+
+/**
+ * @group field-tire
+ */
+#[Group('field-tire')]
+#[When(env: 'test')]
+class TireRadiusRepositoryTest extends KernelTestCase
 {
-    /** Метод возвращает только имеющие в карточках профили */
-    public function cases(): array|bool;
+    public function testUseCase(): void
+    {
+        /** @var TireRadiusInterface $TireRadiusRepository */
+        $TireRadiusRepository = self::getContainer()->get(TireRadiusInterface::class);
 
-    /** Метод возвращает только имеющие в карточках параметры в наличии */
-    public function available(): array|bool;
+        $cases = $TireRadiusRepository->cases();
+        //dd($cases);
+
+        $available = $TireRadiusRepository->available();
+        //dd($available);
+
+        self::assertTrue(true);
+
+    }
+
+
 }

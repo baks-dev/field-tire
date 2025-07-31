@@ -21,13 +21,39 @@
  *  THE SOFTWARE.
  */
 
-namespace BaksDev\Field\Tire\Profile\Repository;
+declare(strict_types=1);
 
-interface TireProfileInterface
+namespace BaksDev\Field\Tire\Profile\Repository\Tests;
+
+use BaksDev\Core\Doctrine\DBALQueryBuilder;
+use BaksDev\Field\Tire\Profile\Repository\TireProfileInterface;
+use Doctrine\ORM\EntityManagerInterface;
+use PHPUnit\Framework\Attributes\DependsOnClass;
+use PHPUnit\Framework\Attributes\Group;
+use Symfony\Bundle\FrameworkBundle\Test\KernelTestCase;
+use Symfony\Component\DependencyInjection\Attribute\When;
+
+
+/**
+ * @group field-tire
+ */
+#[Group('field-tire')]
+#[When(env: 'test')]
+class TireProfileRepositoryTest extends KernelTestCase
 {
-    /** Метод возвращает только имеющие в карточках профили */
-    public function cases(): array|bool;
+    public function testUseCase(): void
+    {
+        /** @var TireProfileInterface $TireProfileRepository */
+        $TireProfileRepository = self::getContainer()->get(TireProfileInterface::class);
 
-    /** Метод возвращает только имеющие в карточках параметры в наличии */
-    public function available(): array|bool;
+        $cases = $TireProfileRepository->cases();
+        //dd($cases);
+
+        $available = $TireProfileRepository->available();
+        //dd($available);
+
+        self::assertTrue(true);
+
+    }
+
 }
