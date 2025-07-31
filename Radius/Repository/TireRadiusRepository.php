@@ -1,6 +1,6 @@
 <?php
 /*
- *  Copyright 2024.  Baks.dev <admin@baks.dev>
+ *  Copyright 2025.  Baks.dev <admin@baks.dev>
  *  
  *  Permission is hereby granted, free of charge, to any person obtaining a copy
  *  of this software and associated documentation files (the "Software"), to deal
@@ -26,6 +26,7 @@ declare(strict_types=1);
 namespace BaksDev\Field\Tire\Radius\Repository;
 
 use BaksDev\Core\Doctrine\DBALQueryBuilder;
+use BaksDev\Field\Tire\Radius\Type\Radius\Collection\TireRadiusCollection;
 use BaksDev\Field\Tire\Radius\Type\TireRadiusField;
 use BaksDev\Products\Category\Entity\Offers\CategoryProductOffers;
 use BaksDev\Products\Category\Entity\Offers\Variation\CategoryProductVariation;
@@ -38,155 +39,117 @@ use BaksDev\Products\Product\Entity\Offers\Variation\Modification\Quantity\Produ
 use BaksDev\Products\Product\Entity\Offers\Variation\ProductVariation;
 use BaksDev\Products\Product\Entity\Offers\Variation\Quantity\ProductVariationQuantity;
 use BaksDev\Products\Product\Entity\Product;
+use Doctrine\DBAL\ArrayParameterType;
 use Symfony\Component\Cache\Adapter\ApcuAdapter;
 use Symfony\Component\Cache\Adapter\FilesystemAdapter;
 use Symfony\Component\Cache\Adapter\PhpArrayAdapter;
 use Symfony\Component\DependencyInjection\Attribute\Autowire;
 
-final class TireRadiusRepository implements TireRadiusInterface
+final readonly class TireRadiusRepository implements TireRadiusInterface
 {
-    private DBALQueryBuilder $DBALQueryBuilder;
-    private string $project_dir;
 
     public function __construct(
-        #[Autowire('%kernel.project_dir%')] string $project_dir,
-        DBALQueryBuilder $DBALQueryBuilder,
-    ) {
-        $this->DBALQueryBuilder = $DBALQueryBuilder;
-        $this->project_dir = $project_dir;
-    }
+        private DBALQueryBuilder $DBALQueryBuilder,
+        private TireRadiusCollection $TireRadiusCollection,
+    ) {}
 
     private function builder(): DBALQueryBuilder
     {
-        $dbal = $this->DBALQueryBuilder->createQueryBuilder('field-tire');
+        $stringArray = array_map(static function($item) {
+            return $item->getValue();
+        }, $this->TireRadiusCollection->cases());
+
+
+        $dbal = $this->DBALQueryBuilder->createQueryBuilder(self::class);
 
         $dbal->from(Product::class, 'product');
 
         $dbal
-            ->addSelect('offer.value AS offer')
             ->leftJoin(
                 'product',
                 ProductOffer::class,
                 'offer',
-                'offer.event = product.event'
+                'offer.event = product.event',
             );
 
         $dbal
-            ->addSelect('variation.value AS variation')
             ->leftJoin(
                 'offer',
                 ProductVariation::class,
                 'variation',
-                'variation.offer = offer.id'
+                'variation.offer = offer.id',
             );
 
 
         $dbal
-            ->addSelect('modification.value AS modification')
             ->leftJoin(
                 'variation',
                 ProductModification::class,
                 'modification',
-                'modification.variation = variation.id'
+                'modification.variation = variation.id',
             );
 
 
         $dbal
-            ->addSelect('category_offers.reference AS offer_reference')
             ->leftJoin(
                 'offer',
                 CategoryProductOffers::class,
                 'category_offers',
-                'category_offers.id = offer.category_offer'
+                'category_offers.id = offer.category_offer',
             );
 
         $dbal
-            ->addSelect('category_variation.reference AS variation_reference')
             ->leftJoin(
                 'variation',
                 CategoryProductVariation::class,
                 'category_variation',
-                'category_variation.id = variation.category_variation'
+                'category_variation.id = variation.category_variation',
             );
 
         $dbal
-            ->addSelect('category_modification.reference AS modification_reference')
             ->leftJoin(
                 'modification',
                 CategoryProductModification::class,
                 'category_modification',
-                'category_modification.id = modification.category_modification'
+                'category_modification.id = modification.category_modification',
             );
 
 
         $dbal
             ->where('
-                            category_offers.reference = :reference OR
-                            category_variation.reference = :reference OR
-                            category_modification.reference = :reference
+                            (category_offers.reference = :reference AND offer.value IN (:values)) OR
+                            (category_variation.reference = :reference AND variation.value IN (:values)) OR
+                            (category_modification.reference = :reference AND modification.value IN (:values))
                         ')
             ->setParameter(
                 'reference',
-                TireRadiusField::TYPE
+                TireRadiusField::TYPE,
+            )
+            ->setParameter(
+                key: 'values',
+                value: $stringArray,
+                type: ArrayParameterType::STRING,
             );
+
+        $dbal->addSelect(
+            'DISTINCT 
+                CASE
+                    WHEN category_offers.reference = :reference
+                    THEN offer.value  
+                         
+                    WHEN category_variation.reference = :reference
+                    THEN variation.value  
+                         
+                    WHEN category_modification.reference = :reference
+                    THEN modification.value
+                     
+                    ELSE NULL 
+                END AS value
+		');
 
         return $dbal;
     }
 
-
-    private function filter(?array $cases, string $key): array
-    {
-
-        if($cases)
-        {
-            $key = TireRadiusField::TYPE.'_'.$key;
-            $type = TireRadiusField::TYPE;
-            $class = TireRadiusField::class;
-
-            $cache = new PhpArrayAdapter(
-                $this->project_dir.'/var/cache/prod/'.$key.'.cache',
-                new FilesystemAdapter()
-            );
-
-            if($cache->hasItem($key))
-            {
-                return $cache->getItem($key)->get();
-            }
-
-            $case = [];
-
-            foreach($cases as $data)
-            {
-                if(isset($case[$data['offer']], $case[$data['variation']], $case[$data['modification']]))
-                {
-                    continue;
-                }
-
-                if(false === empty($data['offer']) && $data['offer_reference'] === $type)
-                {
-                    $case[$data['offer']] = new $class($data['offer']);
-                }
-
-                if(false === empty($data['variation']) && $data['variation_reference'] === $type)
-                {
-                    $case[$data['variation']] = new $class($data['variation']);
-                }
-
-                if(false === empty($data['modification']) && $data['modification_reference'] === $type)
-                {
-                    $case[$data['modification']] = new $class($data['modification']);
-                }
-
-            }
-
-            ksort($case);
-
-            $cache->warmUp([$key => $case]);
-
-        }
-
-        return TireRadiusField::cases();
-    }
 
     /** Метод возвращает только имеющие в карточках параметры */
     public function cases(): array|bool
@@ -198,9 +161,9 @@ final class TireRadiusRepository implements TireRadiusInterface
 
         $dbal = $this->builder();
 
-        $cases = $dbal->enableCache('products-product')->fetchAllAssociative();
+        $result = $dbal->enableCache('products-product')->fetchAllAssociative();
 
-        return $this->filter($cases, 'cases');
+        return $result ? array_column($result, 'value') : false;
 
     }
 
@@ -219,7 +182,7 @@ final class TireRadiusRepository implements TireRadiusInterface
                 'offer',
                 ProductOfferQuantity::class,
                 'offer_quantity',
-                'offer_quantity.offer = offer.id'
+                'offer_quantity.offer = offer.id',
             );
 
         $dbal
@@ -227,7 +190,7 @@ final class TireRadiusRepository implements TireRadiusInterface
                 'variation',
                 ProductVariationQuantity::class,
                 'variation_quantity',
-                'variation_quantity.variation = variation.id'
+                'variation_quantity.variation = variation.id',
             );
 
         $dbal
@@ -235,17 +198,18 @@ final class TireRadiusRepository implements TireRadiusInterface
                 'modification',
                 ProductModificationQuantity::class,
                 'modification_quantity',
-                'modification_quantity.modification = modification.id'
+                'modification_quantity.modification = modification.id',
             );
 
-        $dbal->where('category_offers.reference = :reference AND modification_quantity.quantity > 0');
-        $dbal->orWhere('category_variation.reference = :reference AND variation_quantity.quantity > 0');
-        $dbal->orWhere('category_modification.reference = :reference AND offer_quantity.quantity > 0');
+        $dbal->andWhere(
+            '(modification_quantity.quantity > 0 
+            OR variation_quantity.quantity > 0 
+            OR offer_quantity.quantity > 0)',
+        );
 
-        $cases = $dbal->enableCache('products-product')->fetchAllAssociative();
+        $result = $dbal->enableCache('products-product')->fetchAllAssociative();
 
-
-        return $this->filter($cases, 'available');
+        return $result ? array_column($result, 'value') : false;
 
     }
 }
