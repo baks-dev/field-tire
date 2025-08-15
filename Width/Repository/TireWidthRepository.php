@@ -144,6 +144,7 @@ final readonly class TireWidthRepository implements TireWidthInterface
                 END AS value
 		');
 
+        $dbal->addOrderBy('value');
 
         return $dbal;
     }

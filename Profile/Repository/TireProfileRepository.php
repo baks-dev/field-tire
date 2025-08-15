@@ -146,6 +146,8 @@ final readonly class TireProfileRepository implements TireProfileInterface
                 END AS value
 		');
 
+        $dbal->addOrderBy('value');
+
         return $dbal;
     }
 

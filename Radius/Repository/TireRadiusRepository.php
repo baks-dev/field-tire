@@ -147,6 +147,8 @@ final readonly class TireRadiusRepository implements TireRadiusInterface
                 END AS value
 		');
 
+        $dbal->addOrderBy('value');
+
         return $dbal;
     }
 
