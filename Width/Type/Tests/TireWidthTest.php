@@ -31,13 +31,12 @@ use BaksDev\Field\Tire\Width\Type\Width\Collection\TireWidthCollection;
 use BaksDev\Field\Tire\Width\Type\Width\Collection\TireWidthInterface;
 use BaksDev\Field\Tire\Width\Type\Width\W145;
 use Doctrine\DBAL\Platforms\AbstractPlatform;
+use PHPUnit\Framework\Attributes\Group;
 use Symfony\Bundle\FrameworkBundle\Test\KernelTestCase;
 use Symfony\Component\DependencyInjection\Attribute\When;
 
-/**
- * @group field-tire
- */
 #[When(env: 'test')]
+#[Group('field-tire')]
 final class TireWidthTest extends KernelTestCase
 {
     public function testUseCase(): void

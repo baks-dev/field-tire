@@ -33,11 +33,7 @@ use PHPUnit\Framework\Attributes\Group;
 use Symfony\Bundle\FrameworkBundle\Test\KernelTestCase;
 use Symfony\Component\DependencyInjection\Attribute\When;
 
-
-/**
- * @group field-tire
- */
-#[Group('tire-width-repository-test')]
+#[Group('field-tire')]
 #[When(env: 'test')]
 class TireWidthRepositoryTest extends KernelTestCase
 {

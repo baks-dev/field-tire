@@ -31,13 +31,12 @@ use BaksDev\Field\Tire\Radius\Type\Radius\R12;
 use BaksDev\Field\Tire\Radius\Type\TireRadiusField;
 use BaksDev\Field\Tire\Radius\Type\TireRadiusFieldType;
 use Doctrine\DBAL\Platforms\AbstractPlatform;
+use PHPUnit\Framework\Attributes\Group;
 use Symfony\Bundle\FrameworkBundle\Test\KernelTestCase;
 use Symfony\Component\DependencyInjection\Attribute\When;
 
-/**
- * @group field-tire
- */
 #[When(env: 'test')]
+#[Group('field-tire')]
 final class TireRadiusTest extends KernelTestCase
 {
     public function testUseCase(): void

@@ -31,13 +31,12 @@ use BaksDev\Field\Tire\Homologation\Type\Choice\Collection\TireHomologationInter
 use BaksDev\Field\Tire\Homologation\Type\TireHomologationField;
 use BaksDev\Field\Tire\Homologation\Type\TireHomologationFieldType;
 use Doctrine\DBAL\Platforms\AbstractPlatform;
+use PHPUnit\Framework\Attributes\Group;
 use Symfony\Bundle\FrameworkBundle\Test\KernelTestCase;
 use Symfony\Component\DependencyInjection\Attribute\When;
 
-/**
- * @group field-tire
- */
 #[When(env: 'test')]
+#[Group('field-tire')]
 final class TireHomologationTest extends KernelTestCase
 {
     public function testUseCase(): void
