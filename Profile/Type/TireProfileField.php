@@ -1,6 +1,6 @@
 <?php
 /*
- *  Copyright 2025.  Baks.dev <admin@baks.dev>
+ *  Copyright 2026.  Baks.dev <admin@baks.dev>
  *  
  *  Permission is hereby granted, free of charge, to any person obtaining a copy
  *  of this software and associated documentation files (the "Software"), to deal
@@ -28,8 +28,8 @@ use BaksDev\Field\Tire\Profile\Type\Profile\Collection\TireProfileInterface;
 final class TireProfileField
 {
     public const string TYPE = 'tire_profile_field';
-	
-	private ?TireProfileInterface $profile = null;
+
+    private ?TireProfileInterface $profile = null;
 
     public function __construct(TireProfileInterface|self|int|float|string $profile)
 	{
@@ -68,8 +68,8 @@ final class TireProfileField
 
         //throw new InvalidArgumentException(sprintf('Not found TireProfileField %s', $profile));
 	}
-	
-	public function __toString(): string
+
+    public function __toString(): string
 	{
         return (string) $this->profile ? $this->profile->getValue() : '';
 	}

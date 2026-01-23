@@ -1,6 +1,6 @@
 <?php
 /*
- *  Copyright 2024.  Baks.dev <admin@baks.dev>
+ *  Copyright 2026.  Baks.dev <admin@baks.dev>
  *  
  *  Permission is hereby granted, free of charge, to any person obtaining a copy
  *  of this software and associated documentation files (the "Software"), to deal
@@ -31,7 +31,7 @@ final class TireWidthField
 
     private ?TireWidthInterface $width = null;
 
-    public function __construct(TireWidthInterface|self|int|string $width)
+    public function __construct(TireWidthInterface|self|int|float|string $width)
     {
         if(is_string($width) && class_exists($width))
         {
@@ -77,9 +77,14 @@ final class TireWidthField
         return $this->width;
     }
 
-    public function getTireWidthValue(): ?int
+    public function getTireWidthValue(): string|null
     {
-        return $this->width?->getValue();
+        if(empty($this->width))
+        {
+            return null;
+        }
+
+        return $this->width->getValue();
     }
 
     public static function cases(): array
@@ -102,9 +107,9 @@ final class TireWidthField
     {
         return array_filter(
             get_declared_classes(),
-            static function ($className) {
+            static function($className) {
                 return in_array(TireWidthInterface::class, class_implements($className), true);
-            }
+            },
         );
     }
 

@@ -23,25 +23,30 @@
 
 declare(strict_types=1);
 
-namespace BaksDev\Field\Tire\Width\Form;
+namespace BaksDev\Field\Tire\Width\Type\Width;
 
-use BaksDev\Field\Tire\Width\Type\TireWidthField;
-use Symfony\Component\Form\DataTransformerInterface;
+use BaksDev\Field\Tire\Width\Type\Width\Collection\TireWidthInterface;
+use Symfony\Component\DependencyInjection\Attribute\AutoconfigureTag;
 
-final class TireWidthFieldTransformer implements DataTransformerInterface
+#[AutoconfigureTag('baks.tire.width')]
+final class W7_00 implements TireWidthInterface
 {
-	
-	public function transform(mixed $value): ?TireWidthField
-    {
-		if(empty($value)) { return null; }
+    public const string WIDTH = '7.00';
 
-        return new TireWidthField((string) $value);
-	}
-	
-	
-	public function reverseTransform(mixed $value): string
-	{
-		return (string) $value;
-	}
-	
+    /** Возвращает значение (value) */
+    public function getValue(): string
+    {
+        return self::WIDTH;
+    }
+
+    /** Проверяет, относится ли значение к данному объекту */
+    public static function equals(mixed $width): bool
+    {
+        if(is_string($width))
+        {
+            $width = mb_strtolower($width);
+        }
+
+        return in_array($width, [self::WIDTH, (float) self::WIDTH, 'w'.self::WIDTH], true);
+    }
 }
