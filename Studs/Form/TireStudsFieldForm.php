@@ -32,33 +32,33 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
 
 final class TireStudsFieldForm extends AbstractType
 {
-	private TireStudsFieldTransformer $transformer;
-	
-	
-	public function __construct(TireStudsFieldTransformer $transformer)
-	{
-		$this->transformer = $transformer;
-	}
-	
-	public function buildForm(FormBuilderInterface $builder, array $options) : void
-	{
-		$builder->addModelTransformer($this->transformer);
-	}
-	
-	public function configureOptions(OptionsResolver $resolver) : void
-	{
-		$resolver->setDefaults([
-			'translation_domain' => 'field.tire.studs',
-		]);
-	}
-	
-	public function getParent(): string
+    private TireStudsFieldTransformer $transformer;
+
+
+    public function __construct(TireStudsFieldTransformer $transformer)
     {
-		return CheckboxType::class;
-	}
-	
-	public function getBlockPrefix(): string
+        $this->transformer = $transformer;
+    }
+
+    public function buildForm(FormBuilderInterface $builder, array $options): void
     {
-		return 'tire_studs_field';
-	}
+        $builder->addModelTransformer($this->transformer);
+    }
+
+    public function configureOptions(OptionsResolver $resolver): void
+    {
+        $resolver->setDefaults([
+            'translation_domain' => 'field.tire.studs',
+        ]);
+    }
+
+    public function getParent(): string
+    {
+        return CheckboxType::class;
+    }
+
+    public function getBlockPrefix(): string
+    {
+        return 'tire_studs_field';
+    }
 }

@@ -26,19 +26,19 @@ namespace BaksDev\Field\Tire\Studs\Type;
 final class  TireStudsField
 {
     public const string TYPE = 'tire_studs_field';
-	
-	private bool $value;
-	
-	
-	public function __construct(bool $value)
-	{
-		$this->value = $value;
-	}
-	
-	
-	public function getValue() : bool
-	{
-		return $this->value;
-	}
-	
+
+    private bool $value;
+
+
+    public function __construct(bool $value)
+    {
+        $this->value = $value;
+    }
+
+
+    public function getValue(): bool
+    {
+        return $this->value;
+    }
+
 }

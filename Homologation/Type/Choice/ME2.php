@@ -32,14 +32,8 @@ use Symfony\Component\DependencyInjection\Attribute\AutoconfigureTag;
 #[AutoconfigureTag('baks.tire.homologation')]
 final class ME2 implements TireHomologationInterface
 {
-    
-    public const HOMOLOGATION = 'ME2';
 
-    /** Возвращает значение (value) */
-    public function getValue(): string
-    {
-        return self::HOMOLOGATION;
-    }
+    public const HOMOLOGATION = 'ME2';
 
     /** Проверяет, относится ли значение к данному объекту */
     public static function equals(mixed $homologation): bool
@@ -48,6 +42,12 @@ final class ME2 implements TireHomologationInterface
         $homologation = mb_strtolower($homologation);
 
         return mb_strtolower(self::HOMOLOGATION) === $homologation;
+    }
+
+    /** Возвращает значение (value) */
+    public function getValue(): string
+    {
+        return self::HOMOLOGATION;
     }
 }
 

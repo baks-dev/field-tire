@@ -34,12 +34,6 @@ final class R14C implements TireRadiusInterface
 
     public const RADIUS = '14C';
 
-    /** Возвращает значение (value) */
-    public function getValue(): string
-    {
-        return self::RADIUS;
-    }
-
     /** Проверяет, относится ли значение к данному объекту */
     public static function equals(mixed $radius): bool
     {
@@ -48,5 +42,11 @@ final class R14C implements TireRadiusInterface
         $value = mb_strtolower(self::RADIUS);
 
         return in_array($radius, [$value, 'r'.$value], true);
+    }
+
+    /** Возвращает значение (value) */
+    public function getValue(): string
+    {
+        return self::RADIUS;
     }
 }

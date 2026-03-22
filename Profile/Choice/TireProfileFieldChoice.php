@@ -34,16 +34,16 @@ use BaksDev\Field\Tire\Profile\Type\TireProfileField;
 
 final class TireProfileFieldChoice implements FieldsChoiceInterface, ReferenceChoiceInterface
 {
-	public function equals($key) : bool
-	{
-		return $key === TireProfileField::TYPE;
-	}
+    public function equals($key): bool
+    {
+        return $key === TireProfileField::TYPE;
+    }
 
     /** Возвращает класс поля */
     public function type(): string
     {
-		return TireProfileField::TYPE;
-	}
+        return TireProfileField::TYPE;
+    }
 
     public function class(): string
     {
@@ -52,16 +52,16 @@ final class TireProfileFieldChoice implements FieldsChoiceInterface, ReferenceCh
 
 
     public function domain(): string
-	{
-		return 'field.tire.profile';
-	}
-	
-	
-	/** Возвращает класс формы для рендера */
-	public function form(): string
-	{
-		return TireProfileFieldForm::class;
-	}
+    {
+        return 'field.tire.profile';
+    }
+
+
+    /** Возвращает класс формы для рендера */
+    public function form(): string
+    {
+        return TireProfileFieldForm::class;
+    }
 
     /** Возвращает класс формы для рендера c имеющимися размерами в карточках */
     public function formFilterExists(): string

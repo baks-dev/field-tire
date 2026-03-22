@@ -33,7 +33,8 @@ final class TireRadiusCollection
     private iterable $collection;
 
     public function __construct(
-        #[AutowireIterator('baks.tire.radius')] iterable $collection)
+        #[AutowireIterator('baks.tire.radius')] iterable $collection
+    )
     {
         $this->collection = $collection;
     }
@@ -43,7 +44,8 @@ final class TireRadiusCollection
     {
         $case = null;
 
-        foreach ($this->collection as $init) {
+        foreach($this->collection as $init)
+        {
             $case[] = new $init();
         }
 

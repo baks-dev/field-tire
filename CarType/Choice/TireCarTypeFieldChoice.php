@@ -32,32 +32,32 @@ use BaksDev\Field\Tire\CarType\Type\TireCarTypeField;
 
 final class TireCarTypeFieldChoice implements FieldsChoiceInterface, ReferenceChoiceInterface
 {
-	public function equals($key) : bool
-	{
-		return $key === TireCarTypeField::TYPE;
-	}
-	
-	public function type(): string
-	{
-		return TireCarTypeField::TYPE;
-	}
+    public function equals($key): bool
+    {
+        return $key === TireCarTypeField::TYPE;
+    }
+
+    public function type(): string
+    {
+        return TireCarTypeField::TYPE;
+    }
 
     /** Возвращает класс поля */
     public function class(): string
     {
         return TireCarTypeField::class;
     }
-	
-	public function domain(): string
-	{
-		return 'field.tire.cartype';
-	}
-	
-	/** Возвращает класс формы для рендера */
-	public function form(): string
-	{
-		return TireCarTypeFieldForm::class;
-	}
+
+    public function domain(): string
+    {
+        return 'field.tire.cartype';
+    }
+
+    /** Возвращает класс формы для рендера */
+    public function form(): string
+    {
+        return TireCarTypeFieldForm::class;
+    }
 
     public function constraints(): ?array
     {

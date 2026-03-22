@@ -25,9 +25,6 @@
 
 namespace BaksDev\Field\Tire\Euro\Twig;
 
-use BaksDev\Field\Tire\CarType\Type\TireCarTypeEnum;
-use BaksDev\Field\Tire\CarType\Type\TireCarTypeField;
-use BaksDev\Field\Tire\Euro\Type\TireEuroField;
 use Twig\Environment;
 use Twig\Error\LoaderError;
 use Twig\Extension\AbstractExtension;
@@ -35,17 +32,18 @@ use Twig\TwigFunction;
 
 final class TireEuroColorExtension extends AbstractExtension
 {
-	public function getFunctions() : array
-	{
-		return [
+    public function getFunctions(): array
+    {
+        return [
             new TwigFunction('euro_economy_color', $this->getEconomyColor(...)),
             new TwigFunction('euro_grip_color', $this->getGripColor(...)),
-		];
-	}
-	
-	public function getEconomyColor(string $value): string
-	{
-        return match ($value) {
+        ];
+    }
+
+    public function getEconomyColor(string $value): string
+    {
+        return match ($value)
+        {
             'A' => 'background-color: #008F30; color: #FFF;',
             'B' => 'background-color: #58A929; color: #FFF;',
             'C' => 'background-color: #C9D100; color: #000;',
@@ -54,11 +52,12 @@ final class TireEuroColorExtension extends AbstractExtension
             'F' => 'background-color: #EB690B; color: #FFF;',
             'G' => 'background-color: #E3001B; color: #FFF;',
         };
-	}
-	
-	public function getGripColor($value): string
-	{
-        return match ($value) {
+    }
+
+    public function getGripColor($value): string
+    {
+        return match ($value)
+        {
             'A' => 'background-color: #4684D0; color: #FFF;',
             'B' => 'background-color: #5890D4; color: #FFF;',
             'C' => 'background-color: #6A9CD9; color: #FFF;',
@@ -67,6 +66,6 @@ final class TireEuroColorExtension extends AbstractExtension
             'F' => 'background-color: #A1C1E7; color: #FFF;',
             'G' => 'background-color: #B4CDEC; color: #FFF;',
         };
-	}
+    }
 
 }

@@ -31,18 +31,21 @@ use Symfony\Component\Form\DataTransformerInterface;
 
 final class TireHomologationFieldTransformer implements DataTransformerInterface
 {
-	
-	public function transform(mixed $value): ?TireHomologationField
-    {
-		if(empty($value)) { return new TireHomologationField(FalseHomologation::class); }
 
-		return new TireHomologationField($value);
-	}
-	
-	
-	public function reverseTransform(mixed $value): string
-	{
-		return (string) $value;
-	}
-	
+    public function transform(mixed $value): ?TireHomologationField
+    {
+        if(empty($value))
+        {
+            return new TireHomologationField(FalseHomologation::class);
+        }
+
+        return new TireHomologationField($value);
+    }
+
+
+    public function reverseTransform(mixed $value): string
+    {
+        return (string) $value;
+    }
+
 }

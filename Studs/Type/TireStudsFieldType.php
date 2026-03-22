@@ -23,32 +23,32 @@ use Doctrine\DBAL\Types\Type;
 
 final class TireStudsFieldType extends Type
 {
-	public function convertToDatabaseValue($value, AbstractPlatform $platform): bool
-	{
+    public function convertToDatabaseValue($value, AbstractPlatform $platform): bool
+    {
         return $value instanceof TireStudsField ? $value->getValue() : false;
-	}
-	
-	
-	public function convertToPHPValue($value, AbstractPlatform $platform): bool|TireStudsField
-	{
-		return !empty($value) ? new TireStudsField($value) : false;
-	}
-	
-	
-	public function getName(): string
-	{
-		return TireStudsField::TYPE;
-	}
-	
-	
-	public function requiresSQLCommentHint(AbstractPlatform $platform) : bool
-	{
-		return true;
-	}
+    }
+
+
+    public function convertToPHPValue($value, AbstractPlatform $platform): bool|TireStudsField
+    {
+        return !empty($value) ? new TireStudsField($value) : false;
+    }
+
+
+    public function getName(): string
+    {
+        return TireStudsField::TYPE;
+    }
+
+
+    public function requiresSQLCommentHint(AbstractPlatform $platform): bool
+    {
+        return true;
+    }
 
     public function getSQLDeclaration(array $column, AbstractPlatform $platform): string
     {
         return $platform->getBooleanTypeDeclarationSQL($column);
     }
-	
+
 }

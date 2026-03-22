@@ -28,9 +28,9 @@ use Symfony\Component\DependencyInjection\Attribute\AutoconfigureTag;
 #[AutoconfigureTag('baks.tire.width')]
 interface TireWidthInterface
 {
-    /** Возвращает значение (value) */
-    public function getValue(): int|string;
-
     /** Проверяет, относится ли значение к данному объекту */
     public static function equals(mixed $width): bool;
+
+    /** Возвращает значение (value) */
+    public function getValue(): int|string;
 }

@@ -1,13 +1,13 @@
 <?php
 
 return [
-	'placeholder' => 'Choose a season ...',
-	'label' => 'Seasonality',
-	
-	'summer'=> 'Summer',
-	'winter' => 'Winter',
-	'all' => 'All season',
-	'doesnt' => 'Doesn\'t matter',
+    'placeholder' => 'Choose a season ...',
+    'label' => 'Seasonality',
 
-	'studs' => 'Studs'
+    'summer' => 'Summer',
+    'winter' => 'Winter',
+    'all' => 'All season',
+    'doesnt' => 'Doesn\'t matter',
+
+    'studs' => 'Studs',
 ];

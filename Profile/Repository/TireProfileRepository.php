@@ -52,6 +52,72 @@ final readonly class TireProfileRepository implements TireProfileInterface
         private TireProfileCollection $TireProfileCollection
     ) {}
 
+    /** Метод возвращает только имеющие в карточках параметры в наличии */
+    public function available(): array|bool
+    {
+        if(!class_exists(BaksDevProductsProductBundle::class))
+        {
+            return TireRadiusField::cases();
+        }
+
+        $dbal = $this->builder();
+
+        $dbal
+            ->leftJoin(
+                'offer',
+                ProductOfferQuantity::class,
+                'offer_quantity',
+                'offer_quantity.offer = offer.id',
+            );
+
+        $dbal
+            ->leftJoin(
+                'variation',
+                ProductVariationQuantity::class,
+                'variation_quantity',
+                'variation_quantity.variation = variation.id',
+            );
+
+
+        $dbal
+            ->leftJoin(
+                'modification',
+                ProductModificationQuantity::class,
+                'modification_quantity',
+                'modification_quantity.modification = modification.id',
+            );
+
+
+        $dbal->andWhere(
+            '(modification_quantity.quantity > 0 
+            OR variation_quantity.quantity > 0 
+            OR offer_quantity.quantity > 0)',
+        );
+
+        $result = $dbal
+            ->enableCache('products-product')
+            ->fetchAllAssociative();
+
+        return $result ? array_column($result, 'value') : false;
+
+    }
+
+    /** Метод возвращает только имеющие в карточках профили */
+    public function cases(): array|bool
+    {
+        if(!class_exists(BaksDevProductsProductBundle::class))
+        {
+            TireProfileField::cases();
+        }
+
+        $dbal = $this->builder();
+
+        $result = $dbal->enableCache('products-product')->fetchAllAssociative();
+
+        return $result ? array_column($result, 'value') : false;
+
+    }
+
     private function builder(): DBALQueryBuilder
     {
         $stringArray = array_map(static function($item) {
@@ -149,72 +215,5 @@ final readonly class TireProfileRepository implements TireProfileInterface
         $dbal->addOrderBy('value');
 
         return $dbal;
-    }
-
-    /** Метод возвращает только имеющие в карточках профили */
-    public function cases(): array|bool
-    {
-        if(!class_exists(BaksDevProductsProductBundle::class))
-        {
-            TireProfileField::cases();
-        }
-
-        $dbal = $this->builder();
-
-        $result = $dbal->enableCache('products-product')->fetchAllAssociative();
-
-        return $result ? array_column($result, 'value') : false;
-
-    }
-
-
-    /** Метод возвращает только имеющие в карточках параметры в наличии */
-    public function available(): array|bool
-    {
-        if(!class_exists(BaksDevProductsProductBundle::class))
-        {
-            return TireRadiusField::cases();
-        }
-
-        $dbal = $this->builder();
-
-        $dbal
-            ->leftJoin(
-                'offer',
-                ProductOfferQuantity::class,
-                'offer_quantity',
-                'offer_quantity.offer = offer.id',
-            );
-
-        $dbal
-            ->leftJoin(
-                'variation',
-                ProductVariationQuantity::class,
-                'variation_quantity',
-                'variation_quantity.variation = variation.id',
-            );
-
-
-        $dbal
-            ->leftJoin(
-                'modification',
-                ProductModificationQuantity::class,
-                'modification_quantity',
-                'modification_quantity.modification = modification.id',
-            );
-
-
-        $dbal->andWhere(
-            '(modification_quantity.quantity > 0 
-            OR variation_quantity.quantity > 0 
-            OR offer_quantity.quantity > 0)',
-        );
-
-        $result = $dbal
-            ->enableCache('products-product')
-            ->fetchAllAssociative();
-
-        return $result ? array_column($result, 'value') : false;
-
     }
 }

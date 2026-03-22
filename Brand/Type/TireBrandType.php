@@ -31,32 +31,32 @@ use Doctrine\DBAL\Types\Type;
 
 final class TireBrandType extends Type
 {
-	
-	public function convertToDatabaseValue($value, AbstractPlatform $platform): string
-	{
-		return (string) $value;
-	}
-	
-	public function convertToPHPValue($value, AbstractPlatform $platform): ?TireBrandField
-	{
-		return !empty($value) ? new TireBrandField($value) : null;
-	}
-	
-	
-	public function getName(): string
-	{
-		return TireBrandField::TYPE;
-	}
-	
-	
-	public function requiresSQLCommentHint(AbstractPlatform $platform) : bool
-	{
-		return true;
-	}
+
+    public function convertToDatabaseValue($value, AbstractPlatform $platform): string
+    {
+        return (string) $value;
+    }
+
+    public function convertToPHPValue($value, AbstractPlatform $platform): ?TireBrandField
+    {
+        return !empty($value) ? new TireBrandField($value) : null;
+    }
+
+
+    public function getName(): string
+    {
+        return TireBrandField::TYPE;
+    }
+
+
+    public function requiresSQLCommentHint(AbstractPlatform $platform): bool
+    {
+        return true;
+    }
 
     public function getSQLDeclaration(array $column, AbstractPlatform $platform): string
     {
         return $platform->getStringTypeDeclarationSQL($column);
     }
-	
+
 }

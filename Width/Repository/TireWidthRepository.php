@@ -51,6 +51,66 @@ final readonly class TireWidthRepository implements TireWidthInterface
         private TireWidthCollection $TireWidthCollection,
     ) {}
 
+    /** Метод возвращает только имеющие в карточках параметры в наличии */
+    public function available(): array|bool
+    {
+        if(!class_exists(BaksDevProductsProductBundle::class))
+        {
+            return TireWidthField::cases();
+        }
+
+        $dbal = $this->builder();
+
+        $dbal
+            ->leftJoin(
+                'offer',
+                ProductOfferQuantity::class,
+                'offer_quantity',
+                'offer_quantity.offer = offer.id',
+            );
+
+        $dbal
+            ->leftJoin(
+                'variation',
+                ProductVariationQuantity::class,
+                'variation_quantity',
+                'variation_quantity.variation = variation.id',
+            );
+
+        $dbal
+            ->leftJoin(
+                'modification',
+                ProductModificationQuantity::class,
+                'modification_quantity',
+                'modification_quantity.modification = modification.id',
+            );
+
+        $dbal->andWhere(
+            '(modification_quantity.quantity > 0 
+            OR variation_quantity.quantity > 0 
+            OR offer_quantity.quantity > 0)',
+        );
+
+        $result = $dbal->enableCache('products-product')->fetchAllAssociative();
+
+        return $result ? array_column($result, 'value') : false;
+    }
+
+    /** Метод возвращает только имеющие в карточках параметры */
+    public function cases(): array|bool
+    {
+        if(!class_exists(BaksDevProductsProductBundle::class))
+        {
+            return TireWidthField::cases();
+        }
+
+        $dbal = $this->builder();
+
+        $result = $dbal->enableCache('products-product')->fetchAllAssociative();
+
+        return $result ? array_column($result, 'value') : false;
+    }
+
     private function builder(): DBALQueryBuilder
     {
         $stringArray = array_map(static function($item) {
@@ -147,66 +207,6 @@ final readonly class TireWidthRepository implements TireWidthInterface
         $dbal->addOrderBy('value');
 
         return $dbal;
-    }
-
-    /** Метод возвращает только имеющие в карточках параметры */
-    public function cases(): array|bool
-    {
-        if(!class_exists(BaksDevProductsProductBundle::class))
-        {
-            return TireWidthField::cases();
-        }
-
-        $dbal = $this->builder();
-
-        $result = $dbal->enableCache('products-product')->fetchAllAssociative();
-
-        return $result ? array_column($result, 'value') : false;
-    }
-
-    /** Метод возвращает только имеющие в карточках параметры в наличии */
-    public function available(): array|bool
-    {
-        if(!class_exists(BaksDevProductsProductBundle::class))
-        {
-            return TireWidthField::cases();
-        }
-
-        $dbal = $this->builder();
-
-        $dbal
-            ->leftJoin(
-                'offer',
-                ProductOfferQuantity::class,
-                'offer_quantity',
-                'offer_quantity.offer = offer.id',
-            );
-
-        $dbal
-            ->leftJoin(
-                'variation',
-                ProductVariationQuantity::class,
-                'variation_quantity',
-                'variation_quantity.variation = variation.id',
-            );
-
-        $dbal
-            ->leftJoin(
-                'modification',
-                ProductModificationQuantity::class,
-                'modification_quantity',
-                'modification_quantity.modification = modification.id',
-            );
-
-        $dbal->andWhere(
-            '(modification_quantity.quantity > 0 
-            OR variation_quantity.quantity > 0 
-            OR offer_quantity.quantity > 0)',
-        );
-
-        $result = $dbal->enableCache('products-product')->fetchAllAssociative();
-
-        return $result ? array_column($result, 'value') : false;
     }
 
 

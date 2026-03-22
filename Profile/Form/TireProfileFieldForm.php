@@ -27,48 +27,48 @@ namespace BaksDev\Field\Tire\Profile\Form;
 
 use BaksDev\Field\Tire\Profile\Type\TireProfileField;
 use Symfony\Component\Form\AbstractType;
-use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
+use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
 final class TireProfileFieldForm extends AbstractType
 {
-	
-	private TireProfileFieldTransformer $transformer;
-	
-	
-	public function __construct(TireProfileFieldTransformer $transformer)
-	{
-		$this->transformer = $transformer;
-	}
-	
-	public function buildForm(FormBuilderInterface $builder, array $options) : void
-	{
-		$builder->addModelTransformer($this->transformer);
-	}
-	
-	
-	public function configureOptions(OptionsResolver $resolver) : void
-	{
-		$resolver->setDefaults([
-			'choices' => TireProfileField::cases(),
-			'choice_value' => function(?TireProfileField $profile) {
-				return $profile?->getTireProfileValue();
-			},
-			'choice_label' => function(TireProfileField $profile) {
-				return $profile->getTireProfileValue();
-			},
-			'translation_domain' => 'field.tire.profile',
-			'placeholder' => 'placeholder',
-			'attr' => [ 'data-select' => 'select2' ],
-		]);
-	}
-	
-	
-	public function getParent(): string
+
+    private TireProfileFieldTransformer $transformer;
+
+
+    public function __construct(TireProfileFieldTransformer $transformer)
     {
-		return ChoiceType::class;
-	}
-	
+        $this->transformer = $transformer;
+    }
+
+    public function buildForm(FormBuilderInterface $builder, array $options): void
+    {
+        $builder->addModelTransformer($this->transformer);
+    }
+
+
+    public function configureOptions(OptionsResolver $resolver): void
+    {
+        $resolver->setDefaults([
+            'choices' => TireProfileField::cases(),
+            'choice_value' => function(?TireProfileField $profile) {
+                return $profile?->getTireProfileValue();
+            },
+            'choice_label' => function(TireProfileField $profile) {
+                return $profile->getTireProfileValue();
+            },
+            'translation_domain' => 'field.tire.profile',
+            'placeholder' => 'placeholder',
+            'attr' => ['data-select' => 'select2'],
+        ]);
+    }
+
+
+    public function getParent(): string
+    {
+        return ChoiceType::class;
+    }
+
 }

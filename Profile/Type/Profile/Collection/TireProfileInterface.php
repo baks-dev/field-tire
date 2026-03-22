@@ -28,11 +28,11 @@ use Symfony\Component\DependencyInjection\Attribute\AutoconfigureTag;
 #[AutoconfigureTag('baks.tire.profile')]
 interface TireProfileInterface
 {
+    /** Проверяет, относится ли значение к данному объекту */
+    public static function equals(mixed $profile): bool;
+
     public function __toString(): string;
 
     /** Возвращает значение (value) */
     public function getValue(): int|float|string;
-
-    /** Проверяет, относится ли значение к данному объекту */
-    public static function equals(mixed $profile): bool;
 }

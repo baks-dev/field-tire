@@ -33,12 +33,6 @@ final class W6_50 implements TireWidthInterface
 {
     public const string WIDTH = '6.50';
 
-    /** Возвращает значение (value) */
-    public function getValue(): string
-    {
-        return self::WIDTH;
-    }
-
     /** Проверяет, относится ли значение к данному объекту */
     public static function equals(mixed $width): bool
     {
@@ -48,5 +42,11 @@ final class W6_50 implements TireWidthInterface
         }
 
         return in_array($width, [self::WIDTH, (float) self::WIDTH, 'w'.self::WIDTH], true);
+    }
+
+    /** Возвращает значение (value) */
+    public function getValue(): string
+    {
+        return self::WIDTH;
     }
 }

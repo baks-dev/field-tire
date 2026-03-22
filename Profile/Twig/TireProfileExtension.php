@@ -34,61 +34,70 @@ use Twig\TwigFunction;
 
 final class TireProfileExtension extends AbstractExtension
 {
-	public function getFunctions() : array
-	{
-		return [
-			new TwigFunction(TireProfileField::TYPE, [$this, 'content'], ['needs_environment' => true, 'is_safe' => ['html']]),
-			new TwigFunction(TireProfileField::TYPE.'_render', [$this, 'render'], ['needs_environment' => true, 'is_safe' => ['html']]),
-			new TwigFunction(TireProfileField::TYPE.'_template', [$this, 'template'], ['needs_environment' => true, 'is_safe' => ['html']]),
-		];
-	}
-	
-	public function content(Environment $twig, ?string $value): ?string
-	{
-        if(!$value) { return null; }
+    public function getFunctions(): array
+    {
+        return [
+            new TwigFunction(TireProfileField::TYPE, [$this, 'content'], ['needs_environment' => true, 'is_safe' => ['html']]),
+            new TwigFunction(TireProfileField::TYPE.'_render', [$this, 'render'], ['needs_environment' => true, 'is_safe' => ['html']]),
+            new TwigFunction(TireProfileField::TYPE.'_template', [$this, 'template'], ['needs_environment' => true, 'is_safe' => ['html']]),
+        ];
+    }
 
-		try
-		{
+    public function content(Environment $twig, ?string $value): ?string
+    {
+        if(!$value)
+        {
+            return null;
+        }
+
+        try
+        {
             $render = $twig->render('@Template/field-tire/profile/content.html.twig', ['value' => $value]);
-		}
-		catch(LoaderError $loaderError)
-		{
+        }
+        catch(LoaderError $loaderError)
+        {
             $render = $twig->render('@field-tire-profile/content.html.twig', ['value' => $value]);
-		}
+        }
 
         return trim($render);
-	}
-	
-	public function template(Environment $twig, ?string $value): ?string
-	{
-        if(!$value) { return null; }
+    }
 
-		try
-		{
-            $render = $twig->render('@Template/field-tire/profile/template.html.twig', ['value' => $value]);
-		}
-		catch(LoaderError $loaderError)
-		{
-            $render = $twig->render('@field-tire-profile/template.html.twig', ['value' => $value]);
-		}
+    public function render(Environment $twig, ?string $value): ?string
+    {
+        if(!$value)
+        {
+            return null;
+        }
 
-        return trim($render);
-	}
-	
-	public function render(Environment $twig, ?string $value): ?string
-	{
-        if(!$value) { return null; }
-
-		try
-		{
+        try
+        {
             $render = $twig->render('@Template/field-tire/profile/render.html.twig', ['value' => $value]);
-		}
-		catch(LoaderError $loaderError)
-		{
+        }
+        catch(LoaderError $loaderError)
+        {
             $render = $twig->render('@field-tire-profile/render.html.twig', ['value' => $value]);
-		}
+        }
 
         return trim($render);
 
-	}
+    }
+
+    public function template(Environment $twig, ?string $value): ?string
+    {
+        if(!$value)
+        {
+            return null;
+        }
+
+        try
+        {
+            $render = $twig->render('@Template/field-tire/profile/template.html.twig', ['value' => $value]);
+        }
+        catch(LoaderError $loaderError)
+        {
+            $render = $twig->render('@field-tire-profile/template.html.twig', ['value' => $value]);
+        }
+
+        return trim($render);
+    }
 }

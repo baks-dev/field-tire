@@ -33,17 +33,6 @@ final class P12_5 implements TireProfileInterface
 {
     public const float PROFILE = 12.5;
 
-    public function __toString(): string
-    {
-        return (string) self::PROFILE;
-    }
-
-    /** Возвращает значение (value) */
-    public function getValue(): float
-    {
-        return self::PROFILE;
-    }
-
     /** Проверяет, относится ли значение к данному объекту */
     public static function equals(mixed $profile): bool
     {
@@ -58,6 +47,17 @@ final class P12_5 implements TireProfileInterface
         }
 
         return in_array($profile, [self::PROFILE, (string) self::PROFILE, 'p'.self::PROFILE], true);
+    }
+
+    public function __toString(): string
+    {
+        return (string) self::PROFILE;
+    }
+
+    /** Возвращает значение (value) */
+    public function getValue(): float
+    {
+        return self::PROFILE;
     }
 
 

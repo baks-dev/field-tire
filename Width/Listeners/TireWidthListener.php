@@ -25,8 +25,6 @@ declare(strict_types=1);
 
 namespace BaksDev\Field\Tire\Width\Listeners;
 
-use BaksDev\Field\Tire\Radius\Type\Radius\Collection\TireRadiusCollection;
-use BaksDev\Field\Tire\Radius\Type\TireRadiusFieldType;
 use BaksDev\Field\Tire\Width\Type\TireWidthFieldType;
 use BaksDev\Field\Tire\Width\Type\Width\Collection\TireWidthCollection;
 use Symfony\Component\Console\ConsoleEvents;

@@ -51,10 +51,10 @@ final class TireHomologationFieldForm extends AbstractType
 
         $resolver->setDefaults([
             'choices' => $cases,
-            'choice_value' => function (?TireHomologationField $homologation) {
+            'choice_value' => function(?TireHomologationField $homologation) {
                 return $homologation?->getTireHomologationValue();
             },
-            'choice_label' => function (TireHomologationField $homologation) {
+            'choice_label' => function(TireHomologationField $homologation) {
 
                 $value = $homologation->getTireHomologationValue();
 
@@ -64,7 +64,7 @@ final class TireHomologationFieldForm extends AbstractType
                     default => $value
                 };
             },
-            'choice_attr' => function (?TireHomologationField $homologation) {
+            'choice_attr' => function(?TireHomologationField $homologation) {
 
                 $value = $homologation?->getTireHomologationValue();
 

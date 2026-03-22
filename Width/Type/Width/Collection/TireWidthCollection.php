@@ -33,7 +33,8 @@ final class TireWidthCollection
 
     public function __construct(
         #[AutowireIterator('baks.tire.width')] iterable $collection
-    ) {
+    )
+    {
         $this->collection = $collection;
     }
 

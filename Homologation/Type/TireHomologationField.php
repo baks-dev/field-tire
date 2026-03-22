@@ -70,14 +70,25 @@ final class TireHomologationField
 
     }
 
-    public function __toString(): string
-    {
-        return $this->homologation?->getValue() ?: '';
-    }
-
     public function getTireHomologation(): ?TireHomologationInterface
     {
         return $this->homologation;
+    }
+
+    public static function getDeclared(): array
+    {
+        return array_filter(
+            get_declared_classes(),
+            static function($className) {
+                return in_array(TireHomologationInterface::class, class_implements($className), true);
+            },
+        );
+    }
+
+    public function equals(mixed $homologation): bool
+    {
+        $homologation = new self($homologation);
+        return $this->getTireHomologationValue() === $homologation->getTireHomologationValue();
     }
 
     public function getTireHomologationValue(): ?string
@@ -101,20 +112,9 @@ final class TireHomologationField
         return $case;
     }
 
-    public static function getDeclared(): array
+    public function __toString(): string
     {
-        return array_filter(
-            get_declared_classes(),
-            static function($className) {
-                return in_array(TireHomologationInterface::class, class_implements($className), true);
-            }
-        );
-    }
-
-    public function equals(mixed $homologation): bool
-    {
-        $homologation = new self($homologation);
-        return $this->getTireHomologationValue() === $homologation->getTireHomologationValue();
+        return $this->homologation?->getValue() ?: '';
     }
 
 }

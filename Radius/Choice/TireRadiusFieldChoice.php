@@ -34,15 +34,15 @@ use BaksDev\Field\Tire\Radius\Type\TireRadiusField;
 
 final class TireRadiusFieldChoice implements FieldsChoiceInterface, ReferenceChoiceInterface
 {
-	public function equals($key) : bool
-	{
-		return $key === TireRadiusField::TYPE;
-	}
-	
-	public function type(): string
-	{
-		return TireRadiusField::TYPE;
-	}
+    public function equals($key): bool
+    {
+        return $key === TireRadiusField::TYPE;
+    }
+
+    public function type(): string
+    {
+        return TireRadiusField::TYPE;
+    }
 
     /** Возвращает класс поля */
     public function class(): string
@@ -50,18 +50,18 @@ final class TireRadiusFieldChoice implements FieldsChoiceInterface, ReferenceCho
         return TireRadiusField::class;
     }
 
-	
-	public function domain(): string
-	{
-		return 'field.tire.radius';
-	}
-	
-	
-	/** Возвращает класс формы для рендера */
-	public function form(): string
-	{
-		return TireRadiusFieldForm::class;
-	}
+
+    public function domain(): string
+    {
+        return 'field.tire.radius';
+    }
+
+
+    /** Возвращает класс формы для рендера */
+    public function form(): string
+    {
+        return TireRadiusFieldForm::class;
+    }
 
     /** Возвращает класс формы для рендера c имеющимися размерами в карточках */
     public function formFilterExists(): string
@@ -79,5 +79,5 @@ final class TireRadiusFieldChoice implements FieldsChoiceInterface, ReferenceCho
     {
         return null;
     }
-	
+
 }

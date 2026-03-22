@@ -27,8 +27,6 @@ namespace BaksDev\Field\Tire\Profile\Listeners;
 
 use BaksDev\Field\Tire\Profile\Type\Profile\Collection\TireProfileCollection;
 use BaksDev\Field\Tire\Profile\Type\TireProfileFieldType;
-use BaksDev\Field\Tire\Radius\Type\Radius\Collection\TireRadiusCollection;
-use BaksDev\Field\Tire\Radius\Type\TireRadiusFieldType;
 use Symfony\Component\Console\ConsoleEvents;
 use Symfony\Component\Console\Event\ConsoleCommandEvent;
 use Symfony\Component\EventDispatcher\Attribute\AsEventListener;

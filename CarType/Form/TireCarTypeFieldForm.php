@@ -28,43 +28,43 @@ namespace BaksDev\Field\Tire\CarType\Form;
 use BaksDev\Field\Tire\CarType\Type\TireCarTypeField;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
-use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\Extension\Core\Type\RadioType;
+use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
 final class TireCarTypeFieldForm extends AbstractType
 {
-	
-	public function buildForm(FormBuilderInterface $builder, array $options) : void
-	{
-		$builder->addModelTransformer(new TireCarTypeFieldTransformer($options['required']));
-	}
-	
-	public function configureOptions(OptionsResolver $resolver) : void
-	{
-		$resolver->setDefaults([
-			'choices' => TireCarTypeField::cases(),
-			'choice_value' => function($status) {
-				return $status?->getValue();
-			},
-			'choice_label' => function($status) {
-				return $status->getValue();
-			},
-			'translation_domain' => 'field.tire.cartype',
-			'expanded' => true,
-		]);
-	}
-	
-	public function getParent(): string
+
+    public function buildForm(FormBuilderInterface $builder, array $options): void
     {
-		//return RadioType::class;
-		return ChoiceType::class;
-	}
-	
-	public function getBlockPrefix(): string
+        $builder->addModelTransformer(new TireCarTypeFieldTransformer($options['required']));
+    }
+
+    public function configureOptions(OptionsResolver $resolver): void
     {
-		return 'tire_cartype_field';
-	}
-	
+        $resolver->setDefaults([
+            'choices' => TireCarTypeField::cases(),
+            'choice_value' => function($status) {
+                return $status?->getValue();
+            },
+            'choice_label' => function($status) {
+                return $status->getValue();
+            },
+            'translation_domain' => 'field.tire.cartype',
+            'expanded' => true,
+        ]);
+    }
+
+    public function getParent(): string
+    {
+        //return RadioType::class;
+        return ChoiceType::class;
+    }
+
+    public function getBlockPrefix(): string
+    {
+        return 'tire_cartype_field';
+    }
+
 }

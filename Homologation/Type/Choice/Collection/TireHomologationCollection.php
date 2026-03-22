@@ -33,7 +33,8 @@ final class TireHomologationCollection
     private iterable $collection;
 
     public function __construct(
-        #[AutowireIterator('baks.tire.homologation')] iterable $collection)
+        #[AutowireIterator('baks.tire.homologation')] iterable $collection
+    )
     {
         $this->collection = $collection;
     }
@@ -43,7 +44,8 @@ final class TireHomologationCollection
     {
         $case = null;
 
-        foreach ($this->collection as $init) {
+        foreach($this->collection as $init)
+        {
             $case[] = new $init();
         }
 

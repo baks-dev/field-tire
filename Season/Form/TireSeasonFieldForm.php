@@ -25,7 +25,6 @@ declare(strict_types=1);
 
 namespace BaksDev\Field\Tire\Season\Form;
 
-use BaksDev\Field\Tire\Season\Type\TireSeasonEnum;
 use BaksDev\Field\Tire\Season\Type\TireSeasonField;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
@@ -34,36 +33,36 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
 
 final class TireSeasonFieldForm extends AbstractType
 {
-	
-	public function buildForm(FormBuilderInterface $builder, array $options) : void
-	{
-		$builder->addModelTransformer(new TireSeasonFieldTransformer($options['required']));
-	}
-	
-	public function configureOptions(OptionsResolver $resolver) : void
-	{
-		$resolver->setDefaults([
-			'choices' => TireSeasonField::cases(),
-			'choice_value' => function($status) {
-				return $status?->getValue();
-			},
-			'choice_label' => function($status) {
-				return $status->getValue();
-			},
-			'translation_domain' => 'field.tire.season',
-			'expanded' => true,
-		]);
-	}
-	
-	public function getParent(): string
+
+    public function buildForm(FormBuilderInterface $builder, array $options): void
     {
-		//return RadioType::class;
-		return ChoiceType::class;
-	}
-	
-	public function getBlockPrefix(): string
+        $builder->addModelTransformer(new TireSeasonFieldTransformer($options['required']));
+    }
+
+    public function configureOptions(OptionsResolver $resolver): void
     {
-		return 'tire_season_field';
-	}
-	
+        $resolver->setDefaults([
+            'choices' => TireSeasonField::cases(),
+            'choice_value' => function($status) {
+                return $status?->getValue();
+            },
+            'choice_label' => function($status) {
+                return $status->getValue();
+            },
+            'translation_domain' => 'field.tire.season',
+            'expanded' => true,
+        ]);
+    }
+
+    public function getParent(): string
+    {
+        //return RadioType::class;
+        return ChoiceType::class;
+    }
+
+    public function getBlockPrefix(): string
+    {
+        return 'tire_season_field';
+    }
+
 }

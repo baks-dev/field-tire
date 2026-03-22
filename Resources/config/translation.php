@@ -26,7 +26,7 @@ namespace Symfony\Component\DependencyInjection\Loader\Configurator;
 use BaksDev\Field\Tire\BaksDevFieldTireBundle;
 use Symfony\Config\FrameworkConfig;
 
-return static function (FrameworkConfig $config) {
+return static function(FrameworkConfig $config) {
 
     $config
         ->translator()
@@ -38,6 +38,6 @@ return static function (FrameworkConfig $config) {
             BaksDevFieldTireBundle::PATH.implode(DIRECTORY_SEPARATOR, ['Radius', 'Resources', 'translations', '']),
             BaksDevFieldTireBundle::PATH.implode(DIRECTORY_SEPARATOR, ['Season', 'Resources', 'translations', '']),
             BaksDevFieldTireBundle::PATH.implode(DIRECTORY_SEPARATOR, ['Studs', 'Resources', 'translations', '']),
-            BaksDevFieldTireBundle::PATH.implode(DIRECTORY_SEPARATOR, ['Width', 'Resources', 'translations', ''])
+            BaksDevFieldTireBundle::PATH.implode(DIRECTORY_SEPARATOR, ['Width', 'Resources', 'translations', '']),
         ]);
 };

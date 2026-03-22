@@ -1,6 +1,6 @@
 <?php
 
 return [
-	'placeholder' => 'Choose a profile ...',
-	'label' => 'Profile',
+    'placeholder' => 'Choose a profile ...',
+    'label' => 'Profile',
 ];

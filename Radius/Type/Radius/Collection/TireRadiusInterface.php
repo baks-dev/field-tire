@@ -30,9 +30,9 @@ use Symfony\Component\DependencyInjection\Attribute\AutoconfigureTag;
 #[AutoconfigureTag('baks.tire.radius')]
 interface TireRadiusInterface
 {
-    /** Возвращает значение (value) */
-    public function getValue(): string;
-
     /** Проверяет, относится ли значение к данному объекту */
     public static function equals(mixed $radius): bool;
+
+    /** Возвращает значение (value) */
+    public function getValue(): string;
 }

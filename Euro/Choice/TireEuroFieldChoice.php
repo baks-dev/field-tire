@@ -32,7 +32,7 @@ use BaksDev\Field\Tire\Euro\Type\TireEuroField;
 
 final class TireEuroFieldChoice implements FieldsChoiceInterface, ReferenceChoiceInterface
 {
-    public function equals($key) : bool
+    public function equals($key): bool
     {
         return $key === TireEuroField::TYPE;
     }

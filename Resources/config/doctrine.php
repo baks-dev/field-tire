@@ -20,7 +20,7 @@ use BaksDev\Field\Tire\Width\Type\TireWidthField;
 use BaksDev\Field\Tire\Width\Type\TireWidthFieldType;
 use Symfony\Config\DoctrineConfig;
 
-return static function (DoctrineConfig $doctrine) {
+return static function(DoctrineConfig $doctrine) {
 
     $doctrine->dbal()->type(TireCarTypeField::TYPE)->class(TireCarTypeFieldType::class);
     $doctrine->dbal()->type(TireEuroField::TYPE)->class(TireEuroFieldType::class);

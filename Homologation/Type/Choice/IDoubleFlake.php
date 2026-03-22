@@ -32,14 +32,8 @@ use Symfony\Component\DependencyInjection\Attribute\AutoconfigureTag;
 #[AutoconfigureTag('baks.tire.homologation')]
 final class IDoubleFlake implements TireHomologationInterface
 {
-    
-    public const HOMOLOGATION = 'II*'; // II*
 
-    /** Возвращает значение (value) */
-    public function getValue(): string
-    {
-        return self::HOMOLOGATION;
-    }
+    public const HOMOLOGATION = 'II*'; // II*
 
     /** Проверяет, относится ли значение к данному объекту */
     public static function equals(mixed $homologation): bool
@@ -50,6 +44,12 @@ final class IDoubleFlake implements TireHomologationInterface
         return in_array($homologation, ['idoubleflake', 'ii*']);
 
 
+    }
+
+    /** Возвращает значение (value) */
+    public function getValue(): string
+    {
+        return self::HOMOLOGATION;
     }
 }
 

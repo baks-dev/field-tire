@@ -25,8 +25,6 @@ declare(strict_types=1);
 
 namespace BaksDev\Field\Tire\Euro\Form;
 
-use BaksDev\Field\Tire\CarType\Type\TireCarTypeEnum;
-use BaksDev\Field\Tire\CarType\Type\TireCarTypeField;
 use BaksDev\Field\Tire\Euro\Type\ChoiceEconomyEnum;
 use BaksDev\Field\Tire\Euro\Type\ChoiceGripEnum;
 use Symfony\Component\Form\DataTransformerInterface;
@@ -48,26 +46,32 @@ final class TireEuroFieldTransformer implements DataTransformerInterface
         $economy = null;
         $grip = null;
 
-        if ($value && $value !== 'false') {
+        if($value && $value !== 'false')
+        {
             $value = json_decode($value);
 
-            if ($value[0]) {
+            if($value[0])
+            {
                 $economy = ChoiceEconomyEnum::from($value[0]);
             }
 
 
-            if ($value[1]) {
+            if($value[1])
+            {
                 $grip = ChoiceGripEnum::from($value[1]);
             }
 
 
-            if ($this->required) {
+            if($this->required)
+            {
 
-                if ($economy) {
+                if($economy)
+                {
                     $TireEuroFieldDTO->setEconomy($economy);
                 }
 
-                if ($grip) {
+                if($grip)
+                {
                     $TireEuroFieldDTO->setGrip($grip);
                 }
 
@@ -75,10 +79,12 @@ final class TireEuroFieldTransformer implements DataTransformerInterface
             else
             {
 
-                if ($economy) {
+                if($economy)
+                {
                     $TireEuroFieldDTO->setEconomy([$economy]);
                 }
-                if ($grip) {
+                if($grip)
+                {
                     $TireEuroFieldDTO->setGrip([$grip]);
                 }
             }
@@ -97,14 +103,15 @@ final class TireEuroFieldTransformer implements DataTransformerInterface
         $economy = $value->getEconomy();
         $grip = $value->getGrip();
 
-        if (!$this->required) {
+        if(!$this->required)
+        {
             $economy = end($economy);
             $grip = end($grip);
         }
 
         $sound = $value->getSound();
 
-        if (!$economy || !$grip || !$sound)
+        if(!$economy || !$grip || !$sound)
         {
             return 'false';
         }

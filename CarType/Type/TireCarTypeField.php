@@ -26,56 +26,56 @@ namespace BaksDev\Field\Tire\CarType\Type;
 final class TireCarTypeField
 {
     public const string TYPE = 'tire_cartype_field';
-	
-	private ?TireCarTypeEnum $value = null;
-	
-	public function __construct(null|string|TireCarTypeEnum $value)
-	{
-		if($value instanceof TireCarTypeEnum)
-		{
-			$this->value = $value;
-			return;
-		}
-		
-		if(is_string($value))
-		{
-			$this->value = TireCarTypeEnum::from($value);
-		}
-	}
-	
-	public function __toString(): string
-	{
-		return $this->value?->value ?: '';
-	}
-	
-	/** Возвращает числовое значение   */
-	public function getValue() : ?string
-	{
-		return $this->value?->value;
-	}
-	
-	/** Возвращает ключ значения */
-	public function getName(): string
-	{
-		return $this->value->name;
-	}
-	
-	/** Возвращает значение Enum   */
-	public function getTireProfileField() : TireCarTypeEnum
-	{
-		return $this->value;
-	}
-	
-	/** Возвращает массив из значнией TireProfileEnum */
-	public static function cases() : array
-	{
-		$case = null;
-		
-		foreach(TireCarTypeEnum::cases() as $color)
-		{
-			$case[] = new self($color);
-		}
-		
-		return $case;
-	}
+
+    private ?TireCarTypeEnum $value = null;
+
+    public function __construct(null|string|TireCarTypeEnum $value)
+    {
+        if($value instanceof TireCarTypeEnum)
+        {
+            $this->value = $value;
+            return;
+        }
+
+        if(is_string($value))
+        {
+            $this->value = TireCarTypeEnum::from($value);
+        }
+    }
+
+    /** Возвращает массив из значнией TireProfileEnum */
+    public static function cases(): array
+    {
+        $case = null;
+
+        foreach(TireCarTypeEnum::cases() as $color)
+        {
+            $case[] = new self($color);
+        }
+
+        return $case;
+    }
+
+    public function __toString(): string
+    {
+        return $this->value?->value ?: '';
+    }
+
+    /** Возвращает числовое значение   */
+    public function getValue(): ?string
+    {
+        return $this->value?->value;
+    }
+
+    /** Возвращает ключ значения */
+    public function getName(): string
+    {
+        return $this->value->name;
+    }
+
+    /** Возвращает значение Enum   */
+    public function getTireProfileField(): TireCarTypeEnum
+    {
+        return $this->value;
+    }
 }

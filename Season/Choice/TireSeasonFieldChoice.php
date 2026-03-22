@@ -32,15 +32,15 @@ use BaksDev\Field\Tire\Season\Type\TireSeasonField;
 
 final class TireSeasonFieldChoice implements FieldsChoiceInterface, ReferenceChoiceInterface
 {
-	public function equals($key) : bool
-	{
-		return $key === TireSeasonField::TYPE;
-	}
-	
-	public function type(): string
-	{
-		return TireSeasonField::TYPE;
-	}
+    public function equals($key): bool
+    {
+        return $key === TireSeasonField::TYPE;
+    }
+
+    public function type(): string
+    {
+        return TireSeasonField::TYPE;
+    }
 
     /** Возвращает класс поля */
     public function class(): string
@@ -48,22 +48,22 @@ final class TireSeasonFieldChoice implements FieldsChoiceInterface, ReferenceCho
         return TireSeasonField::class;
     }
 
-	
-	public function domain(): string
-	{
-		return 'field.tire.season';
-	}
-	
-	
-	/** Возвращает класс формы для рендера */
-	public function form(): string
-	{
-		return TireSeasonFieldForm::class;
-	}
+
+    public function domain(): string
+    {
+        return 'field.tire.season';
+    }
+
+
+    /** Возвращает класс формы для рендера */
+    public function form(): string
+    {
+        return TireSeasonFieldForm::class;
+    }
 
     public function constraints(): ?array
     {
         return null;
     }
-	
+
 }

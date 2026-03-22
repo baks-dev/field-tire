@@ -29,14 +29,14 @@ use Symfony\Component\Form\DataTransformerInterface;
 
 final class TireStudsFieldTransformer implements DataTransformerInterface
 {
-	
-	public function transform(mixed $value) : bool
-	{
-		return $value === 'true';
-	}
-	
-	public function reverseTransform(mixed $value): string
-	{
-		return $value ? 'true' : 'false';
-	}
+
+    public function transform(mixed $value): bool
+    {
+        return $value === 'true';
+    }
+
+    public function reverseTransform(mixed $value): string
+    {
+        return $value ? 'true' : 'false';
+    }
 }

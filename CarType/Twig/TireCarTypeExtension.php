@@ -25,7 +25,6 @@
 
 namespace BaksDev\Field\Tire\CarType\Twig;
 
-use BaksDev\Field\Tire\CarType\Type\TireCarTypeEnum;
 use BaksDev\Field\Tire\CarType\Type\TireCarTypeField;
 use Twig\Environment;
 use Twig\Error\LoaderError;
@@ -34,50 +33,50 @@ use Twig\TwigFunction;
 
 final class TireCarTypeExtension extends AbstractExtension
 {
-	public function getFunctions() : array
-	{
-		return [
-			new TwigFunction(TireCarTypeField::TYPE, [$this, 'content'], ['needs_environment' => true, 'is_safe' => ['html']]),
-			new TwigFunction(TireCarTypeField::TYPE.'_render', [$this, 'render'], ['needs_environment' => true, 'is_safe' => ['html']]),
-			new TwigFunction(TireCarTypeField::TYPE.'_template', [$this, 'template'], ['needs_environment' => true, 'is_safe' => ['html']]),
-		];
-	}
-	
-	public function content(Environment $twig, string $value): string
-	{
-		try
-		{
-			return $twig->render('@Template/field-tire/cartype/content.html.twig', ['value' => $value]);
-		}
-		catch(LoaderError $loaderError)
-		{
-			return $twig->render('@field-tire-cartype/content.html.twig', ['value' => $value]);
-		}
-	}
-	
-	public function render(Environment $twig, $value): string
-	{
-		try
-		{
-			return $twig->render('@Template/field-tire/cartype/render.html.twig', ['value' => $value]);
-		}
-		catch(LoaderError $loaderError)
-		{
-			return $twig->render('@field-tire-cartype/render.html.twig', ['value' => $value]);
-		}
-	}
-	
-	
-	public function template(Environment $twig, $value): string
-	{
-		try
-		{
-			return $twig->render('@Template/field-tire/cartype/template.html.twig', ['value' => $value]);
-		}
-		catch(LoaderError $loaderError)
-		{
-			return $twig->render('@field-tire-cartype/template.html.twig', ['value' => $value]);
-		}
-	}
-	
+    public function getFunctions(): array
+    {
+        return [
+            new TwigFunction(TireCarTypeField::TYPE, [$this, 'content'], ['needs_environment' => true, 'is_safe' => ['html']]),
+            new TwigFunction(TireCarTypeField::TYPE.'_render', [$this, 'render'], ['needs_environment' => true, 'is_safe' => ['html']]),
+            new TwigFunction(TireCarTypeField::TYPE.'_template', [$this, 'template'], ['needs_environment' => true, 'is_safe' => ['html']]),
+        ];
+    }
+
+    public function content(Environment $twig, string $value): string
+    {
+        try
+        {
+            return $twig->render('@Template/field-tire/cartype/content.html.twig', ['value' => $value]);
+        }
+        catch(LoaderError $loaderError)
+        {
+            return $twig->render('@field-tire-cartype/content.html.twig', ['value' => $value]);
+        }
+    }
+
+    public function render(Environment $twig, $value): string
+    {
+        try
+        {
+            return $twig->render('@Template/field-tire/cartype/render.html.twig', ['value' => $value]);
+        }
+        catch(LoaderError $loaderError)
+        {
+            return $twig->render('@field-tire-cartype/render.html.twig', ['value' => $value]);
+        }
+    }
+
+
+    public function template(Environment $twig, $value): string
+    {
+        try
+        {
+            return $twig->render('@Template/field-tire/cartype/template.html.twig', ['value' => $value]);
+        }
+        catch(LoaderError $loaderError)
+        {
+            return $twig->render('@field-tire-cartype/template.html.twig', ['value' => $value]);
+        }
+    }
+
 }

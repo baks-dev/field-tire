@@ -32,14 +32,8 @@ use Symfony\Component\DependencyInjection\Attribute\AutoconfigureTag;
 #[AutoconfigureTag('baks.tire.homologation')]
 final class TpcSpec implements TireHomologationInterface
 {
-    
-    public const HOMOLOGATION = 'TPC SPEC';
 
-    /** Возвращает значение (value) */
-    public function getValue(): string
-    {
-        return self::HOMOLOGATION;
-    }
+    public const HOMOLOGATION = 'TPC SPEC';
 
     /** Проверяет, относится ли значение к данному объекту */
     public static function equals(mixed $homologation): bool
@@ -48,6 +42,12 @@ final class TpcSpec implements TireHomologationInterface
         $homologation = mb_strtolower($homologation);
 
         return in_array($homologation, ['tpcspec', 'tpc spec', 'tpc spec 1156']);
+    }
+
+    /** Возвращает значение (value) */
+    public function getValue(): string
+    {
+        return self::HOMOLOGATION;
     }
 }
 

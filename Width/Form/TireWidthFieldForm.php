@@ -50,10 +50,10 @@ final class TireWidthFieldForm extends AbstractType
     {
         $resolver->setDefaults([
             'choices' => TireWidthField::cases(),
-            'choice_value' => function (?TireWidthField $width) {
+            'choice_value' => function(?TireWidthField $width) {
                 return $width?->getTireWidthValue();
             },
-            'choice_label' => function (TireWidthField $width) {
+            'choice_label' => function(TireWidthField $width) {
                 return $width->getTireWidthValue();
             },
             'translation_domain' => 'field.tire.width',

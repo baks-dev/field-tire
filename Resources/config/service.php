@@ -34,7 +34,7 @@ use BaksDev\Field\Tire\Spiky\Choice\TireSpikyFieldChoice;
 use BaksDev\Field\Tire\Studs\Choice\TireStudsFieldChoice;
 use BaksDev\Field\Tire\Width\Choice\TireWidthFieldChoice;
 
-return static function (ContainerConfigurator $configurator) {
+return static function(ContainerConfigurator $configurator) {
 
     $services = $configurator->services()
         ->defaults()
@@ -67,7 +67,7 @@ return static function (ContainerConfigurator $configurator) {
 
     $services->load(
         $NAMESPACE.'Profile\Type\Profile\\',
-        $PATH.implode(DIRECTORY_SEPARATOR, ['Profile', 'Type', 'Profile'])
+        $PATH.implode(DIRECTORY_SEPARATOR, ['Profile', 'Type', 'Profile']),
     );
 
     //    $services->load(

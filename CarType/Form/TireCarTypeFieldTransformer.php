@@ -31,25 +31,28 @@ use Symfony\Component\Form\DataTransformerInterface;
 
 final class TireCarTypeFieldTransformer implements DataTransformerInterface
 {
-	private bool $required;
-	
-	
-	public function __construct(bool $required)
-	{
-		$this->required = $required;
-	}
-	
-	public function transform(mixed $value): TireCarTypeField
+    private bool $required;
+
+
+    public function __construct(bool $required)
     {
-		if($this->required && empty($value)) { $value = TireCarTypeEnum::PASSENGER; }
-		
-		return new TireCarTypeField($value);
-	}
-	
-	
-	public function reverseTransform(mixed $value): string
-	{
-		return (string) $value;
-	}
-	
+        $this->required = $required;
+    }
+
+    public function transform(mixed $value): TireCarTypeField
+    {
+        if($this->required && empty($value))
+        {
+            $value = TireCarTypeEnum::PASSENGER;
+        }
+
+        return new TireCarTypeField($value);
+    }
+
+
+    public function reverseTransform(mixed $value): string
+    {
+        return (string) $value;
+    }
+
 }

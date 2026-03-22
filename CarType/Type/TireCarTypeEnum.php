@@ -23,18 +23,18 @@
 
 namespace BaksDev\Field\Tire\CarType\Type;
 
-enum TireCarTypeEnum : string
+enum TireCarTypeEnum: string
 {
-	/** Легковой */
-	case PASSENGER = 'passenger';
-	
-	/** Джип */
-	case JEEP = 'jeep';
+    /** Легковой */
+    case PASSENGER = 'passenger';
+
+    /** Джип */
+    case JEEP = 'jeep';
 
     /** Коммерческий транспорт */
-	case BUS = 'bus';
-	
-	/** Грузовик */
-	case TRUCK = 'truck';
+    case BUS = 'bus';
+
+    /** Грузовик */
+    case TRUCK = 'truck';
 
 }

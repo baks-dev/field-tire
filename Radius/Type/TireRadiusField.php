@@ -72,14 +72,26 @@ final class TireRadiusField
 
     }
 
-    public function __toString(): string
-    {
-        return $this->radius?->getValue() ?: '';
-    }
-
     public function getTireRadius(): ?TireRadiusInterface
     {
         return $this->radius;
+    }
+
+    public static function getDeclared(): array
+    {
+        return array_filter(
+            get_declared_classes(),
+            static function($className) {
+                return in_array(TireRadiusInterface::class, class_implements($className), true);
+            },
+        );
+    }
+
+    public function equals(mixed $radius): bool
+    {
+        $radius = new self($radius);
+
+        return $this->getTireRadiusValue() === $radius->getTireRadiusValue();
     }
 
     public function getTireRadiusValue(): ?string
@@ -103,21 +115,9 @@ final class TireRadiusField
         return $case;
     }
 
-    public static function getDeclared(): array
+    public function __toString(): string
     {
-        return array_filter(
-            get_declared_classes(),
-            static function($className) {
-                return in_array(TireRadiusInterface::class, class_implements($className), true);
-            }
-        );
-    }
-
-    public function equals(mixed $radius): bool
-    {
-        $radius = new self($radius);
-
-        return $this->getTireRadiusValue() === $radius->getTireRadiusValue();
+        return $this->radius?->getValue() ?: '';
     }
 
 }

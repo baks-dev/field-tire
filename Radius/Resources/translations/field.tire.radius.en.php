@@ -1,8 +1,8 @@
 <?php
 
 return [
-	'placeholder' => 'Choose a radius ...',
-	'label' => 'Radius',
+    'placeholder' => 'Choose a radius ...',
+    'label' => 'Radius',
 
     '12' => 'R12',
     '12C' => 'R12C',

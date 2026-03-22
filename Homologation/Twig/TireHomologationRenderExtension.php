@@ -29,12 +29,12 @@ use Twig\Extension\AbstractExtension;
 
 final class TireHomologationRenderExtension extends AbstractExtension
 {
-	public function getFunctions() : array
-	{
-		return [
-		
-		];
-	}
-	
-	
+    public function getFunctions(): array
+    {
+        return [
+
+        ];
+    }
+
+
 }

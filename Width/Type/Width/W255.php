@@ -33,12 +33,6 @@ final class W255 implements TireWidthInterface
 {
     public const int WIDTH = 255;
 
-    /** Возвращает значение (value) */
-    public function getValue(): int
-    {
-        return self::WIDTH;
-    }
-
     /** Проверяет, относится ли значение к данному объекту */
     public static function equals(mixed $width): bool
     {
@@ -48,5 +42,11 @@ final class W255 implements TireWidthInterface
         }
 
         return in_array($width, [self::WIDTH, (string) self::WIDTH, 'w'.self::WIDTH], true);
+    }
+
+    /** Возвращает значение (value) */
+    public function getValue(): int
+    {
+        return self::WIDTH;
     }
 }

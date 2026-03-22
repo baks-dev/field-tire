@@ -47,15 +47,16 @@ final class TireEuroFieldForm extends AbstractType
         $builder
             ->add('economy', ChoiceType::class, [
                 'choices' => ChoiceEconomyEnum::cases(),
-                'choice_value' => function (?ChoiceEconomyEnum $economy) {
+                'choice_value' => function(?ChoiceEconomyEnum $economy) {
                     return $economy?->value;
                 },
-                'choice_label' => function (ChoiceEconomyEnum $economy) {
+                'choice_label' => function(ChoiceEconomyEnum $economy) {
                     return $economy?->name;
                 },
-                'choice_attr' => function ($choice) use ($required) {
+                'choice_attr' => function($choice) use ($required) {
 
-                    if ($required && $choice === ChoiceEconomyEnum::A) {
+                    if($required && $choice === ChoiceEconomyEnum::A)
+                    {
                         return ['checked' => 'checked', 'class' => 'change-economy'];
                     }
                     return ['class' => 'change-economy'];
@@ -70,15 +71,16 @@ final class TireEuroFieldForm extends AbstractType
         $builder
             ->add('grip', ChoiceType::class, [
                 'choices' => ChoiceGripEnum::cases(),
-                'choice_value' => function (?ChoiceGripEnum $grip) {
+                'choice_value' => function(?ChoiceGripEnum $grip) {
                     return $grip?->value;
                 },
-                'choice_label' => function (ChoiceGripEnum $grip) {
+                'choice_label' => function(ChoiceGripEnum $grip) {
                     return $grip?->name;
                 },
-                'choice_attr' => function ($choice) use ($required) {
+                'choice_attr' => function($choice) use ($required) {
 
-                    if ($required && $choice === ChoiceGripEnum::A) {
+                    if($required && $choice === ChoiceGripEnum::A)
+                    {
                         return ['checked' => 'checked', 'class' => 'change-grip'];
                     }
 
@@ -96,19 +98,18 @@ final class TireEuroFieldForm extends AbstractType
             ->add('sound', IntegerType::class, [
                 'label' => 'sound',
                 'required' => $required,
-                'attr' => ['class' => 'euro-sound']
+                'attr' => ['class' => 'euro-sound'],
             ]);
 
 
     }
 
 
-
     public function configureOptions(OptionsResolver $resolver): void
     {
         $resolver->setDefaults([
             'data_class' => TireEuroFieldDTO::class,
-            'translation_domain' => 'field.tire.euro'
+            'translation_domain' => 'field.tire.euro',
         ]);
     }
 

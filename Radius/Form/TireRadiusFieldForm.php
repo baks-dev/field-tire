@@ -25,7 +25,6 @@ declare(strict_types=1);
 
 namespace BaksDev\Field\Tire\Radius\Form;
 
-use BaksDev\Field\Tire\Radius\Repository\TireRadiusInterface;
 use BaksDev\Field\Tire\Radius\Type\TireRadiusField;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
@@ -36,42 +35,42 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
 
 final class TireRadiusFieldForm extends AbstractType
 {
-	private TireRadiusFieldTransformer $transformer;
+    private TireRadiusFieldTransformer $transformer;
 
     public function __construct(
         TireRadiusFieldTransformer $transformer
     )
-	{
-		$this->transformer = $transformer;
+    {
+        $this->transformer = $transformer;
     }
-	
-	public function buildForm(FormBuilderInterface $builder, array $options) : void
-	{
-		$builder->addModelTransformer($this->transformer);
-	}
-	
-	
-	public function configureOptions(OptionsResolver $resolver) : void
-	{
+
+    public function buildForm(FormBuilderInterface $builder, array $options): void
+    {
+        $builder->addModelTransformer($this->transformer);
+    }
+
+
+    public function configureOptions(OptionsResolver $resolver): void
+    {
         $cases = TireRadiusField::cases();
 
-		$resolver->setDefaults([
-			'choices' => $cases,
-			'choice_value' => function(?TireRadiusField $radius) {
-				return $radius?->getTireRadiusValue();
-			},
-			'choice_label' => function(TireRadiusField $radius) {
-				return $radius->getTireRadiusValue();
-			},
-			'translation_domain' => 'field.tire.radius',
-			'placeholder' => 'placeholder',
-			'attr' => [ 'data-select' => 'select2' ],
-		]);
-	}
-	
-	public function getParent(): string
+        $resolver->setDefaults([
+            'choices' => $cases,
+            'choice_value' => function(?TireRadiusField $radius) {
+                return $radius?->getTireRadiusValue();
+            },
+            'choice_label' => function(TireRadiusField $radius) {
+                return $radius->getTireRadiusValue();
+            },
+            'translation_domain' => 'field.tire.radius',
+            'placeholder' => 'placeholder',
+            'attr' => ['data-select' => 'select2'],
+        ]);
+    }
+
+    public function getParent(): string
     {
-		return ChoiceType::class;
-	}
-	
+        return ChoiceType::class;
+    }
+
 }

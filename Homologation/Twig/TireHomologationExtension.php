@@ -33,61 +33,70 @@ use Twig\TwigFunction;
 
 final class TireHomologationExtension extends AbstractExtension
 {
-	public function getFunctions() : array
-	{
-		return [
-			new TwigFunction(TireHomologationField::TYPE, [$this, 'content'], ['needs_environment' => true, 'is_safe' => ['html']]),
-			new TwigFunction(TireHomologationField::TYPE.'_render', [$this, 'render'], ['needs_environment' => true, 'is_safe' => ['html']]),
-			new TwigFunction(TireHomologationField::TYPE.'_template', [$this, 'template'], ['needs_environment' => true, 'is_safe' => ['html']]),
-		];
-	}
-	
-	public function content(Environment $twig, ?string $value): ?string
-	{
-        if(!$value) { return null; }
+    public function getFunctions(): array
+    {
+        return [
+            new TwigFunction(TireHomologationField::TYPE, [$this, 'content'], ['needs_environment' => true, 'is_safe' => ['html']]),
+            new TwigFunction(TireHomologationField::TYPE.'_render', [$this, 'render'], ['needs_environment' => true, 'is_safe' => ['html']]),
+            new TwigFunction(TireHomologationField::TYPE.'_template', [$this, 'template'], ['needs_environment' => true, 'is_safe' => ['html']]),
+        ];
+    }
 
-		try
-		{
+    public function content(Environment $twig, ?string $value): ?string
+    {
+        if(!$value)
+        {
+            return null;
+        }
+
+        try
+        {
             $render = $twig->render('@Template/field-tire/homologation/content.html.twig', ['value' => $value]);
-		}
-		catch(LoaderError $loaderError)
-		{
+        }
+        catch(LoaderError $loaderError)
+        {
             $render = $twig->render('@field-tire-homologation/content.html.twig', ['value' => $value]);
-		}
+        }
 
         return trim($render);
-	}
-	
-	public function render(Environment $twig, ?string $value): ?string
-	{
-        if(!$value) { return null; }
+    }
 
-		try
-		{
-            $render =  $twig->render('@Template/field-tire/homologation/render.html.twig', ['value' => $value]);
-		}
-		catch(LoaderError $loaderError)
-		{
+    public function render(Environment $twig, ?string $value): ?string
+    {
+        if(!$value)
+        {
+            return null;
+        }
+
+        try
+        {
+            $render = $twig->render('@Template/field-tire/homologation/render.html.twig', ['value' => $value]);
+        }
+        catch(LoaderError $loaderError)
+        {
             $render = $twig->render('@field-tire-homologation/render.html.twig', ['value' => $value]);
-		}
+        }
 
         return trim($render);
-	}
-	
-	public function template(Environment $twig, ?string $value): ?string
-	{
-        if(!$value) { return null; }
+    }
 
-		try
-		{
-            $render =  $twig->render('@Template/field-tire/homologation/template.html.twig', ['value' => $value]);
-		}
-		catch(LoaderError $loaderError)
-		{
-            $render =  $twig->render('@field-tire-homologation/template.html.twig', ['value' => $value]);
-		}
+    public function template(Environment $twig, ?string $value): ?string
+    {
+        if(!$value)
+        {
+            return null;
+        }
+
+        try
+        {
+            $render = $twig->render('@Template/field-tire/homologation/template.html.twig', ['value' => $value]);
+        }
+        catch(LoaderError $loaderError)
+        {
+            $render = $twig->render('@field-tire-homologation/template.html.twig', ['value' => $value]);
+        }
 
         return trim($render);
-	}
-	
+    }
+
 }

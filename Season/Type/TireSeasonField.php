@@ -26,57 +26,57 @@ namespace BaksDev\Field\Tire\Season\Type;
 final class TireSeasonField
 {
     public const string TYPE = 'tire_season_field';
-	
-	private ?TireSeasonEnum $value = null;
-	
-	public function __construct(null|string|TireSeasonEnum $value)
-	{
-		if($value instanceof TireSeasonEnum)
-		{
-			$this->value = $value;
-			return;
-		}
-		
-		if(is_string($value))
-		{
-			$this->value = TireSeasonEnum::from($value);
-		}
-		
-	}
-	
-	public function __toString(): string
-	{
-		return $this->value?->value ?: '';
-	}
-	
-	/** Возвращает числовое значение   */
-	public function getValue() : ?string
-	{
-		return $this->value?->value;
-	}
-	
-	/** Возвращает ключ значения */
-	public function getName(): string
-	{
-		return $this->value->name;
-	}
-	
-	/** Возвращает значение Enum   */
-	public function getTireProfileField() : TireSeasonEnum
-	{
-		return $this->value;
-	}
-	
-	/** Возвращает массив из значнией TireProfileEnum */
-	public static function cases() : array
-	{
-		$case = null;
-		
-		foreach(TireSeasonEnum::cases() as $color)
-		{
-			$case[] = new self($color);
-		}
-		
-		return $case;
-	}
+
+    private ?TireSeasonEnum $value = null;
+
+    public function __construct(null|string|TireSeasonEnum $value)
+    {
+        if($value instanceof TireSeasonEnum)
+        {
+            $this->value = $value;
+            return;
+        }
+
+        if(is_string($value))
+        {
+            $this->value = TireSeasonEnum::from($value);
+        }
+
+    }
+
+    /** Возвращает массив из значнией TireProfileEnum */
+    public static function cases(): array
+    {
+        $case = null;
+
+        foreach(TireSeasonEnum::cases() as $color)
+        {
+            $case[] = new self($color);
+        }
+
+        return $case;
+    }
+
+    public function __toString(): string
+    {
+        return $this->value?->value ?: '';
+    }
+
+    /** Возвращает числовое значение   */
+    public function getValue(): ?string
+    {
+        return $this->value?->value;
+    }
+
+    /** Возвращает ключ значения */
+    public function getName(): string
+    {
+        return $this->value->name;
+    }
+
+    /** Возвращает значение Enum   */
+    public function getTireProfileField(): TireSeasonEnum
+    {
+        return $this->value;
+    }
 }

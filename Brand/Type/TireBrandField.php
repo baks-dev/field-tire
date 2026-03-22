@@ -28,55 +28,55 @@ namespace BaksDev\Field\Tire\Brand\Type;
 final class TireBrandField
 {
     public const string TYPE = 'tire_brand_field';
-	
-	private TireBrandEnum $value;
-	
-	
-	public function __construct(string|TireBrandEnum $value)
-	{
-		if($value instanceof TireBrandEnum)
-		{
-			$this->value = $value;
-		}
-		else
-		{
-			$this->value = TireBrandEnum::from($value);
-		}
-	}
-	
-	public function __toString(): string
-	{
-		return $this->value->value;
-	}
-	
-	/** Возвращает числовое значение   */
-	public function getTireBrandEnumValue(): string
-	{
-		return $this->value->value;
-	}
-	
-	/** Возвращает ключ значения */
-	public function getTireBrandEnumName(): string
-	{
-		return $this->value->name;
-	}
-	
-	/** Возвращает значение Enum   */
-	public function getTireBrandEnum() : TireBrandEnum
-	{
-		return $this->value;
-	}
-	
-	/** Возвращает массив из значнией TireProfileEnum */
-	public static function cases() : array
-	{
-		$case = null;
-		
-		foreach(TireBrandEnum::cases() as $color)
-		{
-			$case[] = new self($color);
-		}
-		
-		return $case;
-	}
+
+    private TireBrandEnum $value;
+
+
+    public function __construct(string|TireBrandEnum $value)
+    {
+        if($value instanceof TireBrandEnum)
+        {
+            $this->value = $value;
+        }
+        else
+        {
+            $this->value = TireBrandEnum::from($value);
+        }
+    }
+
+    /** Возвращает массив из значнией TireProfileEnum */
+    public static function cases(): array
+    {
+        $case = null;
+
+        foreach(TireBrandEnum::cases() as $color)
+        {
+            $case[] = new self($color);
+        }
+
+        return $case;
+    }
+
+    public function __toString(): string
+    {
+        return $this->value->value;
+    }
+
+    /** Возвращает числовое значение   */
+    public function getTireBrandEnumValue(): string
+    {
+        return $this->value->value;
+    }
+
+    /** Возвращает ключ значения */
+    public function getTireBrandEnumName(): string
+    {
+        return $this->value->name;
+    }
+
+    /** Возвращает значение Enum   */
+    public function getTireBrandEnum(): TireBrandEnum
+    {
+        return $this->value;
+    }
 }

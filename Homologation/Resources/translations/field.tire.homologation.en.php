@@ -173,6 +173,4 @@ return [
     'VW' => ' Volkswagen',
 
 
-
-
 ];

@@ -25,15 +25,15 @@
 
 namespace BaksDev\Field\Tire\Season\Type;
 
-enum TireSeasonEnum : string
+enum TireSeasonEnum: string
 {
-	/** Летние */
-	case SUMMER = 'summer';
-	
-	/** Зимние */
-	case WINTER = 'winter';
-	
-	/** Всесезонные */
-	case ALL = 'all';
-	
+    /** Летние */
+    case SUMMER = 'summer';
+
+    /** Зимние */
+    case WINTER = 'winter';
+
+    /** Всесезонные */
+    case ALL = 'all';
+
 }

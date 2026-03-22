@@ -26,46 +26,46 @@ namespace Symfony\Component\DependencyInjection\Loader\Configurator;
 use BaksDev\Field\Tire\BaksDevFieldTireBundle;
 use Symfony\Config\TwigConfig;
 
-return static function (TwigConfig $twig) {
+return static function(TwigConfig $twig) {
 
     $twig->path(
         BaksDevFieldTireBundle::PATH.implode(DIRECTORY_SEPARATOR, ['CarType', 'Resources', 'view', '']), // .'CarType/Resources/view',
-        'field-tire-cartype'
+        'field-tire-cartype',
     );
 
     $twig->path(
         BaksDevFieldTireBundle::PATH.implode(DIRECTORY_SEPARATOR, ['Euro', 'Resources', 'view', '']), //.'Euro/Resources/view',
-        'field-tire-euro'
+        'field-tire-euro',
     );
 
     $twig->path(
         BaksDevFieldTireBundle::PATH.implode(DIRECTORY_SEPARATOR, ['Homologation', 'Resources', 'view', '']), // .'Homologation/Resources/view',
-        'field-tire-homologation'
+        'field-tire-homologation',
     );
 
     $twig->path(
         BaksDevFieldTireBundle::PATH.implode(DIRECTORY_SEPARATOR, ['Profile', 'Resources', 'view', '']), //  .'Profile/Resources/view',
-        'field-tire-profile'
+        'field-tire-profile',
     );
 
     $twig->path(
         BaksDevFieldTireBundle::PATH.implode(DIRECTORY_SEPARATOR, ['Radius', 'Resources', 'view', '']), // .'Radius/Resources/view',
-        'field-tire-radius'
+        'field-tire-radius',
     );
 
     $twig->path(
         BaksDevFieldTireBundle::PATH.implode(DIRECTORY_SEPARATOR, ['Season', 'Resources', 'view', '']), //  .'Season/Resources/view',
-        'field-tire-season'
+        'field-tire-season',
     );
 
     $twig->path(
         BaksDevFieldTireBundle::PATH.implode(DIRECTORY_SEPARATOR, ['Studs', 'Resources', 'view', '']), //  .'Studs/Resources/view',
-        'field-tire-studs'
+        'field-tire-studs',
     );
 
     $twig->path(
         BaksDevFieldTireBundle::PATH.implode(DIRECTORY_SEPARATOR, ['Width', 'Resources', 'view', '']), //  .'Width/Resources/view',
-        'field-tire-width'
+        'field-tire-width',
     );
 
 };

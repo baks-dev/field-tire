@@ -25,7 +25,6 @@
 
 namespace BaksDev\Field\Tire\Season\Twig;
 
-use BaksDev\Field\Tire\Season\Type\TireSeasonEnum;
 use BaksDev\Field\Tire\Season\Type\TireSeasonField;
 use Symfony\Contracts\Translation\TranslatorInterface;
 use Twig\Environment;
@@ -35,50 +34,50 @@ use Twig\TwigFunction;
 
 final class TireSeasonExtension extends AbstractExtension
 {
-	public function getFunctions() : array
-	{
-		return [
-			new TwigFunction(TireSeasonField::TYPE, [$this, 'content'], ['needs_environment' => true, 'is_safe' => ['html']]),
-			new TwigFunction(TireSeasonField::TYPE.'_render', [$this, 'render'], ['needs_environment' => true, 'is_safe' => ['html']]),
-			new TwigFunction(TireSeasonField::TYPE.'_template', [$this, 'template'], ['needs_environment' => true, 'is_safe' => ['html']]),
-		];
-	}
-	
-	public function content(Environment $twig, string $value): string
-	{
-		try
-		{
-			return $twig->render('@Template/field-tire/season/content.html.twig', ['value' => $value]);
-		}
-		catch(LoaderError $loaderError)
-		{
-			return $twig->render('@field-tire-season/content.html.twig', ['value' => $value]);
-		}
-	}
-	
-	
-	public function render(Environment $twig, $value): string
-	{
-		try
-		{
-			return $twig->render('@Template/field-tire/season/render.html.twig', ['value' => $value]);
-		}
-		catch(LoaderError $loaderError)
-		{
-			return $twig->render('@field-tire-season/render.html.twig', ['value' => $value]);
-		}
-	}
-	
-	
-	public function template(Environment $twig, $value): string
-	{
-		try
-		{
-			return $twig->render('@Template/field-tire/season/template.html.twig', ['value' => $value]);
-		}
-		catch(LoaderError $loaderError)
-		{
-			return $twig->render('@field-tire-season/template.html.twig', ['value' => $value]);
-		}
-	}
+    public function getFunctions(): array
+    {
+        return [
+            new TwigFunction(TireSeasonField::TYPE, [$this, 'content'], ['needs_environment' => true, 'is_safe' => ['html']]),
+            new TwigFunction(TireSeasonField::TYPE.'_render', [$this, 'render'], ['needs_environment' => true, 'is_safe' => ['html']]),
+            new TwigFunction(TireSeasonField::TYPE.'_template', [$this, 'template'], ['needs_environment' => true, 'is_safe' => ['html']]),
+        ];
+    }
+
+    public function content(Environment $twig, string $value): string
+    {
+        try
+        {
+            return $twig->render('@Template/field-tire/season/content.html.twig', ['value' => $value]);
+        }
+        catch(LoaderError $loaderError)
+        {
+            return $twig->render('@field-tire-season/content.html.twig', ['value' => $value]);
+        }
+    }
+
+
+    public function render(Environment $twig, $value): string
+    {
+        try
+        {
+            return $twig->render('@Template/field-tire/season/render.html.twig', ['value' => $value]);
+        }
+        catch(LoaderError $loaderError)
+        {
+            return $twig->render('@field-tire-season/render.html.twig', ['value' => $value]);
+        }
+    }
+
+
+    public function template(Environment $twig, $value): string
+    {
+        try
+        {
+            return $twig->render('@Template/field-tire/season/template.html.twig', ['value' => $value]);
+        }
+        catch(LoaderError $loaderError)
+        {
+            return $twig->render('@field-tire-season/template.html.twig', ['value' => $value]);
+        }
+    }
 }

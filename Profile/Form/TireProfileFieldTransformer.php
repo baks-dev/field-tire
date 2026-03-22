@@ -30,18 +30,21 @@ use Symfony\Component\Form\DataTransformerInterface;
 
 final class TireProfileFieldTransformer implements DataTransformerInterface
 {
-	
-	public function transform(mixed $value): ?TireProfileField
+
+    public function transform(mixed $value): ?TireProfileField
     {
-		if(empty($value)) { return null; }
-		
-		return new TireProfileField($value);
-	}
-	
-	
-	public function reverseTransform(mixed $value): string
-	{
-		return (string) $value;
-	}
-	
+        if(empty($value))
+        {
+            return null;
+        }
+
+        return new TireProfileField($value);
+    }
+
+
+    public function reverseTransform(mixed $value): string
+    {
+        return (string) $value;
+    }
+
 }

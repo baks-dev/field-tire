@@ -32,7 +32,7 @@ final class TireProfileField
     private ?TireProfileInterface $profile = null;
 
     public function __construct(TireProfileInterface|self|int|float|string $profile)
-	{
+    {
         if(is_string($profile) && class_exists($profile))
         {
             $instance = new $profile();
@@ -67,23 +67,34 @@ final class TireProfileField
         }
 
         //throw new InvalidArgumentException(sprintf('Not found TireProfileField %s', $profile));
-	}
+    }
 
-    public function __toString(): string
-	{
-        return (string) $this->profile ? $this->profile->getValue() : '';
-	}
+    public function getTireProfile(): ?TireProfileInterface
+    {
+        return $this->profile;
+    }
+
+    public static function getDeclared(): array
+    {
+        return array_filter(
+            get_declared_classes(),
+            static function($className) {
+                return in_array(TireProfileInterface::class, class_implements($className), true);
+            },
+        );
+    }
+
+    public function equals(mixed $profile): bool
+    {
+        $profile = new self($profile);
+
+        return $this->getTireProfileValue() === $profile->getTireProfileValue();
+    }
 
     public function getTireProfileValue(): null|int|float
-	{
-		return $this->profile?->getValue();
-	}
-
-	public function getTireProfile() : ?TireProfileInterface
-	{
-		return $this->profile;
-	}
-
+    {
+        return $this->profile?->getValue();
+    }
 
     public static function cases(): array
     {
@@ -101,20 +112,8 @@ final class TireProfileField
         return $case;
     }
 
-    public static function getDeclared(): array
+    public function __toString(): string
     {
-        return array_filter(
-            get_declared_classes(),
-            static function($className) {
-                return in_array(TireProfileInterface::class, class_implements($className), true);
-            }
-        );
-    }
-
-    public function equals(mixed $profile): bool
-    {
-        $profile = new self($profile);
-
-        return $this->getTireProfileValue() === $profile->getTireProfileValue();
+        return (string) $this->profile ? $this->profile->getValue() : '';
     }
 }

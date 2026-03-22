@@ -67,14 +67,26 @@ final class TireWidthField
         }
     }
 
-    public function __toString(): string
-    {
-        return $this->width ? $this->width->getValue() : '';
-    }
-
     public function getTireWidth(): ?TireWidthInterface
     {
         return $this->width;
+    }
+
+    public static function getDeclared(): array
+    {
+        return array_filter(
+            get_declared_classes(),
+            static function($className) {
+                return in_array(TireWidthInterface::class, class_implements($className), true);
+            },
+        );
+    }
+
+    public function equals(mixed $width): bool
+    {
+        $width = new self($width);
+
+        return $this->getTireWidthValue() === $width->getTireWidthValue();
     }
 
     public function getTireWidthValue(): string|null
@@ -103,21 +115,9 @@ final class TireWidthField
         return $case;
     }
 
-    public static function getDeclared(): array
+    public function __toString(): string
     {
-        return array_filter(
-            get_declared_classes(),
-            static function($className) {
-                return in_array(TireWidthInterface::class, class_implements($className), true);
-            },
-        );
-    }
-
-    public function equals(mixed $width): bool
-    {
-        $width = new self($width);
-
-        return $this->getTireWidthValue() === $width->getTireWidthValue();
+        return $this->width ? $this->width->getValue() : '';
     }
 
 }

@@ -24,25 +24,25 @@ use Doctrine\DBAL\Types\Type;
 
 final class TireHomologationFieldType extends Type
 {
-	public function convertToDatabaseValue($value, AbstractPlatform $platform): string
-	{
-		return (string) $value;
-	}
-	
-	public function convertToPHPValue($value, AbstractPlatform $platform): ?TireHomologationField
-	{
+    public function convertToDatabaseValue($value, AbstractPlatform $platform): string
+    {
+        return (string) $value;
+    }
+
+    public function convertToPHPValue($value, AbstractPlatform $platform): ?TireHomologationField
+    {
         return !empty($value) ? new TireHomologationField($value) : null;
-	}
-	
-	public function getName(): string
-	{
-		return TireHomologationField::TYPE;
-	}
-	
-	public function requiresSQLCommentHint(AbstractPlatform $platform) : bool
-	{
-		return true;
-	}
+    }
+
+    public function getName(): string
+    {
+        return TireHomologationField::TYPE;
+    }
+
+    public function requiresSQLCommentHint(AbstractPlatform $platform): bool
+    {
+        return true;
+    }
 
     public function getSQLDeclaration(array $column, AbstractPlatform $platform): string
     {
