@@ -91,7 +91,9 @@ final readonly class TireWidthRepository implements TireWidthInterface
             OR offer_quantity.quantity > 0)',
         );
 
-        $result = $dbal->enableCache('products-product')->fetchAllAssociative();
+        $result = $dbal
+            ->enableCache('products-product')
+            ->fetchAllAssociative();
 
         return $result ? array_column($result, 'value') : false;
     }
@@ -106,7 +108,9 @@ final readonly class TireWidthRepository implements TireWidthInterface
 
         $dbal = $this->builder();
 
-        $result = $dbal->enableCache('products-product')->fetchAllAssociative();
+        $result = $dbal
+            ->enableCache('products-product')
+            ->fetchAllAssociative();
 
         return $result ? array_column($result, 'value') : false;
     }
@@ -184,7 +188,7 @@ final readonly class TireWidthRepository implements TireWidthInterface
             )
             ->setParameter(
                 key: 'values',
-                value: $stringArray,
+                value: array_unique($stringArray),
                 type: ArrayParameterType::STRING,
             );
 
