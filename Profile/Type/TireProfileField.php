@@ -91,7 +91,7 @@ final class TireProfileField
         return $this->getTireProfileValue() === $profile->getTireProfileValue();
     }
 
-    public function getTireProfileValue(): null|int|float
+    public function getTireProfileValue(): null|int|float|string
     {
         return $this->profile?->getValue();
     }

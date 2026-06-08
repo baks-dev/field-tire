@@ -1,2 +1,6 @@
 {% trans_default_domain 'field.tire.profile' %}
-/{{ value }}
+
+{# null = б/р (без размера) #}
+{% if value is not empty and value !== 'null' %}
+    /{{ value }}
+{% endif %}

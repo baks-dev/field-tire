@@ -43,9 +43,9 @@ final class TireProfileExtension extends AbstractExtension
         ];
     }
 
-    public function content(Environment $twig, ?string $value): ?string
+    public function content(Environment $twig, string|null|false $value): ?string
     {
-        if(!$value)
+        if(empty($value))
         {
             return null;
         }
@@ -62,9 +62,9 @@ final class TireProfileExtension extends AbstractExtension
         return trim($render);
     }
 
-    public function render(Environment $twig, ?string $value): ?string
+    public function render(Environment $twig, string|null|false $value): ?string
     {
-        if(!$value)
+        if(empty($value))
         {
             return null;
         }
@@ -82,9 +82,9 @@ final class TireProfileExtension extends AbstractExtension
 
     }
 
-    public function template(Environment $twig, ?string $value): ?string
+    public function template(Environment $twig, string|null|false $value): ?string
     {
-        if(!$value)
+        if(empty($value))
         {
             return null;
         }
