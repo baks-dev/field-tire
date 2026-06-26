@@ -29,10 +29,10 @@ use BaksDev\Field\Tire\Radius\Type\Radius\Collection\TireRadiusInterface;
 use Symfony\Component\DependencyInjection\Attribute\AutoconfigureTag;
 
 #[AutoconfigureTag('baks.tire.radius')]
-final class R13 implements TireRadiusInterface
+final class R14_5 implements TireRadiusInterface
 {
 
-    public const string RADIUS = '13';
+    public const string RADIUS = '14.5';
 
     /** Проверяет, относится ли значение к данному объекту */
     public static function equals(mixed $radius): bool

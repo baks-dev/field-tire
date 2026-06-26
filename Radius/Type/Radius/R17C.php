@@ -32,7 +32,7 @@ use Symfony\Component\DependencyInjection\Attribute\AutoconfigureTag;
 final class R17C implements TireRadiusInterface
 {
 
-    public const RADIUS = '17C';
+    public const string RADIUS = '17C';
 
     /** Проверяет, относится ли значение к данному объекту */
     public static function equals(mixed $radius): bool
